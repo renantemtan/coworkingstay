@@ -1,0 +1,18 @@
+{
+    "title": "Frequently Asked Questions",
+    "description": "Everything you need to know about CoWorkingStay.",
+    "faqs": [
+        {
+            "question": "What is CoWorkingStay?",
+            "answer": "CoWorkingStay is a network of premium coworking space hotels in the Philippines designed for remote workers and digital nomads."
+        },
+        {
+            "question": "is the internet reliable?",
+            "answer": "Yes, we prioritize high-speed fiber internet at all our locations. Some locations also establish failover connections."
+        },
+        {
+            "question": "How do I book?",
+            "answer": "You can request to book via our website form or join the waitlist for upcoming locations."
+        }
+    ]
+}

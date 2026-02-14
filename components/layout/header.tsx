@@ -1,0 +1,146 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import type { Location } from '@/types/content';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Menu, X, ChevronDown } from 'lucide-react';
+
+interface HeaderProps {
+  locations: Location[];
+}
+
+export function Header({ locations }: HeaderProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between md:h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+              <span className="font-sora text-lg font-bold text-white">CWS</span>
+            </div>
+            <div className="hidden flex-col sm:flex">
+              <span className="font-sora text-sm font-bold text-foreground">CoWorkingStay</span>
+              <span className="text-xs text-muted-foreground">Your workday awaits</span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center gap-8 md:flex">
+            <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">
+              Home
+            </Link>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
+                  Locations
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                {locations.map((location) => (
+                  <DropdownMenuItem key={location.id} asChild>
+                    <Link href={`/locations/${location.slug}`} className="flex cursor-pointer items-center justify-between">
+                      <span>{location.name}</span>
+                      <Badge variant={location.status === 'Open' ? 'default' : 'secondary'} className="ml-2">
+                        {location.status}
+                      </Badge>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Link href="/experience" className="text-sm font-medium transition-colors hover:text-primary">
+              Experience
+            </Link>
+            <Link href="/faq" className="text-sm font-medium transition-colors hover:text-primary">
+              FAQ
+            </Link>
+          </nav>
+
+          {/* CTA & Mobile Menu */}
+          <div className="flex items-center gap-4">
+            <Button
+              asChild
+              className="hidden bg-primary hover:bg-blue-600 sm:inline-flex"
+            >
+              <a href="#booking">Book Now</a>
+            </Button>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:bg-muted md:hidden"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <nav className="border-t border-border/40 px-0 py-4 md:hidden">
+            <div className="space-y-2">
+              <Link
+                href="/"
+                className="block rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <div className="px-4 py-2">
+                <p className="mb-2 text-xs font-semibold text-muted-foreground">LOCATIONS</p>
+                <div className="space-y-1">
+                  {locations.map((location) => (
+                    <Link
+                      key={location.id}
+                      href={`/locations/${location.slug}`}
+                      className="flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span>{location.name}</span>
+                      <Badge variant={location.status === 'Open' ? 'default' : 'secondary'} className="ml-2 text-xs">
+                        {location.status}
+                      </Badge>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <Link
+                href="/experience"
+                className="block rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Experience
+              </Link>
+              <Link
+                href="/faq"
+                className="block rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                FAQ
+              </Link>
+              <div className="border-t border-border/40 px-4 pt-4">
+                <Button asChild className="w-full bg-primary hover:bg-blue-600" onClick={() => setMobileMenuOpen(false)}>
+                  <a href="#booking">Book Now</a>
+                </Button>
+              </div>
+            </div>
+          </nav>
+        )}
+      </div>
+    </header>
+  );
+}

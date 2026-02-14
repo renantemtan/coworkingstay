@@ -1,0 +1,17 @@
+{
+    "title": "Contact Us",
+    "description": "We'd love to hear from you. Reach out with any questions.",
+    "contactInfo": {
+        "mobile": "+63 917 837 5643",
+        "email": "worknwave@coworkingstay.com",
+        "address": "Siargao Island, Philippines",
+        "socials": {
+            "facebook": "https://facebook.com",
+            "instagram": "https://instagram.com",
+            "linkedin": "https://linkedin.com",
+            "tiktok": "https://tiktok.com",
+            "youtube": "https://youtube.com"
+        },
+        "globalContactFormUrl": "https://forms.google.com/co-working-stay-contact"
+    }
+}

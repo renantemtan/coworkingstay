@@ -1,0 +1,41 @@
+{
+    "id": "work-n-surf",
+    "slug": "work-n-surf-la-union",
+    "name": "Work 'n Surf",
+    "tagline": "Surf, sunset, and success synchronized.",
+    "status": "Soon",
+    "address": "Luna, La Union, Philippines",
+    "description": "Experience the ultimate lifestyle blend at Work 'n Surf. Work with a view of consistent waves, enjoy golden hour sunsets, and connect with like-minded professionals.",
+    "image": "/locations/la-union.jpg",
+    "features": [
+        "Surfing access",
+        "Sunset workspace",
+        "Modern coworking",
+        "Fitness facilities",
+        "Community gatherings",
+        "Local network"
+    ],
+    "highlights": [],
+    "coworkingFeatures": [],
+    "roomSummary": [],
+    "activities": [],
+    "capabilities": {
+        "internetFailoverConfirmed": false,
+        "highSpeedInternet": true,
+        "privateOffices": false,
+        "coworkingSpaces": true
+    },
+    "bookingForm": "https://forms.google.com/work-n-surf-waitlist",
+    "bookingType": "waitlist",
+    "primaryCTA": "join_waitlist",
+    "gallery": [
+        {
+            "src": "/locations/la-union.jpg",
+            "alt": "Work 'n Surf Concept",
+            "label": "concept"
+        }
+    ],
+    "gettingHereSteps": [],
+    "faqs": [],
+    "policies": []
+}

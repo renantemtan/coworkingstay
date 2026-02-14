@@ -1,0 +1,88 @@
+{
+    "id": "work-n-wave",
+    "slug": "work-n-wave-puerto-galera",
+    "name": "Work 'n Wave",
+    "tagline": "Work the day. Ride the wave. Live the life.",
+    "status": "Open",
+    "address": "White Beach San Isidro, Puerto Galera, Philippines",
+    "description": "Located in the stunning Puerto Galera, Work 'n Wave offers the perfect blend of productivity and adventure. Enjoy world-class amenities and direct access to some of the best waves in the Philippines.",
+    "image": "/locations/puerto-galera.jpg",
+    "features": [
+        "Ocean-view workspaces",
+        "High-speed fiber internet",
+        "Private meeting rooms",
+        "Professional workspace setup",
+        "Onsite cafe & nutrition",
+        "Community events"
+    ],
+    "highlights": [
+        "Spacious rooms",
+        "Up to 4 guests per room",
+        "Quiet pocket",
+        "Coworking included"
+    ],
+    "coworkingFeatures": [
+        "Ergonomic chairs",
+        "High-speed fiber",
+        "Backup power",
+        "24/7 access"
+    ],
+    "roomSummary": [
+        "Spacious and clean",
+        "Balcony (2nd floor only)",
+        "Air conditioning",
+        "Ensuite bathroom",
+        "Hot shower",
+        "Basic in-room workspace",
+        "Strong Wi-Fi"
+    ],
+    "activities": [
+        "Surfing",
+        "Diving",
+        "Island Hopping",
+        "Waterfall trekking",
+        "Snorkeling",
+        "Kayaking",
+        "Stand-up paddleboarding",
+        "Beach volleyball",
+        "Sunset viewing",
+        "Local market tours",
+        "Motorbike rental",
+        "Massage & Spa"
+    ],
+    "capabilities": {
+        "internetFailoverConfirmed": false,
+        "highSpeedInternet": true,
+        "privateOffices": true,
+        "coworkingSpaces": true
+    },
+    "bookingForm": "https://forms.google.com/work-n-wave-request",
+    "bookingType": "request",
+    "primaryCTA": "request_to_book",
+    "gallery": [
+        {
+            "src": "/locations/puerto-galera.jpg",
+            "alt": "Work 'n Wave Exterior",
+            "label": "lifestyle"
+        }
+    ],
+    "gettingHereSteps": [
+        "Take a bus to Batangas Pier",
+        "Take a ferry to Puerto Galera",
+        "Take a tricycle to the resort"
+    ],
+    "faqs": [
+        {
+            "question": "Is breakfast included?",
+            "answer": "Yes, a hearty breakfast is included with your stay."
+        }
+    ],
+    "policies": [
+        "No loud music/no karaoke",
+        "Coworking etiquette & dress code",
+        "No heavy intoxication",
+        "Clean-as-you-go",
+        "No smoking indoors",
+        "Check-in 2pm / Check-out 11am"
+    ]
+}

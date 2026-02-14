@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sora: 'Sora', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-caveat: 'Caveat', cursive;
+    
+    /* Coastal Tech Minimal Palette */
+    --navy: #0C4A96;
+    --blue: #0158F5;
+    --sky: #03B1F7;
+    --aqua: #03D2D8;
+    --red-cta: #E53652;
+    --orange-hover: #E8704F;
+    --sand-bg: #EAA785;
+    
+    --background: 0 0% 100%;
+    --foreground: 12 60% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 12 60% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 12 60% 15%;
+    --primary: 217 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 197 100% 49%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 349 100% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 349 100% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 217 100% 47%;
+    --chart-1: 217 100% 47%;
+    --chart-2: 197 100% 49%;
+    --chart-3: 177 100% 50%;
+    --chart-4: 12 80% 60%;
+    --chart-5: 30 90% 55%;
+    --radius: 1.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-white text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .glassmorphism {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg;
+  }
+  
+  .font-brand {
+    @apply font-sora;
+  }
+  
+  .font-ui {
+    @apply font-inter;
+  }
+  
+  .font-accent {
+    @apply font-caveat;
+  }
+}
