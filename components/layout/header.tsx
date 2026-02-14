@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { Location } from '@/types/content';
 import {
@@ -27,25 +27,16 @@ const logoMap: Record<string, string> = {
 export function Header({ locations, activeLocation }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const showHeader = () => {
-      setIsVisible(true);
-      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-      hideTimeoutRef.current = setTimeout(() => {
-        setIsVisible(false);
-      }, 3000);
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 80);
     };
 
-    window.addEventListener('mousemove', showHeader, { passive: true });
-    window.addEventListener('touchstart', showHeader, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
-    return () => {
-      window.removeEventListener('mousemove', showHeader);
-      window.removeEventListener('touchstart', showHeader);
-      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const logoSrc = activeLocation ? (logoMap[activeLocation.id] || '/logos/coworkingstay_logo.svg') : '/logos/coworkingstay_logo.svg';
@@ -59,14 +50,6 @@ export function Header({ locations, activeLocation }: HeaderProps) {
         ? 'translate-y-0 opacity-100'
         : '-translate-y-full opacity-0 pointer-events-none'
         }`}
-      onMouseEnter={() => {
-        if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-      }}
-      onMouseLeave={() => {
-        hideTimeoutRef.current = setTimeout(() => {
-          setIsVisible(false);
-        }, 1500);
-      }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between md:h-20">

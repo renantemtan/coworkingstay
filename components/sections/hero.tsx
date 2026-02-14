@@ -17,27 +17,28 @@ export function HeroSection() {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url(/hero-bg.png)' }}
+        style={{ backgroundImage: 'url(/hero-bg.webp)' }}
       />
-      {/* Lighter overlay — lets more of the background show through */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/25 to-black/40" />
+      {/* Blue-toned professional overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0C4A96]/50 via-[#0C4A96]/35 to-[#0C4A96]/55" />
 
-      {/* Content box with frosted backdrop */}
+      {/* Content box — more transparent, thicker white border */}
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="rounded-3xl bg-black/50 backdrop-blur-md px-8 py-12 sm:px-12 sm:py-16 text-center"
+          className="rounded-3xl border border-white/50 bg-[#0C4A96]/[2%] backdrop-blur-sm px-8 py-12 sm:px-12 sm:py-16 text-center"
         >
           <h1 className="font-sora text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Your best workday{' '}
-            <span style={{ color: '#0158F5' }}>
+            Your best workday
+            <br />
+            <span style={{ color: '#03B1F7' }}>
               starts here.
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/85 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-3xl text-white/85 sm:text-4xl font-caveat">
             Designed for those who refuse to choose between future results and today&apos;s reality.
           </p>
 
@@ -59,7 +60,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — icon only, no text */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -69,9 +70,8 @@ export function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2"
+          className="flex flex-col items-center"
         >
-          <span className="text-xs text-white/50 uppercase tracking-widest">Scroll</span>
           <div className="h-8 w-5 rounded-full border-2 border-white/30 p-1">
             <motion.div
               animate={{ y: [0, 10, 0] }}
