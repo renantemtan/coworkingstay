@@ -19,7 +19,7 @@ export function Footer({ locations }: FooterProps) {
               <img
                 src="/logos/coworkingstay_logo.svg"
                 alt="CoWorkingStay"
-                className="h-10 w-10"
+                className="h-10 w-auto"
               />
               <span className="font-sora font-bold text-foreground">CoWorkingStay</span>
             </div>

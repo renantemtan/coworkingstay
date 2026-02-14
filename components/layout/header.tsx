@@ -15,25 +15,37 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 
 interface HeaderProps {
   locations: Location[];
+  activeLocation?: Location;
 }
 
-export function Header({ locations }: HeaderProps) {
+const logoMap: Record<string, string> = {
+  'work-n-wave': '/logos/worknwave_logo.svg',
+  'work-n-lake': '/logos/worknlake_logo.svg',
+  'work-n-surf': '/logos/worknsurf_logo.svg',
+};
+
+export function Header({ locations, activeLocation }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const logoSrc = activeLocation ? (logoMap[activeLocation.id] || '/logos/coworkingstay_logo.svg') : '/logos/coworkingstay_logo.svg';
+  const brandName = activeLocation ? activeLocation.name : 'CoWorkingStay';
+  const brandTagline = activeLocation ? activeLocation.tagline : 'Your best workday starts here.';
+  const logoLink = activeLocation ? `/locations/${activeLocation.slug}` : '/';
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href={logoLink} className="flex items-center gap-2">
             <img
-              src="/logos/coworkingstay_logo.svg"
-              alt="CoWorkingStay"
-              className="h-10 w-10"
+              src={logoSrc}
+              alt={brandName}
+              className="h-10 w-auto"
             />
             <div className="hidden flex-col sm:flex">
-              <span className="font-sora text-sm font-bold text-foreground">CoWorkingStay</span>
-              <span className="text-xs text-muted-foreground">Your best workday starts here.</span>
+              <span className="font-sora text-sm font-bold text-foreground">{brandName}</span>
+              <span className="text-xs text-muted-foreground">{brandTagline}</span>
             </div>
           </Link>
 
