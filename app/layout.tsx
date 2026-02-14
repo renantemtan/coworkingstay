@@ -10,13 +10,12 @@ const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' })
 
 const SITE_URL = 'https://coworkingstay.com'
 const SITE_NAME = 'CoWorkingStay'
-const SITE_DESCRIPTION =
-  'Coworking-first hotel stays in the Philippines—professional-grade workspaces in beach, lake, and surf destinations. Designed for those who refuse to choose between results and reality.'
+const SITE_DESCRIPTION = `Coworking-first hotel stays in the Philippines\u2014professional-grade workspaces in beach, lake, and surf destinations. Designed for those who refuse to choose between future results and today's reality.`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Designed for Those Who Refuse to Choose`,
+    default: `${SITE_NAME} \u2014 Designed for Those Who Refuse to Choose`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -47,20 +46,20 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Designed for Those Who Refuse to Choose`,
+    title: `${SITE_NAME} \u2014 Designed for Those Who Refuse to Choose`,
     description: SITE_DESCRIPTION,
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — Coworking Space Hotels in Puerto Galera, La Union & Laguna`,
+        alt: `${SITE_NAME} \u2014 Coworking Space Hotels in Puerto Galera, La Union & Laguna`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} — Designed for Those Who Refuse to Choose`,
+    title: `${SITE_NAME} \u2014 Designed for Those Who Refuse to Choose`,
     description: SITE_DESCRIPTION,
     images: ['/og-image.png'],
   },

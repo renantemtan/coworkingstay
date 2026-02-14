@@ -23,7 +23,7 @@ export function Footer({ locations }: FooterProps) {
               />
               <span className="font-sora font-bold text-foreground">CoWorkingStay</span>
             </div>
-            <p className="text-sm text-muted-foreground">Designed for those who refuse to choose between results and reality.</p>
+            <p className="text-sm text-muted-foreground">Designed for those who refuse to choose between future results and today&apos;s reality.</p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground transition-colors hover:text-primary">
                 <Linkedin className="h-5 w-5" />

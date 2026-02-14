@@ -26,7 +26,9 @@ export default async function Home() {
       <main>
         <HeroSection />
         <PillarsSection pillars={experience.pillars} />
-        <LocationsGrid locations={locations} />
+        <div id="locations" className="scroll-mt-24">
+          <LocationsGrid locations={locations} />
+        </div>
         <HardwareSpecs />
         <BookingSection />
       </main>

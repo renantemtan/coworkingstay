@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { Location } from '@/types/content';
 import {
@@ -26,6 +26,18 @@ const logoMap: Record<string, string> = {
 
 export function Header({ locations, activeLocation }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 80);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const logoSrc = activeLocation ? (logoMap[activeLocation.id] || '/logos/coworkingstay_logo.svg') : '/logos/coworkingstay_logo.svg';
   const brandName = activeLocation ? activeLocation.name : 'CoWorkingStay';
@@ -33,7 +45,12 @@ export function Header({ locations, activeLocation }: HeaderProps) {
   const logoLink = activeLocation ? `/locations/${activeLocation.slug}` : '/';
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header
+      className={`fixed top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 transition-all duration-500 ease-in-out ${isVisible
+          ? 'translate-y-0 opacity-100'
+          : '-translate-y-full opacity-0 pointer-events-none'
+        }`}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}

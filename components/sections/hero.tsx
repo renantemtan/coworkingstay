@@ -5,70 +5,97 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 export function HeroSection() {
+  const scrollToLocations = () => {
+    const el = document.getElementById('locations');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-white to-muted/30 px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
-      <div className="mx-auto max-w-4xl text-center">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/hero-bg.png)' }}
+      />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 flex justify-center"
+          transition={{ duration: 0.8 }}
+          className="mb-6 flex justify-center"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2">
-            <span className="h-2 w-2 rounded-full bg-primary" />
-            <span className="text-sm font-medium text-primary">Now Open: Work \'n Wave</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
+            <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-sm font-medium text-white/90">Now Open: Work &apos;n Wave — Puerto Galera</span>
           </div>
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-sora text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="font-sora text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl"
         >
-          Designed for those who refuse to choose between{' '}
-          <span className="text-primary">results and reality.</span>
+          Your best workday{' '}
+          <span className="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">
+            starts here.
+          </span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-lg text-muted-foreground sm:text-xl"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl"
         >
-          Coworking-first stays in the Philippines—professional-grade workspaces in beach, lake, and surf destinations. Your best workday starts here.
+          Designed for those who refuse to choose between future results and today&apos;s reality.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-10 flex flex-col justify-center gap-4 sm:flex-row"
+          transition={{ duration: 0.8, delay: 0.45 }}
+          className="mt-10"
         >
-          <Button size="lg" className="gap-2 bg-primary hover:bg-blue-600">
-            Explore Locations
-            <ArrowRight className="h-4 w-4" />
+          <Button
+            size="lg"
+            onClick={scrollToLocations}
+            className="gap-2 bg-white/95 text-gray-900 hover:bg-white font-semibold text-base px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          >
+            Find your spot
+            <ArrowRight className="h-5 w-5" />
           </Button>
-          <Button size="lg" variant="outline">
-            Learn More
-          </Button>
-        </motion.div>
-
-        {/* Hero Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative mt-16 overflow-hidden rounded-3xl border border-border/40 shadow-2xl"
-        >
-          <div className="aspect-video bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground">Coming soon: Hero image</p>
-            </div>
-          </div>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span className="text-xs text-white/50 uppercase tracking-widest">Scroll</span>
+          <div className="h-8 w-5 rounded-full border-2 border-white/30 p-1">
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="h-1.5 w-1.5 rounded-full bg-white/60"
+            />
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
