@@ -46,9 +46,9 @@ export function Header({ locations, activeLocation }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 transition-all duration-500 ease-in-out ${isVisible
-          ? 'translate-y-0 opacity-100'
-          : '-translate-y-full opacity-0 pointer-events-none'
+      className={`fixed top-0 z-50 w-full border-b border-border/40 bg-white shadow-sm transition-all duration-500 ease-in-out ${isVisible
+        ? 'translate-y-0 opacity-100'
+        : '-translate-y-full opacity-0 pointer-events-none'
         }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -24,26 +24,14 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-6 flex justify-center"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-sm font-medium text-white/90">Now Open: Work &apos;n Wave — Puerto Galera</span>
-          </div>
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
+          transition={{ duration: 0.8 }}
           className="font-sora text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl"
         >
           Your best workday{' '}
-          <span className="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">
+          <span style={{ color: '#0158F5' }}>
             starts here.
           </span>
         </motion.h1>
@@ -51,7 +39,7 @@ export function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl"
         >
           Designed for those who refuse to choose between future results and today&apos;s reality.
@@ -60,13 +48,18 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-10"
         >
           <Button
             size="lg"
             onClick={scrollToLocations}
-            className="gap-2 bg-white/95 text-gray-900 hover:bg-white font-semibold text-base px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="gap-2 font-semibold text-base text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            style={{
+              backgroundColor: '#E53652',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C82D45'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#E53652'; }}
           >
             Find your spot
             <ArrowRight className="h-5 w-5" />
