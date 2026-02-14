@@ -1,10 +1,28 @@
 'use client';
 
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 export function HeroSection() {
+  const [shineKey, setShineKey] = useState(0);
+
+  const triggerShine = useCallback(() => {
+    setShineKey((prev) => prev + 1);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        triggerShine();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [triggerShine]);
+
   const scrollToLocations = () => {
     const el = document.getElementById('locations');
     if (el) {
@@ -22,23 +40,38 @@ export function HeroSection() {
       {/* Blue-toned professional overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0C4A96]/50 via-[#0C4A96]/35 to-[#0C4A96]/55" />
 
-      {/* Content box — more transparent, thicker white border */}
+      {/* Shine sweep — silver angled line left to right */}
+
+
+      {/* Content box */}
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="rounded-3xl border border-white/50 bg-[#0C4A96]/[2%] backdrop-blur-sm px-8 py-12 sm:px-12 sm:py-16 text-center"
+          className="relative rounded-3xl border border-white/50 bg-black/30 backdrop-blur-sm px-8 py-12 sm:px-12 sm:py-16 text-center overflow-hidden"
         >
-          <h1 className="font-sora text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Your best workday
-            <br />
-            <span style={{ color: '#03B1F7' }}>
-              starts here.
-            </span>
-          </h1>
+          {/* Shine sweep inside box */}
+          <div key={shineKey} className="absolute inset-0 pointer-events-none z-30">
+            <div className="hero-shine-sweep" />
+          </div>
+          {/* Logo + Tagline */}
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
+            <img
+              src="/logos/cws_logo_black_lightborder.svg"
+              alt="CoWorkingStay"
+              className="h-20 w-auto sm:h-28 lg:h-32"
+            />
+            <h1 className="font-sora text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl sm:text-left">
+              Your best workday
+              <br />
+              <span style={{ color: '#03B1F7' }}>
+                starts here.
+              </span>
+            </h1>
+          </div>
 
-          <p className="mx-auto mt-6 max-w-2xl text-3xl text-white/85 sm:text-4xl font-caveat">
+          <p className="mx-auto mt-6 max-w-2xl text-xl text-white/85 sm:text-2xl font-inter font-normal">
             Designed for those who refuse to choose between future results and today&apos;s reality.
           </p>
 
@@ -60,7 +93,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator — icon only, no text */}
+      {/* Scroll indicator — icon only */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
