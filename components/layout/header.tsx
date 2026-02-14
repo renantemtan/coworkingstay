@@ -26,12 +26,14 @@ export function Header({ locations }: HeaderProps) {
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-              <span className="font-sora text-lg font-bold text-white">CWS</span>
-            </div>
+            <img
+              src="/logos/coworkingstay_logo.svg"
+              alt="CoWorkingStay"
+              className="h-10 w-10"
+            />
             <div className="hidden flex-col sm:flex">
               <span className="font-sora text-sm font-bold text-foreground">CoWorkingStay</span>
-              <span className="text-xs text-muted-foreground">Your workday awaits</span>
+              <span className="text-xs text-muted-foreground">Your best workday starts here.</span>
             </div>
           </Link>
 

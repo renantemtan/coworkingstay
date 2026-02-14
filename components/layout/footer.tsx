@@ -16,12 +16,14 @@ export function Footer({ locations }: FooterProps) {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                <span className="font-sora text-lg font-bold text-white">CWS</span>
-              </div>
+              <img
+                src="/logos/coworkingstay_logo.svg"
+                alt="CoWorkingStay"
+                className="h-10 w-10"
+              />
               <span className="font-sora font-bold text-foreground">CoWorkingStay</span>
             </div>
-            <p className="text-sm text-muted-foreground">Your best workday starts here.</p>
+            <p className="text-sm text-muted-foreground">Designed for those who refuse to choose between results and reality.</p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground transition-colors hover:text-primary">
                 <Linkedin className="h-5 w-5" />
