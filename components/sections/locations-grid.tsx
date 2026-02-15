@@ -52,7 +52,7 @@ export function LocationsGrid({ locations }: LocationsGridProps) {
 
               <div className="mt-4 flex flex-wrap gap-2 opacity-80 text-sm text-gray-300 font-inter">
                 {/* Icons or short features */}
-                {(location.features || []).slice(0, 3).map((feat, i) => (
+                {(location.features || []).map((feat, i) => (
                   <span key={i} className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-medium text-white ring-1 ring-inset ring-white/20">
                     {feat}
                   </span>

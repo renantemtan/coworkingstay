@@ -81,7 +81,7 @@
             "name": "Work 'n Wave",
             "tagline": "Work the day. Ride the wave. Live the life.",
             "address": "White Beach San Isidro, Puerto Galera, Philippines",
-            "status": "Soft Open",
+            "status": "soft open",
             "cta": "Book Now",
             "amenities": [
                 "Coworking Space",
@@ -110,10 +110,55 @@
                     "tiktok": "tbd"
                 }
             },
+            "activities": [
+                {
+                    "category": "Water & Ocean",
+                    "items": [
+                        "Scuba diving",
+                        "Snorkeling",
+                        "Free diving",
+                        "Sailing",
+                        "Island hopping",
+                        "Water sports"
+                    ]
+                },
+                {
+                    "category": "Land adventure",
+                    "items": [
+                        "Mud kart",
+                        "ATV",
+                        "Archery",
+                        "Paintball",
+                        "Zipline",
+                        "Mountain bike trail",
+                        "Waterfalls",
+                        "Golf"
+                    ]
+                },
+                {
+                    "category": "Leisure",
+                    "items": [
+                        "Ride and chill",
+                        "Sunset watching",
+                        "Bar hopping",
+                        "Taste the town"
+                    ]
+                },
+                {
+                    "category": "Local culture + eco-tourism",
+                    "items": [
+                        "Mangyan village",
+                        "Muelle pier",
+                        "Mangrove conservation"
+                    ]
+                }
+            ],
             "features": [
-                "Ocean-view workspaces",
-                "High-speed fiber internet",
-                "Private meeting rooms"
+                "coworking space",
+                "focus + collab zones",
+                "privacy-first • quiet-by-policy",
+                "vibrant marine life",
+                "ride • explore • unwind"
             ]
         },
         {
@@ -122,7 +167,7 @@
             "name": "Work 'n Lake",
             "tagline": "The private productivity island.",
             "address": "Cavinti, Laguna, Philippines",
-            "status": "Soon",
+            "status": "coming soon",
             "cta": "Join the Waitlist",
             "amenities": [],
             "description": "An exclusive lakeside retreat designed for focused work and deep collaboration.",
@@ -131,9 +176,22 @@
                 "email": "",
                 "number": ""
             },
+            "activities": [
+                {
+                    "category": "Lake Activities",
+                    "items": [
+                        "Kayaking",
+                        "Fishing",
+                        "Paddleboarding"
+                    ]
+                }
+            ],
             "features": [
-                "Private island setting",
-                "Crystal-clear lake views"
+                "lakefront workspace",
+                "private island setting",
+                "serene and quiet retreat",
+                "sunrise + sunset views",
+                "kayak • paddleboard • fish"
             ]
         },
         {
@@ -142,7 +200,7 @@
             "name": "Work 'n Surf",
             "tagline": "Surf, sunset, and success synchronized.",
             "address": "Luna, La Union, Philippines",
-            "status": "Soon",
+            "status": "coming soon",
             "cta": "Join the Waitlist",
             "amenities": [],
             "description": "Experience the ultimate lifestyle blend at Work 'n Surf.",
@@ -151,9 +209,21 @@
                 "email": "",
                 "number": ""
             },
+            "activities": [
+                {
+                    "category": "Surf & Lifestyle",
+                    "items": [
+                        "Surfing",
+                        "Bar hopping"
+                    ]
+                }
+            ],
             "features": [
-                "Surfing access",
-                "Sunset workspace"
+                "ocean-infinity work views",
+                "surf-by-day • serene-by-night",
+                "young energy vibe",
+                "sea and mountains combined",
+                "urban drive, provincial pace"
             ]
         }
     ],

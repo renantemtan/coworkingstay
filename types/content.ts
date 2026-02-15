@@ -98,7 +98,7 @@ export interface Location {
   highlights?: string[];
   coworkingFeatures?: string[];
   roomSummary?: string[];
-  activities?: string[];
+  activities?: { category: string; items: string[] }[];
   capabilities?: LocationCapabilities;
   bookingForm?: string;
   bookingType?: 'request' | 'waitlist';
