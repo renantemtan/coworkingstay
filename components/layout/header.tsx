@@ -101,17 +101,28 @@ export function Header({ locations, activeLocation }: HeaderProps) {
                     <ChevronDown className="h-4 w-4" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  {locations.map((location) => (
-                    <DropdownMenuItem key={location.id} asChild>
-                      <Link href={`/locations/${location.slug}`} className="flex cursor-pointer items-center justify-between">
-                        <span>{location.name}</span>
-                        <Badge variant={location.status === 'Open' ? 'default' : 'secondary'} className="ml-2">
-                          {location.status}
-                        </Badge>
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
+                <DropdownMenuContent align="end" className="w-72 p-1.5">
+                  {locations.map((location) => {
+                    const isComingSoon = location.status.toLowerCase() === 'coming soon' || location.status.toLowerCase() === 'soon';
+                    return (
+                      <DropdownMenuItem key={location.id} asChild className="focus:bg-blue-50 focus:text-foreground">
+                        <Link
+                          href={`/locations/${location.slug}`}
+                          className="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2"
+                        >
+                          <span className="font-sora text-sm font-medium">{location.name}</span>
+                          <span
+                            className={`ml-3 shrink-0 inline-flex items-center justify-center rounded-full w-24 py-0.5 text-[10px] font-semibold tracking-wide ${isComingSoon
+                              ? 'bg-gray-100 text-gray-400'
+                              : 'bg-[#03B1F7] text-white'
+                              }`}
+                          >
+                            {location.status}
+                          </span>
+                        </Link>
+                      </DropdownMenuItem>
+                    );
+                  })}
                 </DropdownMenuContent>
               </DropdownMenu>
 
@@ -160,13 +171,18 @@ export function Header({ locations, activeLocation }: HeaderProps) {
                       <Link
                         key={location.id}
                         href={`/locations/${location.slug}`}
-                        className="flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                        className="flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors hover:bg-blue-50"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <span>{location.name}</span>
-                        <Badge variant={location.status === 'Open' ? 'default' : 'secondary'} className="ml-2 text-xs">
+                        <span
+                          className={`ml-3 shrink-0 inline-flex items-center justify-center rounded-full w-24 py-0.5 text-[10px] font-semibold tracking-wide ${(location.status.toLowerCase() === 'open' || location.status.toLowerCase() === 'soft open')
+                              ? 'bg-[#03B1F7] text-white'
+                              : 'bg-gray-100 text-gray-400'
+                            }`}
+                        >
                           {location.status}
-                        </Badge>
+                        </span>
                       </Link>
                     ))}
                   </div>

@@ -5,10 +5,10 @@
         "subTag": "Designed for those who refuse to choose between future results and today's reality.",
         "mission": "We bridge the gap between professional performance and the fundamental human need to live life fully with nature, creating sanctuaries where productivity, unbound freedom and creative clarity enables you to realize your infinite horizon.",
         "uniqueValueProposition": [
-            "Coworking-first—built for productivity for high-performing people",
-            "Proper working environment: work zones for deep focus and collaboration",
-            "Privacy by design—quiet spaces, respectful boundaries, uninterrupted focus",
-            "Nature-Powered Performance—nature is part of the system, not a reward"
+            "Coworking-first — built for productivity for high-performing people",
+            "Proper working environment — work zones for deep focus and collaboration",
+            "Privacy by design — quiet spaces, respectful boundaries, uninterrupted focus",
+            "Nature-powered performance — nature is part of the system, not a reward"
         ],
         "values": [
             "Respect",
@@ -29,8 +29,7 @@
         },
         "voice": "Energetic, Formal + Adventurous",
         "targetMarket": [
-            "Working Professionals",
-            "Remote Corporate Employees",
+            "Remote Working Professionals",
             "Digital Nomads",
             "Programmers / Developers / Indie Hackers",
             "Freelancers & Independent Consultants (Designers, Writers, Marketers)",
@@ -229,32 +228,81 @@
     ],
     "personas": [
         {
-            "id": "remote-employees",
-            "title": "Remote Corporate Employees",
-            "description": "Trade the cubicle for a cabana without sacrificing connectivity.",
+            "id": "remote-professionals",
+            "title": "Remote Working Professionals",
+            "description": "Escape the office without missing a beat. Bring your A-game to the beach.",
             "icon": "Briefcase",
             "color": "bg-blue-500"
         },
         {
             "id": "nomads",
             "title": "Digital Nomads",
-            "description": "Stable fiber internet, backup power, and a community of doers.",
+            "description": "Stable fiber internet, backup power, and a community of doers wherever you land.",
             "icon": "Laptop",
             "color": "bg-sky-500"
         },
         {
+            "id": "developers",
+            "title": "Programmers / Developers / Indie Hackers",
+            "description": "Deep-focus zones, dual monitors, failover internet. Ship code, not excuses.",
+            "icon": "Code2",
+            "color": "bg-emerald-500"
+        },
+        {
+            "id": "freelancers",
+            "title": "Freelancers & Independent Consultants",
+            "description": "Client calls from paradise. Creative flow fueled by nature, not noise.",
+            "icon": "Palette",
+            "color": "bg-rose-500"
+        },
+        {
             "id": "startups",
-            "title": "Startup Teams",
+            "title": "Startup Founders / Startup Teams / Product Builders",
             "description": "War rooms with ocean views. Retreats that actually produce results.",
             "icon": "Users",
             "color": "bg-indigo-500"
         },
         {
-            "id": "creatives",
-            "title": "Content Creators & Influencers",
-            "description": "Find your flow state in nature inspired by sunset views.",
+            "id": "creators",
+            "title": "Content Creators, Influencers, Vloggers, YouTubers, Podcasters",
+            "description": "Stunning backdrops, reliable uploads, and a creator-friendly atmosphere.",
             "icon": "Palette",
-            "color": "bg-rose-500"
+            "color": "bg-pink-500"
+        },
+        {
+            "id": "couples-friends",
+            "title": "Couples/Friends on 'work + vacation'",
+            "description": "Blend productivity with play—hack, plan, bond, then unwind together.",
+            "icon": "Users",
+            "color": "bg-amber-500"
+        },
+        {
+            "id": "night-warriors",
+            "title": "Night Warriors",
+            "description": "Quiet-by-policy spaces with 24/7 power and internet for your graveyard shift.",
+            "icon": "Laptop",
+            "color": "bg-violet-500"
+        },
+        {
+            "id": "students",
+            "title": "Students on 'study + vacation'",
+            "description": "Focus zones for cramming, nature breaks for recharging. Pass and play.",
+            "icon": "Laptop",
+            "color": "bg-teal-500"
+        },
+        {
+            "id": "wellness",
+            "title": "Wellness-Oriented High Performers",
+            "description": "Balance peak output with mindful recovery in nature-rich environments.",
+            "icon": "Briefcase",
+            "color": "bg-green-500"
+        },
+        {
+            "id": "weekend-warriors",
+            "title": "Weekend Work Warriors",
+            "description": "Turn your weekend into a sprint—arrive Friday, ship Monday, surf in between.",
+            "icon": "Briefcase",
+            "color": "bg-orange-500"
         }
     ],
     "amenities": [
@@ -274,8 +322,8 @@
             "icon": "Monitor"
         },
         {
-            "title": "Focus & Call Zones",
-            "description": "Sound-managed areas for deep work and private booths.",
+            "title": "Focus + Collab Zones",
+            "description": "Sound-managed areas for deep work and dedicated collaboration spaces for teamwork.",
             "icon": "Mic2"
         }
     ],

@@ -7,7 +7,7 @@ import { PillarsSection } from '@/components/sections/pillars';
 import { LocationsGrid } from '@/components/sections/locations-grid';
 import { HardwareSpecs } from '@/components/sections/hardware-specs';
 import { TargetAudience } from '@/components/sections/target-audience';
-import { BookingSection } from '@/components/sections/booking';
+import { ContactSection } from '@/components/sections/contact-section';
 import { OrganizationSchema } from '@/components/seo/structured-data';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,8 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const locations = await getAllLocations();
-
   const brand = await getBrandConfig();
+
+  // Work 'n Wave is the primary contact location
+  const primaryLocation = brand.locations[0];
 
   return (
     <div className="min-h-screen bg-white">
@@ -31,13 +33,17 @@ export default async function Home() {
       <Header locations={locations} />
       <main>
         <HeroSection identity={brand.identity} />
-        <div id="locations" className="scroll-mt-24">
+        <div id="locations" className="scroll-mt-16">
           <LocationsGrid locations={locations} />
         </div>
-        <PillarsSection pillars={brand.pillars} />
-        <TargetAudience personas={brand.personas} />
+        <PillarsSection
+          pillars={brand.pillars}
+          uvp={brand.identity.uniqueValueProposition}
+          mission={brand.identity.mission}
+        />
+        <TargetAudience targetMarket={brand.identity.targetMarket} />
         <HardwareSpecs amenities={brand.amenities} />
-        <BookingSection plans={brand.membershipPlans} />
+        <ContactSection location={primaryLocation} />
       </main>
       <Footer locations={locations} />
     </div>
