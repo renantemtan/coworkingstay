@@ -8,75 +8,64 @@ const sora = Sora({ subsets: ['latin'], variable: '--font-sora' })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' })
 
-const SITE_URL = 'https://coworkingstay.com'
-const SITE_NAME = 'CoWorkingStay'
-const SITE_DESCRIPTION = `Coworking-first hotel stays in the Philippines\u2014professional-grade workspaces in beach, lake, and surf destinations. Designed for those who refuse to choose between future results and today's reality.`
+import { getBrandConfig } from '@/lib/content-loader';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: `${SITE_NAME} \u2014 Designed for Those Who Refuse to Choose`,
-    template: `%s | ${SITE_NAME}`,
-  },
-  description: SITE_DESCRIPTION,
-  keywords: [
-    'coworking space Philippines',
-    'coworking hotel Philippines',
-    'workation Philippines',
-    'remote work Philippines',
-    'digital nomad Philippines',
-    'coliving Philippines',
-    'coworking Puerto Galera',
-    'coworking La Union',
-    'coworking Laguna',
-    'work and travel Philippines',
-    'remote work beach Philippines',
-    'productivity retreat',
-    'work vacation Philippines',
-    'startup retreat Philippines',
-    'team building retreat Philippines',
-    'nightshift workspace Philippines',
-    'study vacation Philippines',
-    'freelancer workspace Philippines',
-  ],
-  authors: [{ name: SITE_NAME, url: SITE_URL }],
-  creator: SITE_NAME,
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: SITE_URL,
-    siteName: SITE_NAME,
-    title: `${SITE_NAME} \u2014 Designed for Those Who Refuse to Choose`,
-    description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: `${SITE_NAME} \u2014 Coworking Space Hotels in Puerto Galera, La Union & Laguna`,
-      },
+export async function generateMetadata(): Promise<Metadata> {
+  const brand = await getBrandConfig();
+  const SITE_URL = 'https://coworkingstay.com';
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: `${brand.identity.name} — ${brand.identity.subTag.replace(/\.$/, '')}`,
+      template: `%s | ${brand.identity.name}`,
+    },
+    description: brand.identity.mainTag,
+    keywords: [
+      ...brand.identity.targetMarket,
+      ...brand.identity.uniqueValueProposition,
+      'coworking space Philippines',
+      'workation Philippines',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${SITE_NAME} \u2014 Designed for Those Who Refuse to Choose`,
-    description: SITE_DESCRIPTION,
-    images: ['/og-image.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: brand.identity.name, url: SITE_URL }],
+    creator: brand.identity.name,
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: SITE_URL,
+      siteName: brand.identity.name,
+      title: `${brand.identity.name} — ${brand.identity.subTag.replace(/\.$/, '')}`,
+      description: brand.identity.mainTag,
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: `${brand.identity.name} — ${brand.identity.mainTag}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${brand.identity.name} — ${brand.identity.subTag.replace(/\.$/, '')}`,
+      description: brand.identity.mainTag,
+      images: ['/og-image.png'],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large' as const,
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large' as const,
+        'max-snippet': -1,
+      },
     },
-  },
-  alternates: {
-    canonical: SITE_URL,
-  },
+    alternates: {
+      canonical: SITE_URL,
+    },
+  };
 }
 
 export default function RootLayout({

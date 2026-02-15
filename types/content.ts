@@ -1,8 +1,71 @@
+export interface BrandIdentity {
+  name: string;
+  mainTag: string;
+  subTag: string;
+  mission: string;
+  uniqueValueProposition: string[];
+  values: string[]; // Pillars title/promise map to this or separate? User put Pillars separate.
+  colors: {
+    navy: string;
+    blue: string;
+    sky: string;
+    aqua: string;
+    red: string;
+    orange: string;
+    sand: string;
+    charcoal: string;
+    grey: string;
+  };
+  voice: string;
+  targetMarket: string[];
+  reach: string[];
+}
+
+export interface Persona {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+export interface Amenity {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface MembershipPlan {
+  id: string;
+  title: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  cta: string;
+  highlight: boolean;
+}
+
+
+export interface LocationContact {
+  email: string;
+  number: string;
+  messenger?: string;
+  landline?: string;
+  socials?: {
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+    youtube?: string;
+    tiktok?: string;
+  };
+}
+
 export interface LocationCapabilities {
-  internetFailoverConfirmed: boolean;
-  highSpeedInternet: boolean;
-  privateOffices: boolean;
-  coworkingSpaces: boolean;
+  internetFailoverConfirmed?: boolean;
+  highSpeedInternet?: boolean;
+  privateOffices?: boolean;
+  coworkingSpaces?: boolean;
 }
 
 export interface GalleryItem {
@@ -18,45 +81,52 @@ export interface FaqItem {
 
 export interface Location {
   id: string;
-  slug: string;
+  slug: string; // Keep slug for routing
   name: string;
   tagline: string;
-  status: 'Open' | 'Soon';
-  address?: string;
-  description: string;
-  image: string;
-  features: string[];
-  highlights: string[];
-  coworkingFeatures: string[];
-  roomSummary: string[];
-  activities: string[];
-  capabilities: LocationCapabilities;
-  bookingForm: string;
-  bookingType: 'request' | 'waitlist';
-  primaryCTA: 'request_to_book' | 'join_waitlist';
-  gallery: GalleryItem[];
-  gettingHereSteps: string[];
-  faqs: FaqItem[];
-  policies: string[];
+  address: string;
+  status: 'Open' | 'Soft Open' | 'Soon';
+  description?: string; // Optional if not in user's new list, but needed for UI
+  image: string; // Needed for UI
+  amenities: string[]; // User provided "Amenities" list
+  rooms?: string;
+  contact?: LocationContact;
+  cta: string;
+
+  // Keep these for backward compat or UI needs if possible, else make optional
+  features?: string[];
+  highlights?: string[];
+  coworkingFeatures?: string[];
+  roomSummary?: string[];
+  activities?: string[];
+  capabilities?: LocationCapabilities;
+  bookingForm?: string;
+  bookingType?: 'request' | 'waitlist';
+  gallery?: GalleryItem[];
+  gettingHereSteps?: string[];
+  faqs?: FaqItem[];
+  policies?: string[];
 }
 
 export interface Pillar {
   id: string;
   title: string;
-  promise: string;
-  description: string;
-  icon: string;
-  color: string;
+  promise: string; // e.g. "Professional-grade..."
+  description?: string;
+  icon?: string; // For UI
+  color?: string; // For UI
 }
 
-export interface ExperiencePage {
-  mission: {
-    title: string;
-    description: string;
-  };
+export interface BrandConfig {
+  identity: BrandIdentity;
   pillars: Pillar[];
-  communityValues: string[];
+  locations: Location[];
+  personas: Persona[]; // Keep for UI "Built For People Like You"
+  amenities: Amenity[]; // Keep for UI "Standard Amenities"
+  membershipPlans: MembershipPlan[];
 }
+
+
 
 export interface FaqPage {
   title: string;
@@ -71,14 +141,6 @@ export interface ContactPage {
     mobile: string;
     email: string;
     address: string;
-    socials: {
-      facebook: string;
-      instagram: string;
-      linkedin: string;
-      tiktok: string;
-      youtube: string;
-    };
-    globalContactFormUrl: string;
   };
 }
 

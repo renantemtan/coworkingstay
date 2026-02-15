@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import type { Location, SiteConfig, ExperiencePage, FaqPage, ContactPage, PoliciesPage } from '@/types/content';
+import type { Location, SiteConfig, FaqPage, ContactPage, PoliciesPage, BrandConfig } from '@/types/content';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
@@ -10,26 +10,11 @@ export async function getSiteConfig(): Promise<SiteConfig> {
   return JSON.parse(fileContent);
 }
 
+
+
 export async function getAllLocations(): Promise<Location[]> {
-  const locationsDir = path.join(CONTENT_DIR, 'locations');
-  const files = await fs.readdir(locationsDir);
-  const locationFiles = files.filter((file) => file.endsWith('.json'));
-
-  const locations = await Promise.all(
-    locationFiles.map(async (file) => {
-      const filePath = path.join(locationsDir, file);
-      const fileContent = await fs.readFile(filePath, 'utf-8');
-      return JSON.parse(fileContent) as Location;
-    })
-  );
-
-  // Sort locations based on site.json order
-  const siteConfig = await getSiteConfig();
-  const order = siteConfig.navigation.locationsOrder;
-
-  return locations.sort((a, b) => {
-    return order.indexOf(a.id) - order.indexOf(b.id);
-  });
+  const brand = await getBrandConfig();
+  return brand.locations;
 }
 
 export async function getLocation(slug: string): Promise<Location | undefined> {
@@ -44,9 +29,7 @@ export async function getPage<T>(pageName: string): Promise<T> {
 }
 
 // Typed helpers for specific pages
-export async function getExperiencePage(): Promise<ExperiencePage> {
-  return getPage<ExperiencePage>('experience');
-}
+
 
 export async function getFaqPage(): Promise<FaqPage> {
   return getPage<FaqPage>('faq');
@@ -58,4 +41,10 @@ export async function getContactPage(): Promise<ContactPage> {
 
 export async function getPoliciesPage(): Promise<PoliciesPage> {
   return getPage<PoliciesPage>('policies');
+}
+
+export async function getBrandConfig(): Promise<BrandConfig> {
+  const filePath = path.join(CONTENT_DIR, 'brand.json');
+  const fileContent = await fs.readFile(filePath, 'utf-8');
+  return JSON.parse(fileContent) as BrandConfig;
 }

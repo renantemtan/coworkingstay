@@ -1,20 +1,22 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { getExperiencePage, getAllLocations } from '@/lib/content-loader';
+import { getBrandConfig, getAllLocations } from '@/lib/content-loader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, Lightbulb, Globe, TrendingUp, Heart, Zap, Shield, Smile } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'The CoWorkingStay Experience — Performance, Freedom, Synergy',
-  description:
-    'Built on 3 pillars: Performance, Freedom, and Synergy. Professional-grade workspaces in nature-rich Philippine destinations for remote workers, digital nomads, and high performers.',
-  alternates: {
-    canonical: '/experience',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const brand = await getBrandConfig();
+  return {
+    title: `The ${brand.identity.name} Experience — ${brand.pillars.map(p => p.title).join(', ')}`,
+    description: brand.identity.mission,
+    alternates: {
+      canonical: '/experience',
+    },
+  };
+}
 
 const iconMap: Record<string, LucideIcon> = {
   Users,
@@ -28,7 +30,7 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default async function ExperiencePage() {
-  const experience = await getExperiencePage();
+  const brand = await getBrandConfig();
   const locations = await getAllLocations();
 
   return (
@@ -39,10 +41,10 @@ export default async function ExperiencePage() {
         <section className="border-b border-border/40 px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="font-sora text-4xl font-bold text-foreground sm:text-5xl">
-              {experience.mission.title}
+              Our Mission
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              {experience.mission.description}
+              {brand.identity.mission}
             </p>
           </div>
         </section>
@@ -51,15 +53,15 @@ export default async function ExperiencePage() {
         <section className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-8 md:grid-cols-2">
-              {experience.pillars.map((pillar, index) => {
-                const Icon = iconMap[pillar.icon] || Lightbulb;
+              {brand.pillars.map((pillar, index) => {
+                const Icon = (pillar.icon && iconMap[pillar.icon]) || Lightbulb;
                 return (
                   <Card key={index} className="p-8 transition-all hover:shadow-lg">
                     <div className="mb-4 inline-flex rounded-xl bg-primary/10 p-3 text-primary">
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="font-sora text-2xl font-bold text-foreground">{pillar.title}</h3>
-                    <p className="mt-4 text-muted-foreground">{pillar.description}</p>
+                    <p className="mt-4 text-muted-foreground">{pillar.description || pillar.promise}</p>
                   </Card>
                 );
               })}
@@ -72,7 +74,7 @@ export default async function ExperiencePage() {
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="font-sora text-3xl font-bold text-foreground">Our Values</h2>
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {experience.communityValues.map((value, index) => (
+              {brand.identity.values.map((value, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Heart className="h-6 w-6" />

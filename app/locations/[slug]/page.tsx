@@ -27,7 +27,7 @@ export async function generateMetadata(props: LocationPageProps): Promise<Metada
 
   return {
     title: `${location.name} — Coworking Space Hotel in ${location.name.replace("Work 'n ", "")}`,
-    description: `${location.tagline} ${location.description.substring(0, 120)}. Coworking hotel with focus zones, failover internet, and power backup.`,
+    description: `${location.tagline} ${(location.description || '').substring(0, 120)}. Coworking hotel with focus zones, failover internet, and power backup.`,
     openGraph: {
       title: `${location.name} | CoWorkingStay`,
       description: location.tagline,
@@ -60,7 +60,7 @@ export default async function LocationPage(props: LocationPageProps) {
     <div className="min-h-screen bg-white">
       <LocalBusinessSchema
         name={location.name}
-        description={location.description}
+        description={location.description || ''}
         slug={location.slug}
         status={location.status}
         address={location.address}
@@ -96,11 +96,17 @@ export default async function LocationPage(props: LocationPageProps) {
                   <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{location.description}</p>
                 </div>
 
-                {/* Features */}
+                {/* Features (using Amenities list if features not present) */}
                 <div className="mb-12">
                   <h2 className="font-sora text-2xl font-bold text-foreground">Features</h2>
                   <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                    {location.features.map((feature, index) => (
+                    {(location.features || []).map((feature, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary" />
+                        <span className="text-muted-foreground">{feature}</span>
+                      </div>
+                    ))}
+                    {(!location.features || location.features.length === 0) && location.amenities.map((feature, index) => (
                       <div key={index} className="flex items-start gap-3">
                         <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-primary" />
                         <span className="text-muted-foreground">{feature}</span>
@@ -109,34 +115,16 @@ export default async function LocationPage(props: LocationPageProps) {
                   </div>
                 </div>
 
-                {/* Capabilities */}
+                {/* Capabilities / Amenities */}
                 <div>
-                  <h2 className="font-sora text-2xl font-bold text-foreground">Capabilities</h2>
-                  <div className="mt-6 space-y-3">
-                    {location.capabilities.highSpeedInternet && (
-                      <div className="flex items-center gap-3">
-                        <Wifi className="h-5 w-5 text-primary" />
-                        <span className="text-muted-foreground">High-speed internet connectivity</span>
+                  <h2 className="font-sora text-2xl font-bold text-foreground">Amenities</h2>
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                    {location.amenities.map((amenity, index) => (
+                      <div key={index} className="flex items-center gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-primary" />
+                        <span className="text-muted-foreground">{amenity}</span>
                       </div>
-                    )}
-                    {location.capabilities.privateOffices && (
-                      <div className="flex items-center gap-3">
-                        <Lock className="h-5 w-5 text-primary" />
-                        <span className="text-muted-foreground">Private offices available</span>
-                      </div>
-                    )}
-                    {location.capabilities.internetFailoverConfirmed && (
-                      <div className="flex items-center gap-3">
-                        <Wifi className="h-5 w-5 text-secondary" />
-                        <span className="font-medium text-secondary">Internet failover system confirmed</span>
-                      </div>
-                    )}
-                    {location.capabilities.coworkingSpaces && (
-                      <div className="flex items-center gap-3">
-                        <MapPin className="h-5 w-5 text-primary" />
-                        <span className="text-muted-foreground">Community coworking spaces</span>
-                      </div>
-                    )}
+                    ))}
                   </div>
                 </div>
               </div>
@@ -144,32 +132,54 @@ export default async function LocationPage(props: LocationPageProps) {
               {/* Sidebar */}
               <div className="lg:col-span-1">
                 <Card className="sticky top-24 p-6">
-                  <h3 className="font-sora text-xl font-bold text-foreground">Ready to visit?</h3>
+                  <h3 className="font-sora text-xl font-bold text-foreground">
+                    {location.status === 'Open' || location.status === 'Soft Open' ? 'Ready to book?' : 'Coming Soon'}
+                  </h3>
 
-                  {location.status === 'Open' ? (
-                    <>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {location.bookingType === 'request'
-                          ? 'Request a tour or start your stay'
-                          : 'Join our waitlist'}
-                      </p>
-                      <Button asChild className="mt-6 w-full bg-primary hover:bg-blue-600">
-                        <a href={location.bookingForm} target="_blank" rel="noopener noreferrer">
-                          {location.bookingType === 'request' ? 'Request Access' : 'Join Waitlist'}
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {location.status === 'Open' || location.status === 'Soft Open'
+                      ? 'Secure your spot in paradise.'
+                      : 'Join our waitlist to be notified when we open.'}
+                  </p>
+
+                  <div className="mt-6 space-y-3">
+                    {location.contact?.email && (
+                      <Button asChild className="w-full bg-primary hover:bg-blue-600">
+                        <a href={`mailto:${location.contact.email}?subject=Booking Inquiry for ${location.name}`}>
+                          {location.cta || 'Book Now'}
                         </a>
                       </Button>
-                    </>
-                  ) : (
-                    <>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {location.name} is coming soon! Join our waitlist to be among the first to experience it.
-                      </p>
-                      <Button asChild className="mt-6 w-full bg-primary hover:bg-blue-600">
-                        <a href={location.bookingForm} target="_blank" rel="noopener noreferrer">
-                          Join Waitlist
-                        </a>
+                    )}
+                    {!location.contact?.email && (
+                      <Button className="w-full bg-primary hover:bg-blue-600" disabled>
+                        {location.cta || 'Book Now'}
                       </Button>
-                    </>
+                    )}
+                  </div>
+
+                  {location.contact && (
+                    <div className="mt-6 border-t border-border/40 pt-6 space-y-4">
+                      <p className="text-xs font-semibold text-muted-foreground">CONTACT</p>
+                      {location.contact.number && (
+                        <div>
+                          <p className="text-xs text-muted-foreground">Mobile / WhatsApp</p>
+                          <p className="font-medium text-foreground">{location.contact.number}</p>
+                        </div>
+                      )}
+                      {location.contact.email && (
+                        <div>
+                          <p className="text-xs text-muted-foreground">Email</p>
+                          <p className="font-medium text-foreground truncate">{location.contact.email}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {location.rooms && (
+                    <div className="mt-4 border-t border-border/40 pt-4">
+                      <p className="text-xs text-muted-foreground">ACCOMMODATION</p>
+                      <p className="font-medium text-foreground mt-1">{location.rooms}</p>
+                    </div>
                   )}
 
                   <div className="mt-6 border-t border-border/40 pt-6">
@@ -180,14 +190,8 @@ export default async function LocationPage(props: LocationPageProps) {
                         <p className="font-medium text-foreground">{location.status}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Internet</p>
-                        <p className="font-medium text-foreground">High-speed Fiber</p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground">Space Type</p>
-                        <p className="font-medium text-foreground">
-                          {location.capabilities.privateOffices ? 'Private + Coworking' : 'Coworking'}
-                        </p>
+                        <p className="text-xs text-muted-foreground">Address</p>
+                        <p className="font-medium text-foreground">{location.address}</p>
                       </div>
                     </div>
                   </div>

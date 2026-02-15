@@ -1,5 +1,5 @@
 
-import { getAllLocations, getSiteConfig, getExperiencePage, getFaqPage, getContactPage, getPoliciesPage } from '../lib/content-loader';
+import { getAllLocations, getSiteConfig, getFaqPage, getContactPage, getPoliciesPage } from '../lib/content-loader';
 
 async function main() {
     try {
@@ -11,9 +11,7 @@ async function main() {
         const locations = await getAllLocations();
         console.log('Locations:', locations.map(l => l.name));
 
-        console.log('Testing getExperiencePage...');
-        const experience = await getExperiencePage();
-        console.log('Experience Page loaded');
+
 
         console.log('Testing getFaqPage...');
         const faq = await getFaqPage();

@@ -1,0 +1,261 @@
+{
+    "identity": {
+        "name": "CoWorkingStay",
+        "mainTag": "Your best workday starts here.",
+        "subTag": "Designed for those who refuse to choose between future results and today's reality.",
+        "mission": "We bridge the gap between professional performance and the fundamental human need to live life fully with nature, creating sanctuaries where productivity, unbound freedom and creative clarity enables you to realize your infinite horizon.",
+        "uniqueValueProposition": [
+            "Coworking-first—built for productivity for high-performing people",
+            "Proper working environment: work zones for deep focus and collaboration",
+            "Privacy by design—quiet spaces, respectful boundaries, uninterrupted focus",
+            "Nature-Powered Performance—nature is part of the system, not a reward"
+        ],
+        "values": [
+            "Respect",
+            "Collaboration",
+            "Growth",
+            "Freedom"
+        ],
+        "colors": {
+            "navy": "#0C4A96",
+            "blue": "#0158F5",
+            "sky": "#03B1F7",
+            "aqua": "#03D2D8",
+            "red": "#E53652",
+            "orange": "#E8704F",
+            "sand": "#EAA785",
+            "charcoal": "#333F50",
+            "grey": "#D6DCE5"
+        },
+        "voice": "Energetic, Formal + Adventurous",
+        "targetMarket": [
+            "Working Professionals",
+            "Remote Corporate Employees",
+            "Digital Nomads",
+            "Programmers / Developers / Indie Hackers",
+            "Freelancers & Independent Consultants (Designers, Writers, Marketers)",
+            "Startup Founders / Startup Teams / Product Builders",
+            "Content Creators, Influencers, Vloggers, YouTubers, Podcasters",
+            "Couples/Friends on 'work + vacation' (hackathons, strategy planning, team building)",
+            "Night Warriors (call center & nightshift workers)",
+            "Students on 'study + vacation' (grad students, board reviewers, exam takers)",
+            "Wellness-Oriented High Performers",
+            "Weekend Work Warriors (workathons)"
+        ],
+        "reach": [
+            "Local (Metro Manila + nearby provinces)",
+            "National (Philippines)",
+            "International"
+        ]
+    },
+    "pillars": [
+        {
+            "id": "performance",
+            "title": "Performance",
+            "promise": "Professional-grade work environments for deep focus",
+            "description": "",
+            "icon": "Zap",
+            "color": "#0158F5"
+        },
+        {
+            "id": "freedom",
+            "title": "Freedom",
+            "promise": "Destinations that make it effortless to reset between sessions",
+            "description": "",
+            "icon": "Wind",
+            "color": "#03B1F7"
+        },
+        {
+            "id": "synergy",
+            "title": "Synergy",
+            "promise": "Work and life designed to amplify each other",
+            "description": "",
+            "icon": "Network",
+            "color": "#03D2D8"
+        }
+    ],
+    "locations": [
+        {
+            "id": "work-n-wave",
+            "slug": "work-n-wave-puerto-galera",
+            "name": "Work 'n Wave",
+            "tagline": "Work the day. Ride the wave. Live the life.",
+            "address": "White Beach San Isidro, Puerto Galera, Philippines",
+            "status": "Soft Open",
+            "cta": "Book Now",
+            "amenities": [
+                "Coworking Space",
+                "Workstations",
+                "Focus-Zones",
+                "Collab-Zones",
+                "Conference Room",
+                "Outdoor Gym",
+                "Lounge",
+                "Failover Internet",
+                "Power Backup"
+            ],
+            "rooms": "Spacious rooms with 2 double beds",
+            "description": "Experience the ultimate lifestyle blend at Work 'n Wave. Located in the stunning Puerto Galera, offering the perfect blend of productivity and adventure.",
+            "image": "/locations/puerto-galera.jpg",
+            "contact": {
+                "email": "worknwave@coworkingstay.com",
+                "number": "+63 917 837 5643",
+                "messenger": "tbd",
+                "landline": "+63 43 748 9110",
+                "socials": {
+                    "facebook": "tbd",
+                    "instagram": "tbd",
+                    "linkedin": "tbd",
+                    "youtube": "tbd",
+                    "tiktok": "tbd"
+                }
+            },
+            "features": [
+                "Ocean-view workspaces",
+                "High-speed fiber internet",
+                "Private meeting rooms"
+            ]
+        },
+        {
+            "id": "work-n-lake",
+            "slug": "work-n-lake-cavinti-laguna",
+            "name": "Work 'n Lake",
+            "tagline": "The private productivity island.",
+            "address": "Cavinti, Laguna, Philippines",
+            "status": "Soon",
+            "cta": "Join the Waitlist",
+            "amenities": [],
+            "description": "An exclusive lakeside retreat designed for focused work and deep collaboration.",
+            "image": "/locations/cavinti.jpg",
+            "contact": {
+                "email": "",
+                "number": ""
+            },
+            "features": [
+                "Private island setting",
+                "Crystal-clear lake views"
+            ]
+        },
+        {
+            "id": "work-n-surf",
+            "slug": "work-n-surf-la-union",
+            "name": "Work 'n Surf",
+            "tagline": "Surf, sunset, and success synchronized.",
+            "address": "Luna, La Union, Philippines",
+            "status": "Soon",
+            "cta": "Join the Waitlist",
+            "amenities": [],
+            "description": "Experience the ultimate lifestyle blend at Work 'n Surf.",
+            "image": "/locations/la-union.jpg",
+            "contact": {
+                "email": "",
+                "number": ""
+            },
+            "features": [
+                "Surfing access",
+                "Sunset workspace"
+            ]
+        }
+    ],
+    "personas": [
+        {
+            "id": "remote-employees",
+            "title": "Remote Corporate Employees",
+            "description": "Trade the cubicle for a cabana without sacrificing connectivity.",
+            "icon": "Briefcase",
+            "color": "bg-blue-500"
+        },
+        {
+            "id": "nomads",
+            "title": "Digital Nomads",
+            "description": "Stable fiber internet, backup power, and a community of doers.",
+            "icon": "Laptop",
+            "color": "bg-sky-500"
+        },
+        {
+            "id": "startups",
+            "title": "Startup Teams",
+            "description": "War rooms with ocean views. Retreats that actually produce results.",
+            "icon": "Users",
+            "color": "bg-indigo-500"
+        },
+        {
+            "id": "creatives",
+            "title": "Content Creators & Influencers",
+            "description": "Find your flow state in nature inspired by sunset views.",
+            "icon": "Palette",
+            "color": "bg-rose-500"
+        }
+    ],
+    "amenities": [
+        {
+            "title": "Redundant Fiber Internet",
+            "description": "Dual-ISP failover connections ensure you never drop a call.",
+            "icon": "Wifi"
+        },
+        {
+            "title": "24/7 Power Backup",
+            "description": "Full-site generator support. Brownouts are just a story you tell.",
+            "icon": "Zap"
+        },
+        {
+            "title": "Ergonomic Workstations",
+            "description": "Spacious desks, comfortable seating, and external monitors.",
+            "icon": "Monitor"
+        },
+        {
+            "title": "Focus & Call Zones",
+            "description": "Sound-managed areas for deep work and private booths.",
+            "icon": "Mic2"
+        }
+    ],
+    "membershipPlans": [
+        {
+            "id": "day-pass",
+            "title": "Day Pass",
+            "price": "₱500",
+            "period": "/day",
+            "description": "Perfect for visitors and occasional deep work sessions.",
+            "features": [
+                "Access from 8am - 8pm",
+                "High-speed fiber internet",
+                "Open coworking area",
+                "Unlimited coffee/water"
+            ],
+            "cta": "Book Day Pass",
+            "highlight": false
+        },
+        {
+            "id": "weekly",
+            "title": "Weekly Nomad",
+            "price": "₱2,500",
+            "period": "/week",
+            "description": "Ideal for a productive workation week.",
+            "features": [
+                "24/7 Access",
+                "Priority desk choice",
+                "Meeting room credits (2hr)",
+                "Community event access",
+                "Locker usage"
+            ],
+            "cta": "Get Weekly",
+            "highlight": true
+        },
+        {
+            "id": "monthly",
+            "title": "Monthly Resident",
+            "price": "₱8,000",
+            "period": "/month",
+            "description": "Best value for long-term remote workers.",
+            "features": [
+                "24/7 Unlimited Access",
+                "Dedicated desk option",
+                "Meeting room credits (10hr)",
+                "Business address",
+                "Guest passes (2/mo)"
+            ],
+            "cta": "Get Monthly",
+            "highlight": false
+        }
+    ]
+}

@@ -13,28 +13,30 @@ export function StructuredData({ data }: StructuredDataProps) {
     );
 }
 
-export function OrganizationSchema() {
+import { getBrandConfig } from '@/lib/content-loader';
+
+export async function OrganizationSchema() {
+    const brand = await getBrandConfig();
+    const primaryContact = brand.locations.find(l => l.contact?.email)?.contact;
+
     const data = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'CoWorkingStay',
+        name: brand.identity.name,
         url: 'https://coworkingstay.com',
         logo: 'https://coworkingstay.com/logo.png',
-        description:
-            'Coworking-first hotel stays in the Philippines. Professional-grade workspaces in beach, lake, and surf destinations for remote workers, digital nomads, and high performers.',
-        contactPoint: {
+        description: brand.identity.mission,
+        contactPoint: primaryContact ? {
             '@type': 'ContactPoint',
-            telephone: '+63-917-837-5643',
+            telephone: primaryContact.number,
             contactType: 'customer service',
-            email: 'worknwave@coworkingstay.com',
+            email: primaryContact.email,
             availableLanguage: ['English', 'Filipino'],
-        },
+        } : undefined,
         sameAs: [
             'https://facebook.com/coworkingstay',
             'https://instagram.com/coworkingstay',
             'https://linkedin.com/company/coworkingstay',
-            'https://tiktok.com/@coworkingstay',
-            'https://youtube.com/@coworkingstay',
         ],
         areaServed: {
             '@type': 'Country',

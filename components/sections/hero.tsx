@@ -4,8 +4,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import type { BrandIdentity } from '@/types/content';
 
-export function HeroSection() {
+interface HeroSectionProps {
+  identity: BrandIdentity;
+}
+
+export function HeroSection({ identity }: HeroSectionProps) {
   const [shineKey, setShineKey] = useState(0);
 
   const triggerShine = useCallback(() => {
@@ -63,7 +68,7 @@ export function HeroSection() {
               className="h-20 w-auto sm:h-28 lg:h-32"
             />
             <h1 className="font-sora text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl sm:text-left">
-              Your best workday
+              {identity.mainTag.split('starts here')[0]}
               <br />
               <span style={{ color: '#03B1F7' }}>
                 starts here.
@@ -72,7 +77,7 @@ export function HeroSection() {
           </div>
 
           <p className="mx-auto mt-6 max-w-2xl text-xl text-white/85 sm:text-2xl font-inter font-normal">
-            Designed for those who refuse to choose between future results and today&apos;s reality.
+            {identity.subTag}
           </p>
 
           <div className="mt-10">
