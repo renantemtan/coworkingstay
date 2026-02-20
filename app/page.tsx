@@ -41,7 +41,7 @@ export default async function Home() {
           uvp={brand.identity.uniqueValueProposition}
           mission={brand.identity.mission}
         />
-        <TargetAudience targetMarket={brand.identity.targetMarket} />
+        <TargetAudience personas={brand.personas} />
         <HardwareSpecs amenities={brand.amenities} />
         <ContactSection location={primaryLocation} />
       </main>

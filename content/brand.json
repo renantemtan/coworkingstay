@@ -229,7 +229,7 @@
     "personas": [
         {
             "id": "remote-professionals",
-            "title": "Remote Working Professionals",
+            "title": "Remote / Hybrid Working Professionals",
             "description": "Escape the office without missing a beat. Bring your A-game to the beach.",
             "icon": "Briefcase",
             "color": "bg-blue-500"
