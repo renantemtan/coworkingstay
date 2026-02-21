@@ -1,19 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { Monitor, Wifi, Zap, Presentation, Users, Briefcase } from "lucide-react";
+import { Monitor, Wifi, Zap, Presentation, Users, Briefcase, CheckCircle2 } from "lucide-react";
 import { CoworkingDetails } from "@/types/content";
 import { motion } from "framer-motion";
 
 interface LocationCoworkingProps {
     coworking?: CoworkingDetails;
+    targetActivities?: string[];
 }
 
-export function LocationCoworking({ coworking }: LocationCoworkingProps) {
+export function LocationCoworking({ coworking, targetActivities }: LocationCoworkingProps) {
     if (!coworking) return null;
 
     return (
-        <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: "#0C4A96" }} id="coworking">
+        <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#0C4A96]" id="coworking">
+            {/* Background Pattern matched from standard amenities */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
+                <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+            </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Section Header */}
@@ -28,7 +33,7 @@ export function LocationCoworking({ coworking }: LocationCoworkingProps) {
                         className="inline-block rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-4"
                         style={{ backgroundColor: "rgba(3, 177, 247, 0.2)", color: "#03B1F7" }}
                     >
-                        Where the Magic Happens
+                        Where Outcomes are Crafted
                     </span>
                     <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
                         Your Productivity Fortress
@@ -44,7 +49,7 @@ export function LocationCoworking({ coworking }: LocationCoworkingProps) {
                     {/* LEFT: Content */}
                     <div className="space-y-8">
                         {/* Zones */}
-                        <div className="rounded-2xl p-8" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+                        <div className="rounded-2xl p-8 shadow-sm" style={{ backgroundColor: "#1254A4" }}>
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#03D2D8" }}>
                                     <Briefcase className="h-5 w-5 text-white" />
@@ -62,12 +67,12 @@ export function LocationCoworking({ coworking }: LocationCoworkingProps) {
                         </div>
 
                         {/* Conference Rooms */}
-                        <div className="rounded-2xl p-8" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+                        <div className="rounded-2xl p-8 shadow-sm" style={{ backgroundColor: "#1254A4" }}>
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#0158F5" }}>
                                     <Presentation className="h-5 w-5 text-white" />
                                 </div>
-                                <h3 className="font-sora text-xl font-bold text-white">Meeting &amp; Training Rooms</h3>
+                                <h3 className="font-sora text-xl font-bold text-white">Meeting &amp; Training Room</h3>
                             </div>
                             <p style={{ color: "rgba(255,255,255,0.8)" }}>
                                 {coworking.conferenceRooms}
@@ -75,7 +80,7 @@ export function LocationCoworking({ coworking }: LocationCoworkingProps) {
                         </div>
 
                         {/* Tech Specs */}
-                        <div className="rounded-2xl p-8" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+                        <div className="rounded-2xl p-8 shadow-sm" style={{ backgroundColor: "#1254A4" }}>
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#03B1F7" }}>
                                     <Monitor className="h-5 w-5 text-white" />
@@ -86,29 +91,21 @@ export function LocationCoworking({ coworking }: LocationCoworkingProps) {
                                 {coworking.technology.map((tech, i) => (
                                     <li key={i} className="flex items-start gap-3">
                                         <div className="mt-1.5 h-2 w-2 rounded-full flex-shrink-0" style={{ backgroundColor: "#03D2D8" }} />
-                                        <span style={{ color: "rgba(255,255,255,0.85)" }}>{tech}</span>
+                                        <span style={{ color: "rgba(255,255,255,0.85)" }}>
+                                            {tech.replace(/\((.*?)\)/g, (match, p1) => `(${p1.toLowerCase()})`)}
+                                        </span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
-                        {/* Perfect For */}
-                        <div>
-                            <h4 className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: "#03B1F7" }}>
-                                Perfect For
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                                {coworking.activities.map((activity, i) => (
-                                    <span
-                                        key={i}
-                                        className="px-4 py-2 rounded-full text-sm font-medium text-white"
-                                        style={{ backgroundColor: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.15)", borderWidth: 1 }}
-                                    >
-                                        {activity}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
+                        {/* Disclaimer */}
+                        {coworking.disclaimer && (
+                            <p className="mt-4 text-xs italic" style={{ color: "rgba(255,255,255,0.45)" }}>
+                                {coworking.disclaimer}
+                            </p>
+                        )}
+
                     </div>
 
                     {/* RIGHT: Photos */}
@@ -134,13 +131,26 @@ export function LocationCoworking({ coworking }: LocationCoworkingProps) {
                     </div>
                 </div>
 
-                {/* Disclaimer */}
-                {coworking.disclaimer && (
-                    <p className="mt-12 text-center text-xs italic max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.45)" }}>
-                        {coworking.disclaimer}
-                    </p>
-                )}
+                {/* Your Space, Your Agenda */}
+                <div className="mt-20 w-full relative z-20">
+                    <h4 className="font-sora text-3xl sm:text-4xl lg:text-4xl font-bold mb-10 text-center drop-shadow-sm" style={{ color: "#03B1F7" }}>
+                        Your space, your agenda.
+                    </h4>
+                    <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+                        {(targetActivities || coworking.activities).map((activity, i) => (
+                            <span
+                                key={i}
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium text-white shadow-sm"
+                                style={{ backgroundColor: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.15)", borderWidth: 1 }}
+                            >
+                                <CheckCircle2 className="h-5 w-5" style={{ color: "#03D2D8" }} />
+                                <span className="lowercase">{activity}</span>
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </section >
     );
 }

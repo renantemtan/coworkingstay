@@ -34,6 +34,14 @@ export function LocationsGrid({ locations }: LocationsGridProps) {
               key={location.id}
               className="group relative isolate flex flex-col justify-end overflow-hidden rounded-3xl bg-gray-900 px-7 pb-7 pt-72 sm:pt-52 lg:pt-72 ring-1 ring-inset ring-gray-900/10"
             >
+              {/* Clickable overlay covering entire card EXCEPT the actions row */}
+              <Link
+                href={`/locations/${location.slug}`}
+                className="absolute inset-0 z-20"
+                aria-label={`View ${location.name}`}
+                style={{ bottom: '80px' }}
+              />
+
               {/* Full background image */}
               <img
                 src={location.image}
@@ -43,7 +51,7 @@ export function LocationsGrid({ locations }: LocationsGridProps) {
               <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
 
               {/* Status badge */}
-              <div className="absolute top-4 right-4">
+              <div className="absolute top-4 right-4 z-10">
                 {isOpen(location.status) || isSoftOpen(location.status) ? (
                   <span className="inline-flex items-center rounded-full bg-[#03B1F7] px-3 py-1 text-xs font-semibold tracking-wide text-white">
                     {location.status}
@@ -75,8 +83,8 @@ export function LocationsGrid({ locations }: LocationsGridProps) {
                 ))}
               </div>
 
-              {/* Actions row */}
-              <div className="mt-5 flex items-center gap-2 flex-wrap">
+              {/* Actions row — sits ABOVE the overlay (z-30) so buttons remain clickable */}
+              <div className="relative z-30 mt-5 flex items-center gap-2 flex-wrap">
                 <Link
                   href={`/locations/${location.slug}`}
                   className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${isComingSoon(location.status)

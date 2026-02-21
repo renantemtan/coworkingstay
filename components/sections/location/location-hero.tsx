@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Handshake } from "lucide-react";
+import Link from "next/link";
 
 interface LocationHeroProps {
     name: string;
@@ -13,10 +14,11 @@ interface LocationHeroProps {
     logoUrl?: string;
     status: string;
     hideStatus?: boolean;
+    statusColor?: string;
     cta: string;
 }
 
-export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus, cta }: LocationHeroProps) {
+export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus, statusColor, cta }: LocationHeroProps) {
     const scrollToOverview = () => {
         const el = document.getElementById("overview");
         if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -45,6 +47,21 @@ export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus
                     transition={{ duration: 0.8 }}
                     className="relative rounded-3xl border border-white/50 bg-black/30 backdrop-blur-sm px-8 py-12 sm:px-12 sm:py-16 text-center overflow-hidden"
                 >
+                    {/* Status Badge — top-right corner, matching home page style */}
+                    {status && (
+                        <div className="absolute top-4 right-4 z-10">
+                            {status.toLowerCase() === 'soft open' || status.toLowerCase() === 'open' ? (
+                                <span className="inline-flex items-center rounded-full bg-[#03B1F7] px-4 py-1.5 text-xs font-semibold tracking-wide text-white lowercase">
+                                    {status}
+                                </span>
+                            ) : (
+                                <span className="inline-flex items-center rounded-full bg-black/40 backdrop-blur-md px-4 py-1.5 text-xs font-semibold tracking-wide text-white border border-white/20 lowercase">
+                                    {status}
+                                </span>
+                            )}
+                        </div>
+                    )}
+
                     {/* Logo + Name */}
                     <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
                         {logoUrl && (
@@ -60,25 +77,16 @@ export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus
                     </div>
 
                     {/* Tagline */}
-                    <p className="mx-auto mt-6 max-w-2xl text-xl sm:text-2xl font-caveat" style={{ color: "#03B1F7" }}>
+                    <p className="mx-auto mt-6 max-w-3xl text-4xl sm:text-5xl lg:text-6xl font-caveat leading-tight" style={{ color: "#03B1F7", textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
                         {tagline}
                     </p>
 
-                    {/* Status Badge — only show for non-hidden */}
-                    {!hideStatus && status && (
-                        <div className="mt-4">
-                            <span className="inline-block rounded-full bg-white/15 backdrop-blur-md px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/90">
-                                {status}
-                            </span>
-                        </div>
-                    )}
-
                     {/* CTA */}
-                    <div className="mt-10">
+                    <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button
                             size="lg"
                             onClick={scrollToOverview}
-                            className="gap-2 font-semibold text-base text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                            className="gap-2 font-semibold text-base text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 lowercase"
                             style={{ backgroundColor: "#E53652" }}
                             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#C82D45"; }}
                             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#E53652"; }}
@@ -86,6 +94,16 @@ export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus
                             {cta}
                             <ArrowRight className="h-5 w-5" />
                         </Button>
+
+                        {!hideStatus && (
+                            <Link
+                                href="/contact?subject=Investment+Inquiry"
+                                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-white/10 backdrop-blur-sm px-6 py-4 text-sm font-medium text-white/90 border border-white/20 hover:bg-white/20 hover:text-white transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                            >
+                                <Handshake className="h-4 w-4" />
+                                investor inquiry
+                            </Link>
+                        )}
                     </div>
                 </motion.div>
             </div>

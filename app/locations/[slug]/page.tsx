@@ -89,6 +89,7 @@ export default async function LocationPage(props: LocationPageProps) {
           logoUrl={location.logoUrl}
           status={location.status}
           hideStatus={location.hideStatus}
+          statusColor={location.slug === 'work-n-wave-puerto-galera' ? '#03B1F7' : '#333F50'}
           cta={location.cta}
         />
 
@@ -98,19 +99,26 @@ export default async function LocationPage(props: LocationPageProps) {
             description={location.description}
             highlights={location.overviewHighlights}
             amenities={location.amenities}
+            address={location.address}
+            coworkingDescription={location.coworking?.description}
+            coworkingZones={location.coworking?.zones}
+            accommodationDescription={location.accommodation?.description}
+            accommodationBeds={location.accommodation?.beds}
+            activitiesDescription={location.activitiesDescription}
+            pillars={brand.pillars}
           />
         )}
 
-        <LocationCoworking coworking={location.coworking} />
+        <LocationCoworking coworking={location.coworking} targetActivities={location.targetActivities} />
         <LocationAccommodation accommodation={location.accommodation} />
         <LocationWorkPlay
           activitiesDescription={location.activitiesDescription}
           activitiesDisclaimer={location.activitiesDisclaimer}
           activities={location.activities}
+          locationName={location.name}
         />
         <LocationTargetMarket
           personas={brand.personas}
-          targetActivities={location.targetActivities}
         />
         <LocationLoyalty />
         <LocationGallery gallery={location.gallery} />

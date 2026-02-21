@@ -144,7 +144,7 @@
                     ]
                 },
                 {
-                    "category": "Local culture + eco-tourism",
+                    "category": "Local Culture",
                     "items": [
                         "Mangyan village",
                         "Muelle pier",
@@ -169,8 +169,8 @@
             "coworking": {
                 "description": "A professional-grade workspace designed to maximize your output. Whether you need absolute silence for deep work or a vibrant space for collaboration, our environment is tailored for high-performing individuals and teams.",
                 "zones": [
-                    "Focus Zones (Quiet area)",
-                    "Collab Zones (Open discussion)",
+                    "Focus Zones",
+                    "Collab Zones",
                     "Lounge Area"
                 ],
                 "conferenceRooms": "Separate, bookable conference and training rooms available for team strategy sessions or client calls.",
@@ -199,9 +199,9 @@
                     "Air conditioning",
                     "Water heater",
                     "High-speed internet access",
-                    "Projector setup for binge-watching",
+                    "Projector for big-screen binge-watching",
                     "Fresh towels & linens",
-                    "24/7 security"
+                    "CCTV security"
                 ],
                 "description": "Basic but deeply comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
                 "photos": [
@@ -209,8 +209,8 @@
                     "/locations/placeholders/room-2.png"
                 ]
             },
-            "activitiesDescription": "Build your perfect daily itinerary: Crush a deep work sprint in the morning, surf or dive in the afternoon, collaborate with your team, and then unwind with a sunset drink. Or, on a rainy day, fire up the projector in your room for an epic binge-watching session.",
-            "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by trusted third-party local operators and are not directly affiliated with CoWorkingStay.",
+            "activitiesDescription": "Crush a focused work sprint in the morning, then explore Puerto Galera's world-class dive sites, go snorkeling over vibrant reefs, or island-hop to hidden coves in the afternoon. End the day with a sunset drink on the beach — or on a rainy day, fire up the in-room projector for a guilt-free binge session.",
+            "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by third-party local operators and are not affiliated with CoWorkingStay.",
             "targetActivities": [
                 "Strategy planning",
                 "Hackathon",
@@ -357,7 +357,7 @@
                     ]
                 },
                 {
-                    "category": "Culture & Eco-Tourism",
+                    "category": "Local Culture",
                     "items": [
                         "Pagsanjan Falls day trip",
                         "Hot springs",
@@ -382,8 +382,8 @@
             "coworking": {
                 "description": "A sanctuary of concentration nestled by the lake. The workspace is designed to minimize distractions and maximize creative output, with zones tailored for solo deep work and team collaboration alike.",
                 "zones": [
-                    "Focus Zones (Quiet area)",
-                    "Collab Zones (Open discussion)",
+                    "Focus Zones",
+                    "Collab Zones",
                     "Lakeside Deck (Outdoor workspace)"
                 ],
                 "conferenceRooms": "Dedicated conference and training room available for team strategy sessions, workshops, and client presentations.",
@@ -391,15 +391,15 @@
                     "Dual monitors available on select workstations",
                     "Projector equipped in the conference/training room",
                     "High-speed WiFi with failover backup",
-                    "Power backup (Site generator)",
+                    "Power backup (site generator)",
                     "Whiteboards for brainstorming"
                 ],
                 "disclaimer": "Note: Technology and amenities are provided on a best-effort basis and are dependent on external factors such as local ISPs and electricity providers.",
                 "activities": [
-                    "Focus work sprints",
-                    "Team collaboration",
-                    "Strategy planning",
-                    "Hackathons"
+                    "focus work sprints",
+                    "team collaboration",
+                    "strategy planning",
+                    "hackathons"
                 ],
                 "photos": [
                     "/locations/placeholders/coworking-1.png",
@@ -412,9 +412,9 @@
                     "Air conditioning",
                     "Water heater",
                     "High-speed internet access",
-                    "Projector setup for binge-watching",
+                    "Projector for big-screen binge-watching",
                     "Fresh towels & linens",
-                    "24/7 security"
+                    "CCTV security"
                 ],
                 "description": "Basic but deeply comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
                 "photos": [
@@ -423,7 +423,7 @@
                 ]
             },
             "activitiesDescription": "Wake up to misty mountain views, crush a focused work block, then kayak across the lake before lunch. Afternoons are for waterfall hikes or lakeside strategy sessions — and when the rain rolls in, fire up the in-room projector for guilt-free downtime.",
-            "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by trusted third-party local operators and are not directly affiliated with CoWorkingStay.",
+            "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by third-party local operators and are not affiliated with CoWorkingStay.",
             "targetActivities": [
                 "Strategy planning",
                 "Hackathon",
@@ -566,7 +566,7 @@
                     ]
                 },
                 {
-                    "category": "Culture & Community",
+                    "category": "Local Culture",
                     "items": [
                         "Surf community events",
                         "Local food crawl",
@@ -592,8 +592,8 @@
             "coworking": {
                 "description": "A high-energy workspace infused with the rhythm of La Union's surf culture. Built for people who work hard and play harder — with zones for heads-down focus and open-floor collaboration.",
                 "zones": [
-                    "Focus Zones (Quiet area)",
-                    "Collab Zones (Open discussion)",
+                    "Focus Zones",
+                    "Collab Zones",
                     "Lounge Area"
                 ],
                 "conferenceRooms": "Dedicated conference and training room available for team strategy sessions, workshops, and client presentations.",
@@ -622,9 +622,9 @@
                     "Air conditioning",
                     "Water heater",
                     "High-speed internet access",
-                    "Projector setup for binge-watching",
+                    "Projector for big-screen binge-watching",
                     "Fresh towels & linens",
-                    "24/7 security"
+                    "CCTV security"
                 ],
                 "description": "Basic but deeply comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
                 "photos": [
@@ -633,7 +633,7 @@
                 ]
             },
             "activitiesDescription": "Dawn patrol before your first standup call. Afternoon surf sessions between deep work blocks. Sunset sessions with your team. Or when the swell is flat, fire up the in-room projector and recover properly — because tomorrow, the waves (and the work) won't wait.",
-            "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by trusted third-party local operators and are not directly affiliated with CoWorkingStay.",
+            "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by third-party local operators and are not affiliated with CoWorkingStay.",
             "targetActivities": [
                 "Strategy planning",
                 "Hackathon",
