@@ -101,6 +101,15 @@ Three core value propositions:
 
 ## Development Notes
 
+### Package Manager
+- **npm only** (standardized for this repo)
+- Lockfile of record: `package-lock.json`
+- Commands:
+  - `npm install`
+  - `npm run dev`
+  - `npm run build`
+  - `npm run lint`
+
 ### Add New Location
 1. Update SITE_CONTENT in `/lib/content-loader.ts`
 2. Add location image to `/public/locations/`

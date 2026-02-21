@@ -79,6 +79,43 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface CoworkingDetails {
+  description: string;
+  zones: string[];
+  conferenceRooms: string;
+  technology: string[];
+  disclaimer: string;
+  activities: string[];
+  photos: string[]; // URLs for placeholders
+}
+
+export interface AccommodationDetails {
+  beds: string;
+  amenities: string[];
+  description: string;
+  photos: string[]; // URLs for placeholders
+}
+
+export interface GettingHere {
+  publicTransport: string;
+  publicTransportDetails: string[];
+  privateTransport: string;
+  privateTransportDetails: string[];
+  parkingInfo?: string;
+  shippingLines?: string;
+  disclaimer?: string;
+  mapEmbedUrl?: string; // Google Maps iframe src
+  photos: string[];
+}
+
+export interface LocationPolicies {
+  guidelines: string[];
+  checkIn: string;
+  checkOut: string;
+  deposit: string;
+  cancellation: string;
+}
+
 export interface Location {
   id: string;
   slug: string; // Keep slug for routing
@@ -86,26 +123,37 @@ export interface Location {
   tagline: string;
   address: string;
   status: 'Open' | 'Soft Open' | 'Soon';
-  description?: string; // Optional if not in user's new list, but needed for UI
-  image: string; // Needed for UI
-  amenities: string[]; // User provided "Amenities" list
+  hideStatus?: boolean; // If true, hide the status badge (e.g., for Work 'n Wave)
+  description?: string;
+  overviewHighlights?: string[]; // For Overview section
+  image: string; // Hero Background Image
+  logoUrl?: string; // Location specific logo
+  amenities: string[];
   rooms?: string;
   contact?: LocationContact;
   cta: string;
 
-  // Keep these for backward compat or UI needs if possible, else make optional
+  coworking?: CoworkingDetails;
+  accommodation?: AccommodationDetails;
+
+  activitiesDescription?: string;
+  activitiesDisclaimer?: string;
+  activities?: { category: string; items: string[] }[];
+
+  targetActivities?: string[]; // Additional activities for Target Market section
+
+  gallery?: GalleryItem[];
+  gettingHere?: GettingHere;
+  locationPolicies?: LocationPolicies;
+
   features?: string[];
   highlights?: string[];
   coworkingFeatures?: string[];
   roomSummary?: string[];
-  activities?: { category: string; items: string[] }[];
   capabilities?: LocationCapabilities;
   bookingForm?: string;
   bookingType?: 'request' | 'waitlist';
-  gallery?: GalleryItem[];
-  gettingHereSteps?: string[];
   faqs?: FaqItem[];
-  policies?: string[];
 }
 
 export interface Pillar {
