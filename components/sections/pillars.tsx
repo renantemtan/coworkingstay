@@ -35,7 +35,7 @@ interface PillarsSectionProps {
 
 export function PillarsSection({ pillars, uvp, mission }: PillarsSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#f8f9fb] py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-[#f8f9fb] py-12 sm:py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header — small, left-aligned */}
         <div className="mb-12">
@@ -70,11 +70,13 @@ export function PillarsSection({ pillars, uvp, mission }: PillarsSectionProps) {
         </div>
 
         {/* Mission — non-italic, darker, no quotes */}
-        <div className="mx-auto max-w-3xl text-center mb-20">
-          <p className="font-inter text-lg sm:text-xl leading-relaxed text-gray-700">
-            {mission}
-          </p>
-        </div>
+        {mission && (
+          <div className="mx-auto max-w-3xl text-center mb-20">
+            <p className="font-inter text-lg sm:text-xl leading-relaxed text-gray-700">
+              {mission}
+            </p>
+          </div>
+        )}
 
         {/* Pillars — impactful layout */}
         <div className="grid gap-12 md:grid-cols-3 max-w-6xl mx-auto">

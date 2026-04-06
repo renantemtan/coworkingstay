@@ -57,13 +57,92 @@ CommandInput.displayName = CommandPrimitive.Input.displayName
 const CommandList = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive.List
-    ref={ref}
-    className={cn('max-h-[300px] overflow-y-auto overflow-x-hidden', className)}
-    {...props}
-  />
-))
+>(({ className, ...props }, ref) => {
+  const innerRef = React.useRef<HTMLDivElement>(null)
+  const touchStartY = React.useRef(0)
+  const velocity = React.useRef(0)
+  const lastTouchTime = React.useRef(0)
+  const animationId = React.useRef<number | null>(null)
+
+  // Fix: cmdk wraps items in a non-scrollable sizer div that eats wheel events.
+  const handleWheel = React.useCallback((e: React.WheelEvent<HTMLDivElement>) => {
+    const el = innerRef.current
+    if (!el) return
+    el.scrollTop += e.deltaY
+  }, [])
+
+  const stopMomentum = React.useCallback(() => {
+    if (animationId.current !== null) {
+      cancelAnimationFrame(animationId.current)
+      animationId.current = null
+    }
+  }, [])
+
+  // Momentum animation loop — runs after touchEnd
+  const startMomentum = React.useCallback(() => {
+    const el = innerRef.current
+    if (!el) return
+
+    const FRICTION = 0.95
+    const MIN_VELOCITY = 0.5
+
+    const step = () => {
+      velocity.current *= FRICTION
+      if (Math.abs(velocity.current) < MIN_VELOCITY) {
+        animationId.current = null
+        return
+      }
+      el.scrollTop += velocity.current
+      animationId.current = requestAnimationFrame(step)
+    }
+    animationId.current = requestAnimationFrame(step)
+  }, [])
+
+  const handleTouchStart = React.useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    stopMomentum()
+    touchStartY.current = e.touches[0].clientY
+    lastTouchTime.current = Date.now()
+    velocity.current = 0
+  }, [stopMomentum])
+
+  const handleTouchMove = React.useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    const el = innerRef.current
+    if (!el) return
+    const now = Date.now()
+    const deltaY = touchStartY.current - e.touches[0].clientY
+    const deltaTime = now - lastTouchTime.current || 1
+
+    // Track velocity (pixels per frame at ~16ms)
+    velocity.current = (deltaY / deltaTime) * 16
+
+    touchStartY.current = e.touches[0].clientY
+    lastTouchTime.current = now
+    el.scrollTop += deltaY
+  }, [])
+
+  const handleTouchEnd = React.useCallback(() => {
+    // Only apply momentum if the flick was fast enough
+    if (Math.abs(velocity.current) > 2) {
+      startMomentum()
+    }
+  }, [startMomentum])
+
+  return (
+    <CommandPrimitive.List
+      ref={(node) => {
+        (innerRef as React.MutableRefObject<HTMLDivElement | null>).current = node
+        if (typeof ref === 'function') ref(node)
+        else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node
+      }}
+      onWheel={handleWheel}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      className={cn('max-h-[300px] overflow-y-auto overflow-x-hidden overscroll-contain', className)}
+      {...props}
+    />
+  )
+})
 
 CommandList.displayName = CommandPrimitive.List.displayName
 
@@ -115,7 +194,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected='true']:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+      "relative flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected='true']:bg-sky-50 data-[selected=true]:text-slate-900 data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
       className,
     )}
     {...props}

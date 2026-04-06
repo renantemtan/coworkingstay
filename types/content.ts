@@ -16,6 +16,11 @@ export interface BrandIdentity {
     charcoal: string;
     grey: string;
   };
+  typography: {
+    heading: string;
+    body: string;
+    accent: string;
+  };
   voice: string;
   targetMarket: string[];
   reach: string[];
@@ -176,10 +181,16 @@ export interface BrandConfig {
 
 
 
+export interface FaqGroup {
+  name: string;
+  faqs: FaqItem[];
+}
+
 export interface FaqPage {
   title: string;
   description: string;
-  faqs: FaqItem[];
+  groups: FaqGroup[];
+  disclaimer?: string;
 }
 
 export interface ContactPage {
@@ -187,15 +198,30 @@ export interface ContactPage {
   description: string;
   contactInfo: {
     mobile: string;
+    landline?: string;
     email: string;
     address: string;
   };
 }
 
+export interface PolicySubsection {
+  subtitle?: string;
+  type: 'list' | 'text' | 'text-list';
+  text?: string;
+  items?: string[];
+}
+
+export interface PolicySection {
+  title: string;
+  content?: string;
+  subsections?: PolicySubsection[];
+}
+
 export interface PoliciesPage {
-  privacy: string;
-  terms: string;
-  bookingCancellation: string;
+  title: string;
+  intro: string;
+  sections: PolicySection[];
+  disclaimer: string;
 }
 
 export interface SiteConfig {

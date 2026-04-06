@@ -76,7 +76,7 @@ export function LocationPoliciesSection({ locationPolicies }: LocationPoliciesPr
                             <div className="flex items-start gap-3">
                                 <AlertTriangle className="h-5 w-5 flex-shrink-0" style={{ color: "#E53652" }} />
                                 <div>
-                                    <h4 className="font-bold text-sm mb-1" style={{ color: "#E53652" }}>Cancellation</h4>
+                                    <h4 className="font-bold text-sm mb-1" style={{ color: "#E53652" }}>Cancellation & Rebooking</h4>
                                     <p className="text-sm leading-relaxed" style={{ color: "#333F50", opacity: 0.75 }}>
                                         {locationPolicies.cancellation}
                                     </p>

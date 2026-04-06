@@ -1,18 +1,105 @@
 {
-    "title": "Frequently Asked Questions",
-    "description": "Everything you need to know about CoWorkingStay.",
-    "faqs": [
+  "title": "Frequently Asked Questions",
+  "description": "We believe in providing a seamless environment designed for deep focus and maximum independence. To offer our residents the best balance of privacy and productivity, CoWorkingStay operates as a self-service facility. This model allows you to manage your stay on your own terms, much like a private studio or a modern workspace. The following FAQs will help you understand how this works.",
+  "groups": [
+    {
+      "name": "CoWorkingStay",
+      "faqs": [
         {
-            "question": "What is CoWorkingStay?",
-            "answer": "CoWorkingStay is a network of premium coworking space hotels in the Philippines designed for remote workers and digital nomads."
+          "question": "What is CoWorkingStay?",
+          "answer": "CoWorkingStay bridges the gap between professional performance and the fundamental human need to live life fully. We offer coworking stays in the Philippines—designed for deep focus, alongside waves, lakes, and sunsets.\n\nCoWorkingStay is a self-service facility designed to offer residents maximum independence and a distraction-free environment for peak productivity."
         },
         {
-            "question": "is the internet reliable?",
-            "answer": "Yes, we prioritize high-speed fiber internet at all our locations. Some locations also establish failover connections."
+          "question": "Who is CoWorkingStay for?",
+          "answer": "Our spaces are built for high-performing people: remote workers, digital nomads, startup founders, developers, creators, and wellness-oriented high performers who need not choose between their career and lifestyle. Study-warriors are also welcome to join the club of high-performers! Come and meet diverse and like-minded individual to grow your network!"
         },
         {
-            "question": "How do I book?",
-            "answer": "You can request to book via our website form or join the waitlist for upcoming locations."
+          "question": "Do you offer membership plans or a loyalty program?",
+          "answer": "Yes! We have a Loyalty Rewards Program designed to reward regulars who make CoWorkingStay part of their rhythm. The more you stay, the more you save from our prevailing rack rates:\n\n**Silver Tier (25% Off):** Achieved by maintaining a 6-Month Streak (checking in at least once a month for 6 consecutive rolling months).\n**Gold Tier (50% Off):** Achieved by maintaining a 12-Month Streak (checking in at least once a month for 12 consecutive rolling months).\n\nPlease note that the Member Portal for registration is launching soon!"
+        },
+        {
+          "question": "Where are your locations?",
+          "answer": "We currently have three premium destinations in our portfolio:\n- **Work 'n Wave** (Puerto Galera, Oriental Mindoro) - Currently in soft opening.\n- **Work 'n Lake** (Cavinti, Laguna) - Coming soon.\n- **Work 'n Surf** (Luna, La Union) - Coming soon."
+        },
+        {
+          "question": "Can I book a stay at Work 'n Lake or Work 'n Surf right now?",
+          "answer": "These locations are currently in the works. You can join the waitlist on our website to be notified instantly as soon as we open bookings!"
+        },
+        {
+          "question": "How reliable is the internet?",
+          "answer": "All CoWorking stay locations will have redundant Fiber Internet with multi-ISP failover connections to ensure you never drop an important call, minimizing the impact of regional outages. These are currently in the works and will soon be online!"
+        },
+        {
+          "question": "Is there backup power in case of local blackouts?",
+          "answer": "Yes! We have 24/7 power backup with onsite generator support at our locations, keeping the Wi-Fi running so your workflow is never interrupted."
+        },
+        {
+          "question": "Is the workspace loud? Can I take calls?",
+          "answer": "We embrace \"Privacy by design.\" Our spaces feature designated **Focus Zones** (quiet-by-policy) for uninterrupted deep work, and separated **Collab Zones** specifically designed for you to take calls and collaborate with your team without worry."
+        },
+        {
+          "question": "Do you offer private meeting rooms?",
+          "answer": "Yes, our locations feature dedicated conference and training room(s)."
+        },
+        {
+          "question": "What does \"self-service\" mean at CoWorkingStay?",
+          "answer": "Our locations are designed for maximum autonomy. We provide the tools and environment for a productive stay, but we do not offer traditional hotel services like a 24/7 on-site concierge or bell staff. You are empowered to manage your own stay independently."
+        },
+        {
+          "question": "Is there daily housekeeping?",
+          "answer": "Daily housekeeping is best-effort, not guaranteed, and is subject to onsite staff availability. Guests are asked to be responsible for the general upkeep of their private rooms. To keep the community comfortable, \"clean-as-you-go\" is a policy in all shared coworking and living areas."
+        },
+        {
+          "question": "How do I get help if I have a problem?",
+          "answer": "Support is handled with our limited onsite staff or through our digital communication channels. For any urgent maintenance or facility issues, please use the specific contact information provided to you at the time of check-in."
+        },
+        {
+          "question": "Are there any rules regarding shared resources?",
+          "answer": "Yes. As a self-service guest, we ask that you be mindful of our community resources. This includes using appliances properly and being conscious of water and electricity conservation to ensure a stable environment for everyone."
         }
-    ]
+      ]
+    },
+    {
+      "name": "Work 'n Wave (Puerto Galera)",
+      "faqs": [
+        {
+          "question": "How do I get to Work 'n Wave from Manila?",
+          "answer": "Take a bus via SLEX/STAR Tollway to Batangas Port. From Batangas, take a ferry (Fastcraft or RoRo) to Balatero Port in Puerto Galera. Upon arrival, you can simply take a 10 to 15mins local tricycle to the property."
+        },
+        {
+          "question": "Can I bring my own car?",
+          "answer": "Yes, you can bring your car across the channel using Roll-on/Roll-off (RoRo) ferries from Batangas Port. However, parking at the hotel is extremely limited. Please contact us in advance to check availability. Alternatively, Batangas Port offers safe overnight parking if you prefer to leave your car at the port."
+        },
+        {
+          "question": "What are the check-in and check-out times?",
+          "answer": "Check-in is at 2:00 PM, and check-out is at 11:00 AM."
+        },
+        {
+          "question": "What is the coworking etiquette at the property?",
+          "answer": "We maintain a professional, distraction-free environment.\n- No swimwear or \"top-off\" attire in the work areas.\n- No food allowed inside the coworking space (designated eating areas are provided).\n- Only spill-proof \"BYO\" mugs are allowed on the desks.\n- Clean-as-you-go rules apply to all shared areas."
+        },
+        {
+          "question": "Are outside visitors allowed inside Work 'n Wave?",
+          "answer": "To maintain the privacy, security, and quiet focus of our residents, no outside visitors are allowed inside the premises."
+        },
+        {
+          "question": "Do you require a deposit for bookings?",
+          "answer": "Yes, a 50% deposit is required to secure your reservation, with the remaining balance due before you check in. Please note we have a strict no-refund policy. If you had a change of plan and need to cancel, we can accomodate rebooking for another date subject to availability."
+        },
+        {
+          "question": "What is there to do in Puerto Galera after work?",
+          "answer": "You can crush a focused sprint to deliver your target outcomes while scuba diving, snorkeling over vibrant reefs, enjoy water activities, or just relax in the sand in between work sessions. If you prefer land adventures, you can try mud karting, ATVs, or chasing local waterfalls. Or, simply enjoy sunset-watching by the end of a hard day's work!"
+        },
+        {
+          "question": "Do you provide external monitors?",
+          "answer": "Yes, dual external monitors are available on select workstations on a first-come, first-served basis. We also have a projector equipped in the conference room for strategy sessions."
+        },
+        {
+          "question": "What are the accommodation rooms like?",
+          "answer": "Our rooms are simple intended for comfortable and restful sleep recovery. They feature two double-size beds, air conditioning, water heaters, high-speed internet, fresh linens, and even an in-room projector for big-screen binge-watching!"
+        }
+      ]
+    }
+  ],
+  "disclaimer": "Please Note: The information provided in this FAQ is for general guidance and may be subject to change without prior notice. To ensure you have the most up-to-date information, please contact us directly for any necessary confirmations or clarifications. The versions of our guidelines available at the time of your check-in will be the ones in effect."
 }

@@ -27,6 +27,11 @@
             "charcoal": "#333F50",
             "grey": "#D6DCE5"
         },
+        "typography": {
+            "heading": "Sora",
+            "body": "Inter",
+            "accent": "Caveat"
+        },
         "voice": "Energetic, Formal + Adventurous",
         "targetMarket": [
             "Remote Working Professionals",
@@ -155,7 +160,7 @@
             "features": [
                 "coworking space",
                 "focus + collab zones",
-                "privacy-first • quiet-by-policy",
+                "privacy-first • strictly no loud noise",
                 "vibrant marine life",
                 "ride • explore • unwind"
             ],
@@ -263,7 +268,7 @@
                 "checkIn": "2:00 PM",
                 "checkOut": "11:00 AM",
                 "deposit": "50% deposit required, remaining balance due before check-in.",
-                "cancellation": "No refund for cancellations within 48 hours. Please contact us for rebooking options."
+                "cancellation": "Strict no-refund policy. Rebookings are allowed if requested at least 48 hours before check-in, subject to room availability."
             },
             "gallery": [
                 {
@@ -472,7 +477,7 @@
                 "checkIn": "2:00 PM",
                 "checkOut": "11:00 AM",
                 "deposit": "50% deposit required, remaining balance due before check-in.",
-                "cancellation": "No refund for cancellations within 48 hours. Please contact us for rebooking options."
+                "cancellation": "Strict no-refund policy. Rebookings are allowed if requested at least 48 hours before check-in, subject to room availability."
             },
             "gallery": [
                 {
@@ -526,7 +531,7 @@
                 "Power Backup",
                 "Surf Gear Storage"
             ],
-            "description": "Where the best waves meet peak performance. Work 'n Surf in La Union is designed for creators, builders, and remote professionals who want the energy of a surf town with the discipline of a proper workspace.",
+            "description": "The destination for high-flying professionals where the best surf meets peak performance. Work 'n Surf in La Union is designed for creators, builders, and remote professionals who want the energy of a surf town with the discipline of a proper workspace.",
             "image": "/locations/placeholders/surf-hero-bg.png",
             "contact": {
                 "email": "worknsurf@coworkingstay.com",
@@ -681,7 +686,7 @@
                 "checkIn": "2:00 PM",
                 "checkOut": "11:00 AM",
                 "deposit": "50% deposit required, remaining balance due before check-in.",
-                "cancellation": "No refund for cancellations within 48 hours. Please contact us for rebooking options."
+                "cancellation": "Strict no-refund policy. Rebookings are allowed if requested at least 48 hours before check-in, subject to room availability."
             },
             "gallery": [
                 {

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Handshake } from "lucide-react";
 import Link from "next/link";
+import { WaitlistModal } from "@/components/ui/waitlist-modal";
 
 interface LocationHeroProps {
     name: string;
@@ -19,9 +20,18 @@ interface LocationHeroProps {
 }
 
 export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus, statusColor, cta }: LocationHeroProps) {
+    const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+
     const scrollToOverview = () => {
         const el = document.getElementById("overview");
         if (el) el.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const handleCTAClick = (e: React.MouseEvent) => {
+        if (cta.toLowerCase().includes('waitlist')) {
+            e.preventDefault();
+            setIsWaitlistOpen(true);
+        }
     };
 
     return (
@@ -84,27 +94,36 @@ export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus
                     {/* CTA */}
                     <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Button
+                            asChild
                             size="lg"
-                            onClick={scrollToOverview}
-                            className="gap-2 font-semibold text-base text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 lowercase"
-                            style={{ backgroundColor: "#E53652" }}
-                            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#C82D45"; }}
-                            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#E53652"; }}
+                            className="gap-2 font-semibold text-base text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-60 h-14"
+                            style={{ backgroundColor: cta.toLowerCase().includes('waitlist') ? "#03B1F7" : "#E53652" }}
+                            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = cta.toLowerCase().includes('waitlist') ? "#0296D1" : "#C82D45"; }}
+                            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = cta.toLowerCase().includes('waitlist') ? "#03B1F7" : "#E53652"; }}
+                            onClick={handleCTAClick}
                         >
-                            {cta}
-                            <ArrowRight className="h-5 w-5" />
+                            <Link href={`/contact?subject=${encodeURIComponent('Booking Inquiry for ' + name)}`}>
+                                {cta}
+                                <ArrowRight className="h-5 w-5" />
+                            </Link>
                         </Button>
 
                         {!hideStatus && (
                             <Link
-                                href="/contact?subject=Investment+Inquiry"
-                                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-white/10 backdrop-blur-sm px-6 py-4 text-sm font-medium text-white/90 border border-white/20 hover:bg-white/20 hover:text-white transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                                href="/contact?subject=Investor+Inquiry"
+                                className="inline-flex items-center justify-center gap-1.5 rounded-full bg-white text-sm font-medium text-[#333F50] border border-[#333F50]/20 hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-60 h-14"
                             >
                                 <Handshake className="h-4 w-4" />
-                                investor inquiry
+                                Investor Inquiry
                             </Link>
                         )}
                     </div>
+
+                    <WaitlistModal 
+                        isOpen={isWaitlistOpen} 
+                        onClose={() => setIsWaitlistOpen(false)} 
+                        locationName={name} 
+                    />
                 </motion.div>
             </div>
 

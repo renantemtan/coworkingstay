@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { Location } from '@/types/content';
 import {
   DropdownMenu,
@@ -42,12 +43,42 @@ export function Header({ locations, activeLocation }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const showFromHover = isVisible || isHoveredTop;
+  const pathname = usePathname();
+
+  const scrollToLocations = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById('locations');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToLocationsMobile = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const el = document.getElementById('locations');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const isHomeOrLocation = pathname === '/' || pathname.startsWith('/locations/');
+  const showFromHover = !isHomeOrLocation || isVisible || isHoveredTop;
+
+  // Hide "Book Now" on pages where booking isn't available
+  const hideBookNow = 
+    pathname.startsWith('/locations/work-n-lake') ||
+    pathname.startsWith('/locations/work-n-surf') ||
+    pathname.startsWith('/contact');
 
   const logoSrc = activeLocation ? (logoMap[activeLocation.id] || '/logos/coworkingstay_logo.svg') : '/logos/coworkingstay_logo.svg';
   const brandName = activeLocation ? activeLocation.name : 'CoWorkingStay';
   const brandTagline = activeLocation ? activeLocation.tagline : 'Your best workday starts here.';
   const logoLink = '/';
+
+  const bookingSubject = activeLocation 
+    ? `Booking Inquiry for ${activeLocation.name}`
+    : 'Booking Inquiry';
 
   return (
     <>
@@ -136,12 +167,21 @@ export function Header({ locations, activeLocation }: HeaderProps) {
 
             {/* CTA & Mobile Menu */}
             <div className="flex items-center gap-4">
-              <Button
-                asChild
-                className="hidden bg-primary hover:bg-blue-600 sm:inline-flex"
-              >
-                <a href="#booking">Book Now</a>
-              </Button>
+              {pathname === '/' ? (
+                <Button
+                  onClick={scrollToLocations}
+                  className="hidden bg-primary hover:bg-blue-600 sm:inline-flex"
+                >
+                  Locations
+                </Button>
+              ) : !hideBookNow ? (
+                <Button
+                  asChild
+                  className="hidden bg-primary hover:bg-blue-600 sm:inline-flex"
+                >
+                  <Link href={`/contact?subject=${encodeURIComponent(bookingSubject)}`}>Book Now</Link>
+                </Button>
+              ) : null}
 
               {/* Mobile Menu Button */}
               <button
@@ -177,8 +217,8 @@ export function Header({ locations, activeLocation }: HeaderProps) {
                         <span>{location.name}</span>
                         <span
                           className={`ml-3 shrink-0 inline-flex items-center justify-center rounded-full w-24 py-0.5 text-[10px] font-semibold tracking-wide ${(location.status.toLowerCase() === 'open' || location.status.toLowerCase() === 'soft open')
-                              ? 'bg-[#03B1F7] text-white'
-                              : 'bg-gray-100 text-gray-400'
+                            ? 'bg-[#03B1F7] text-white'
+                            : 'bg-gray-100 text-gray-400'
                             }`}
                         >
                           {location.status}
@@ -202,9 +242,15 @@ export function Header({ locations, activeLocation }: HeaderProps) {
                   FAQ
                 </Link>
                 <div className="border-t border-border/40 px-4 pt-4">
-                  <Button asChild className="w-full bg-primary hover:bg-blue-600" onClick={() => setMobileMenuOpen(false)}>
-                    <a href="#booking">Book Now</a>
-                  </Button>
+                  {pathname === '/' ? (
+                    <Button className="w-full bg-primary hover:bg-blue-600" onClick={scrollToLocationsMobile}>
+                      Locations
+                    </Button>
+                  ) : !hideBookNow ? (
+                    <Button asChild className="w-full bg-primary hover:bg-blue-600" onClick={() => setMobileMenuOpen(false)}>
+                      <Link href={`/contact?subject=${encodeURIComponent(bookingSubject)}`}>Book Now</Link>
+                    </Button>
+                  ) : null}
                 </div>
               </div>
             </nav>

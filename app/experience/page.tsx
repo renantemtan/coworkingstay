@@ -4,8 +4,8 @@ import { Footer } from '@/components/layout/footer';
 import { getBrandConfig, getAllLocations } from '@/lib/content-loader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, Lightbulb, Globe, TrendingUp, Heart, Zap, Shield, Smile } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { PillarsSection } from '@/components/sections/pillars';
+import { TargetAudience } from '@/components/sections/target-audience';
 
 export async function generateMetadata(): Promise<Metadata> {
   const brand = await getBrandConfig();
@@ -18,16 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const iconMap: Record<string, LucideIcon> = {
-  Users,
-  Lightbulb,
-  Globe,
-  TrendingUp,
-  Heart,
-  Zap,
-  Shield,
-  Smile,
-};
+
 
 export default async function ExperiencePage() {
   const brand = await getBrandConfig();
@@ -38,7 +29,7 @@ export default async function ExperiencePage() {
       <Header locations={locations} />
       <main>
         {/* Hero */}
-        <section className="border-b border-border/40 px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <section className="border-b border-border/40 px-4 pt-20 pb-12 sm:px-6 sm:pt-28 sm:pb-16 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="font-sora text-4xl font-bold text-foreground sm:text-5xl">
               Our Mission
@@ -49,42 +40,15 @@ export default async function ExperiencePage() {
           </div>
         </section>
 
-        {/* Pillars Grid */}
-        <section className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-8 md:grid-cols-2">
-              {brand.pillars.map((pillar, index) => {
-                const Icon = (pillar.icon && iconMap[pillar.icon]) || Lightbulb;
-                return (
-                  <Card key={index} className="p-8 transition-all hover:shadow-lg">
-                    <div className="mb-4 inline-flex rounded-xl bg-primary/10 p-3 text-primary">
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <h3 className="font-sora text-2xl font-bold text-foreground">{pillar.title}</h3>
-                    <p className="mt-4 text-muted-foreground">{pillar.description || pillar.promise}</p>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        {/* The Experience Section (Pillars & UVP) */}
+        <PillarsSection
+          pillars={brand.pillars}
+          uvp={brand.identity.uniqueValueProposition}
+          mission=""
+        />
 
-        {/* Community Values */}
-        <section className="bg-muted/30 px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="font-sora text-3xl font-bold text-foreground">Our Values</h2>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {brand.identity.values.map((value, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Heart className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-sora font-semibold text-foreground">{value}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Built For People Like You Section */}
+        <TargetAudience personas={brand.personas} />
 
         {/* CTA */}
         <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">

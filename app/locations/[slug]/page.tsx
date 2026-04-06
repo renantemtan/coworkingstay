@@ -71,6 +71,8 @@ export default async function LocationPage(props: LocationPageProps) {
     notFound();
   }
 
+  const isComingSoon = location.slug.includes('work-n-lake') || location.slug.includes('work-n-surf');
+
   return (
     <div className="min-h-screen bg-white">
       <LocalBusinessSchema
@@ -96,6 +98,8 @@ export default async function LocationPage(props: LocationPageProps) {
         {/* Only show Overview if there's an actual description or highlights set in the CMS */}
         {(location.description || (location.overviewHighlights && location.overviewHighlights.length > 0)) && (
           <LocationOverview
+            title={isComingSoon ? "The Vision" : undefined}
+            hideBadge={isComingSoon}
             description={location.description}
             highlights={location.overviewHighlights}
             amenities={location.amenities}
@@ -109,22 +113,24 @@ export default async function LocationPage(props: LocationPageProps) {
           />
         )}
 
-        <LocationCoworking coworking={location.coworking} targetActivities={location.targetActivities} />
-        <LocationAccommodation accommodation={location.accommodation} />
+        {!isComingSoon && <LocationCoworking coworking={location.coworking} targetActivities={location.targetActivities} />}
+        {!isComingSoon && <LocationAccommodation accommodation={location.accommodation} />}
         <LocationWorkPlay
           activitiesDescription={location.activitiesDescription}
           activitiesDisclaimer={location.activitiesDisclaimer}
           activities={location.activities}
           locationName={location.name}
         />
-        <LocationTargetMarket
-          personas={brand.personas}
-        />
-        <LocationLoyalty />
+        {!isComingSoon && (
+          <LocationTargetMarket
+            personas={brand.personas}
+          />
+        )}
+        {!isComingSoon && <LocationLoyalty />}
         <LocationGallery gallery={location.gallery} />
-        <LocationGettingHere gettingHere={location.gettingHere} />
-        <LocationPoliciesSection locationPolicies={location.locationPolicies} />
-        <LocationContactSection contact={location.contact} locationName={location.name} />
+        {!isComingSoon && <LocationGettingHere gettingHere={location.gettingHere} />}
+        {!isComingSoon && <LocationPoliciesSection locationPolicies={location.locationPolicies} />}
+        <LocationContactSection contact={location.contact} locationName={location.name} isComingSoon={isComingSoon} />
 
       </main>
       <Footer locations={allLocations} />

@@ -111,3 +111,56 @@
     opacity: 1;
   }
 }
+
+/* Custom scrollbar for command lists & dropdowns */
+[cmdk-list] {
+  scrollbar-width: auto;
+  scrollbar-color: #94a3b8 #e2e8f0;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
+[cmdk-list] > div {
+  /* cmdk-list-sizer — must not block touch scroll */
+  touch-action: pan-y;
+}
+
+/* Desktop scrollbar */
+[cmdk-list]::-webkit-scrollbar {
+  width: 14px;
+}
+
+[cmdk-list]::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+[cmdk-list]::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 10px;
+  border: 3px solid #e2e8f0;
+}
+
+[cmdk-list]::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Mobile/tablet: much wider scrollbar for touch */
+@media (max-width: 768px) {
+  [cmdk-list]::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  [cmdk-list]::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 12px;
+  }
+
+  [cmdk-list]::-webkit-scrollbar-thumb {
+    background: #64748b;
+    border-radius: 12px;
+    border: 4px solid #e2e8f0;
+    min-height: 40px;
+  }
+}

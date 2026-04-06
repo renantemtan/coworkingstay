@@ -83,29 +83,20 @@ export function LocationsGrid({ locations }: LocationsGridProps) {
                 ))}
               </div>
 
-              {/* Actions row — sits ABOVE the overlay (z-30) so buttons remain clickable */}
-              <div className="relative z-30 mt-5 flex items-center gap-2 flex-wrap">
+              {/* Actions row sits ABOVE the overlay (z-30) so buttons remain clickable */}
+              <div className="relative z-30 mt-5 flex items-center">
                 <Link
                   href={`/locations/${location.slug}`}
-                  className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${isComingSoon(location.status)
-                    ? 'bg-[#03B1F7] text-white hover:bg-[#029ADE]'
-                    : 'bg-[#0158F5] text-white hover:bg-[#0148CC]'
-                    }`}
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#0158F5] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#0148CC] shadow-lg hover:shadow-xl hover:scale-105"
                 >
-                  {location.cta || 'Explore'}
-                  <ArrowRight className="h-4 w-4" />
+                  <span className="flex items-center gap-1.5 font-sora">
+                    Explore
+                    <span className="font-caveat text-2xl font-bold text-white">
+                      {location.name.toLowerCase().includes('lake') ? 'Lake' : location.name.toLowerCase().includes('surf') ? 'Surf' : 'Wave'}
+                    </span>
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-white/90" />
                 </Link>
-
-                {/* Investor link for coming soon locations */}
-                {isComingSoon(location.status) && (
-                  <Link
-                    href="/contact?subject=Investment+Inquiry"
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-white/10 backdrop-blur-sm px-4 py-2.5 text-xs font-medium text-white/80 border border-white/20 hover:bg-white/20 hover:text-white transition-all"
-                  >
-                    <Handshake className="h-3.5 w-3.5" />
-                    Investor Inquiry
-                  </Link>
-                )}
               </div>
             </div>
           ))}

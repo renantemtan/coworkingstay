@@ -23,7 +23,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ContactPage() {
+interface ContactPageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function ContactPage(props: ContactPageProps) {
+  const searchParams = await props.searchParams;
+  const subject = typeof searchParams.subject === 'string' ? searchParams.subject : '';
+
   const contact = await getContactPage();
   const locations = await getAllLocations();
   const faqData = await getFaqPage();
@@ -32,169 +39,135 @@ export default async function ContactPage() {
     <div className="min-h-screen bg-white">
       <Header locations={locations} />
       <main>
-        {/* Premium Hero */}
-        <section className="relative overflow-hidden bg-[#0C4A96] px-4 py-24 sm:px-6 sm:py-32 lg:px-8 text-white">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-          </div>
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <h1 className="font-sora text-4xl font-bold sm:text-5xl lg:text-6xl text-white">
-              {contact.title}
-            </h1>
-            <p className="mt-6 text-lg text-blue-100 max-w-2xl mx-auto font-inter">
-              {contact.description}
-            </p>
-          </div>
-        </section>
+        {/* Contact Header & Main Section */}
+        <section className="px-4 pt-16 pb-20 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8 bg-slate-50/50">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12 max-w-2xl">
+              <h1 className="font-sora text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                {contact.title}
+              </h1>
+              <p className="mt-4 text-lg text-muted-foreground font-inter">
+                {contact.description}
+              </p>
+            </div>
 
-        {/* Contact Section */}
-        <section className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8 bg-slate-50">
-          <div className="mx-auto max-w-6xl -mt-24 relative z-20">
             <div className="grid gap-8 lg:grid-cols-3">
               {/* Contact Info (Left Column) */}
-              <div className="space-y-6">
-                <Card className="p-8 border-none shadow-xl shadow-blue-900/5 hover:shadow-2xl transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-blue-50 rounded-xl text-[#0158F5]">
-                      <Mail className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-sora font-semibold text-foreground text-lg">Email</h3>
-                      <a
-                        href={`mailto:${contact.contactInfo.email}`}
-                        className="mt-1 block text-muted-foreground transition-colors hover:text-primary font-inter"
-                      >
-                        {contact.contactInfo.email}
-                      </a>
-                    </div>
+              <div className="space-y-5">
+                <Card className="px-4 py-6 border-none shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_32px_rgba(0,0,0,0.05)] transition-all flex flex-col items-center text-center rounded-2xl">
+                  <div className="h-12 w-12 rounded-xl flex items-center justify-center mb-4 bg-[#0C4A96]/5 text-[#0C4A96]">
+                    <Mail className="h-5 w-5" />
                   </div>
+                  <h3 className="text-xs font-bold text-muted-foreground/70 mb-1 font-inter tracking-wider uppercase">Email</h3>
+                  <a href={`mailto:${contact.contactInfo.email}`} className="font-inter font-semibold text-foreground hover:text-[#0C4A96] transition-colors whitespace-nowrap text-[13px] sm:text-sm lg:text-[13px] xl:text-sm">
+                    {contact.contactInfo.email}
+                  </a>
                 </Card>
 
-                <Card className="p-8 border-none shadow-xl shadow-blue-900/5 hover:shadow-2xl transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-blue-50 rounded-xl text-[#0158F5]">
-                      <MapPin className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-sora font-semibold text-foreground text-lg">Headquarters</h3>
-                      <p className="mt-1 text-muted-foreground font-inter">
-                        {contact.contactInfo.address}
-                      </p>
-                    </div>
+                <Card className="px-4 py-6 border-none shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_32px_rgba(0,0,0,0.05)] transition-all flex flex-col items-center text-center rounded-2xl md:px-2 lg:px-2">
+                  <div className="h-12 w-12 rounded-xl flex items-center justify-center mb-4 bg-[#03B1F7]/5 text-[#03B1F7]">
+                    <Phone className="h-5 w-5" />
                   </div>
+                  <h3 className="text-[10px] sm:text-xs font-bold text-muted-foreground/70 mb-1 font-inter tracking-wider uppercase leading-snug">Mobile • WhatsApp • Viber • Telegram</h3>
+                  <a href={`tel:${contact.contactInfo.mobile}`} className="font-inter font-semibold text-foreground hover:text-[#03B1F7] transition-colors whitespace-nowrap text-[13px] sm:text-sm lg:text-[13px] xl:text-sm">
+                    {contact.contactInfo.mobile}
+                  </a>
                 </Card>
 
-                <Card className="p-8 border-none shadow-xl shadow-blue-900/5 hover:shadow-2xl transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-blue-50 rounded-xl text-[#0158F5]">
-                      <Phone className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-sora font-semibold text-foreground text-lg">Phone</h3>
-                      <a href={`tel:${contact.contactInfo.mobile}`} className="mt-1 block text-muted-foreground transition-colors hover:text-primary font-inter">
-                        {contact.contactInfo.mobile}
-                      </a>
-                    </div>
+                <Card className="px-4 py-6 border-none shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_32px_rgba(0,0,0,0.05)] transition-all flex flex-col items-center text-center rounded-2xl">
+                  <div className="h-12 w-12 rounded-xl flex items-center justify-center mb-4 bg-[#03D2D8]/5 text-[#03D2D8]">
+                    <Phone className="h-5 w-5" />
                   </div>
+                  <h3 className="text-xs font-bold text-muted-foreground/70 mb-1 font-inter tracking-wider uppercase">Landline</h3>
+                  <a href={`tel:${contact.contactInfo.landline}`} className="font-inter font-semibold text-foreground hover:text-[#03D2D8] transition-colors whitespace-nowrap text-[13px] sm:text-sm lg:text-[13px] xl:text-sm">
+                    {contact.contactInfo.landline}
+                  </a>
                 </Card>
               </div>
 
               {/* Contact Form (Main Column) */}
               <div className="lg:col-span-2">
-                <Card className="p-8 sm:p-12 border-none shadow-xl shadow-blue-900/5">
-                  <form className="space-y-8">
-                    <div className="grid gap-6 sm:grid-cols-2">
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-semibold text-foreground font-sora">
-                          Name
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          placeholder="Your name"
-                          className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-semibold text-foreground font-sora">
-                          Email
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="your@email.com"
-                          className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
-                          required
-                        />
-                      </div>
-                    </div>
-
+                <Card className="p-8 sm:p-12 border-none shadow-[0_8px_40px_rgba(0,0,0,0.04)] rounded-[2rem] h-full flex flex-col">
+                <form className="space-y-8">
+                  <div className="grid gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
-                      <label htmlFor="subject" className="text-sm font-semibold text-foreground font-sora">
-                        Subject
+                      <label htmlFor="name" className="text-sm font-semibold text-foreground font-sora">
+                        Name
                       </label>
                       <Input
-                        id="subject"
-                        name="subject"
-                        placeholder="What is this regarding?"
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
                         className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
                         required
                       />
                     </div>
-
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-semibold text-foreground font-sora">
-                        Message
+                      <label htmlFor="email" className="text-sm font-semibold text-foreground font-sora">
+                        Email
                       </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        placeholder="Tell us more about your inquiry (e.g., Dates, Group Size, Specific Location)..."
-                        className="min-h-[160px] rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all p-4 resize-none"
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
                         required
                       />
                     </div>
+                  </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-[#E53652] hover:bg-[#C42B44] text-white rounded-xl h-12 font-semibold">
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-semibold text-foreground font-sora">
+                      Subject
+                    </label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      placeholder="What is this regarding?"
+                      defaultValue={subject}
+                      className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-semibold text-foreground font-sora">
+                      Message
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell us more about your inquiry (e.g., Dates, Group Size, Number of Rooms)..."
+                      className="min-h-[160px] rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all p-4 resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="mt-auto pt-8">
+                    <Button type="submit" size="lg" className="w-full bg-[#03B1F7] hover:bg-sky-500 text-white rounded-xl h-12 font-semibold shadow-sm hover:shadow-md transition-all">
                       Send Message
                     </Button>
-                  </form>
-                </Card>
-              </div>
+                  </div>
+                </form>
+              </Card>
             </div>
+          </div>
           </div>
         </section>
 
         {/* FAQ Preview Section */}
-        <section className="bg-white py-24 sm:py-32">
-          <div className="mx-auto max-w-4xl px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="font-sora text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <Accordion type="single" collapsible className="w-full space-y-4">
-              {faqData.faqs.slice(0, 5).map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border rounded-2xl px-6 bg-slate-50 data-[state=open]:bg-white data-[state=open]:shadow-md transition-all border-none">
-                  <AccordionTrigger className="font-sora font-semibold text-left py-6 hover:no-underline hover:text-[#03B1F7]">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-6 font-inter leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-
-            <div className="mt-10 text-center">
-              <Button variant="link" asChild className="text-[#03B1F7] font-semibold">
-                <a href="/faq">View all FAQs &rarr;</a>
-              </Button>
-            </div>
+        <section className="bg-[#0C4A96] py-16 sm:py-24 text-white">
+          <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
+            <h2 className="font-sora text-3xl font-bold tracking-tight sm:text-4xl mb-6">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-blue-100 mb-8 font-inter">
+              Got more questions? We might have already answered them. Head over to our FAQ page to learn more about bookings, amenities, and what to expect during your stay.
+            </p>
+            <Button asChild size="lg" className="bg-[#03B1F7] hover:bg-sky-500 text-white font-semibold">
+              <a href="/faq">Read our Full FAQ</a>
+            </Button>
           </div>
         </section>
       </main>

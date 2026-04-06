@@ -13,6 +13,8 @@ interface Pillar {
 }
 
 interface LocationOverviewProps {
+    title?: string;
+    hideBadge?: boolean;
     description?: string;
     highlights?: string[];
     amenities?: string[];
@@ -62,6 +64,8 @@ function summarize(text: string | undefined, maxLen = 200): string {
 }
 
 export function LocationOverview({
+    title,
+    hideBadge,
     description,
     amenities,
     address,
@@ -104,12 +108,20 @@ export function LocationOverview({
 
                 {/* Section header */}
                 <div className="text-center">
-                    <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 px-4 py-1.5 rounded-full" style={{ backgroundColor: "#EEF4FF", color: "#0C4A96" }}>
-                        At a Glance
-                    </span>
+                    {!hideBadge && (
+                        <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 px-4 py-1.5 rounded-full" style={{ backgroundColor: "#EEF4FF", color: "#0C4A96" }}>
+                            At a Glance
+                        </span>
+                    )}
                     <h2 className="font-sora text-3xl sm:text-4xl font-bold" style={{ color: "#0C4A96" }}>
-                        Everything you need.{" "}
-                        <span style={{ color: "#E53652" }}>Nothing you don&apos;t.</span>
+                        {title ? (
+                            title
+                        ) : (
+                            <>
+                                Everything you need.{" "}
+                                <span style={{ color: "#E53652" }}>Nothing you don&apos;t.</span>
+                            </>
+                        )}
                     </h2>
                     {description && (
                         <p className="mt-3 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: "#333F50" }}>

@@ -1,28 +1,68 @@
 'use client';
 
-import { Mail, Phone, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MessageCircle, ArrowRight, Handshake } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { LocationContact } from '@/types/content';
+import { useState } from 'react';
+import { WaitlistModal } from '@/components/ui/waitlist-modal';
 
 interface LocationContactSectionProps {
     contact?: LocationContact;
     locationName: string;
+    isComingSoon?: boolean;
 }
 
-export function LocationContactSection({ contact, locationName }: LocationContactSectionProps) {
+export function LocationContactSection({ contact, locationName, isComingSoon }: LocationContactSectionProps) {
+    const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
     if (!contact) return null;
 
     return (
         <section className="py-20 sm:py-28" style={{ backgroundColor: "#f0f2f5" }} id="contact">
             <div className="mx-auto max-w-4xl px-6 lg:px-8">
                 <div className="text-center mb-14">
+                    {isComingSoon && (
+                        <p 
+                            className="font-caveat text-5xl sm:text-7xl font-bold mb-4" 
+                            style={{ 
+                                color: locationName.toLowerCase().includes('lake') ? '#03D2D8' : locationName.toLowerCase().includes('surf') ? '#E8704F' : '#03B1F7',
+                                textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+                            }}
+                        >
+                            {locationName}
+                        </p>
+                    )}
                     <h2 className="font-sora text-3xl font-bold tracking-tight sm:text-4xl" style={{ color: "#333F50" }}>
-                        Get in Touch
+                        {isComingSoon ? "Be the First to Know" : "Get in Touch"}
                     </h2>
                     <p className="mt-4 text-lg font-inter" style={{ color: "#333F50", opacity: 0.6 }}>
-                        Ready to experience {locationName}? Reach out — we&apos;d love to hear from you.
+                        {isComingSoon 
+                            ? `Join the waitlist or explore investor opportunities.`
+                            : `Ready to experience ${locationName}? Reach out — we'd love to hear from you.`}
                     </p>
                 </div>
+
+                {isComingSoon ? (
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                        <Button
+                            onClick={() => setIsWaitlistOpen(true)}
+                            className="inline-flex items-center justify-center gap-1.5 font-medium text-sm text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-60 h-14 px-6"
+                            style={{ backgroundColor: "#03B1F7" }}
+                        >
+                            Join the Waitlist
+                            <ArrowRight className="h-4 w-4" />
+                        </Button>
+
+                        <Link
+                            href="/contact?subject=Investor+Inquiry"
+                            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-white px-6 text-sm font-medium text-[#333F50] border border-[#333F50]/20 hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-60 h-14"
+                        >
+                            <Handshake className="h-4 w-4" />
+                            Investor Inquiry
+                        </Link>
+                    </div>
+                ) : (
+                    <>
 
                 <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto">
                     {/* Email */}
@@ -98,7 +138,14 @@ export function LocationContactSection({ contact, locationName }: LocationContac
                         Send Us a Message
                     </Link>
                 </div>
+                </>
+                )}
             </div>
+            <WaitlistModal 
+                isOpen={isWaitlistOpen} 
+                onClose={() => setIsWaitlistOpen(false)} 
+                locationName={locationName} 
+            />
         </section>
     );
 }

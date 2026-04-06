@@ -1,5 +1,161 @@
 {
-    "privacy": "Privacy Policy content placeholder...",
-    "terms": "Terms of Service content placeholder...",
-    "bookingCancellation": "Booking & Cancellation Policy content placeholder..."
+  "title": "Welcome to CoWorkingStay",
+  "intro": "_Your best workday starts here._\n\nTo ensure everyone can focus deeply and live fully, we operate under a shared set of community values: Respect, Performance, Freedom and Synergy. By booking a stay or working at our locations, you agree to these guiding principles.",
+  "sections": [
+    {
+      "title": "1. Community Guidelines & Etiquette",
+      "content": "Our spaces are built for high-performing people, and our golden rule is mutual respect.",
+      "subsections": [
+        {
+          "subtitle": "Privacy-First & Quiet-by-Policy:",
+          "type": "list",
+          "items": [
+            "**Strictly No Loud Noise:** High-volume music, karaoke, and loud conversations are strictly prohibited inside the premise.",
+            "**Focus Zones:** These are dedicated deep-work spaces. Loud conversations are strictly prohibited in Focus Zones. Headphones are required for any audio or digital meetings.",
+            "**Collab Zones & Lounges:** These areas are designed for conversations, networking, and taking calls. Please be mindful of your volume.",
+            "**Conference Rooms:** Available for private meetings or trainings."
+          ]
+        },
+        {
+          "subtitle": "Coworking Space Etiquette",
+          "type": "text-list",
+          "text": "To maintain a professional, distraction-free environment for all residents, the following rules apply to our shared workspaces:",
+          "items": [
+            "**Dress Code:** Proper work environment attire is required in the CoWorking space. Swimwear or \"top-off\" attire is strictly prohibited in work areas.",
+            "**Food & Drink:** No food is permitted inside the coworking space; please use designated eating areas. Only spill-proof \"bring-your-own\" mugs are allowed on work desks.",
+            "**Workspace Use:** Do not occupy multiple shared spaces or desks simultaneously. Do not leave belongings unattended to \"save\" a desk for extended periods.",
+            "**Clean-As-You-Go:** A \"clean-as-you-go\" rule in all areas. Please ensure your workspace is tidy before leaving."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. Booking & Cancellation Policy",
+      "subsections": [
+        {
+          "subtitle": "Reservations & Payments:",
+          "type": "list",
+          "items": [
+            "**Downpayment:** 50% payment is required for reservations and must be paid in full prior to check in.",
+            "**No-Shows:** If you do not arrive for your booked period, your reservation is forfeited."
+          ]
+        },
+        {
+          "subtitle": "Cancellations & Refunds:",
+          "type": "list",
+          "items": [
+            "**No Refund Policy:** We have a strict no-refund policy.",
+            "**Rebooking Policy:** If you are unable to make your reserved or booked dates, guests may reschedule their stay provided the request is made 48 hours before the scheduled check-in. Rebookings are subject to room availability."
+          ]
+        },
+        {
+          "subtitle": "Check In/Out Times:",
+          "type": "list",
+          "items": [
+            "**Standard Schedule:** Check-in is at 2:00 PM, and check-out is at 11:00 AM.",
+            "**Early Check-In:** Requests for early check-in are subject to room and staff availability. If you arrive early and your room is not yet ready, luggage storage is available while you explore the area.",
+            "**Late Check-Out:** Late check-out is subject to availability and will incur a fee of PHP 700 per additional hour. Departures after 5:00 PM will be charged the full room rate for an additional night.",
+            "**Post-Departure Luggage Storage:** For guests who have checked out at 11:00 AM, we provide complimentary luggage storage for a maximum of 6 hours. All items must be collected by 5:00 PM on your day of departure as there will be no staff to assist you after 5pm.",
+            "**Luggage Storage Disclaimer:** Complimentary luggage storage is provided solely as a convenience to our residents.\n  -- Assumption of Risk: Guests utilize the storage area at their own risk. Work ‘n Wave does not provide insurance for stored items.\n  -- Limitation of Liability: The Property, its owners, and staff shall not be responsible or liable for any loss, theft, destruction, or damage to luggage and its contents, regardless of the cause (including fire, water damage, or unauthorized access).\n  -- Prohibited Items: Guests are strictly prohibited from storing high-value items (e.g., jewelry, electronics, cash, or legal documents), hazardous materials, or perishables."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. Technology & Equipment Policy",
+      "subsections": [
+        {
+          "subtitle": "Internet Usage:",
+          "type": "list",
+          "items": [
+            "Our redundant fiber internet is for professional and personal use. Illegal downloads, torrenting, or any activity that throttles bandwidth for other members is prohibited.",
+            "We monitor network health to ensure everyone experiences failover protection and high speeds."
+          ]
+        },
+        {
+          "subtitle": "Equipment:",
+          "type": "list",
+          "items": [
+            "Members are responsible for their own devices. CoWorkingStay is not liable for lost, stolen, or damaged personal property.",
+            "Any damage to CoWorkingStay property (monitors, ergonomic chairs, watersport equipment, etc.) will be charged to the guest."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "4. Health, Safety & Environment",
+      "subsections": [
+        {
+          "subtitle": "Nature-Powered Performance:",
+          "type": "list",
+          "items": [
+            "Our locations integrate with nature (ocean, lakes, mountains). Please respect the local environment. Trash must be disposed of properly to designated trash bins. Single-use plastics are discouraged.",
+            "Respect local wildlife and community customs at all properties (Puerto Galera, Cavinti, La Union)."
+          ]
+        },
+        {
+          "subtitle": "Security:",
+          "type": "list",
+          "items": [
+            "Access to the premise is restricted to verified guests only. Non-guests are strictly not allowed inside the facility at all times. All guests must check-in at the front desk."
+          ]
+        },
+        {
+          "subtitle": "Substance & Activity Restrictions:",
+          "type": "list",
+          "items": [
+            "**Gambling:** All forms of gambling are strictly prohibited on the premises, including inside the guest rooms. Gambling prohibition includes the use of online gambling platforms or apps.",
+            "**Illegal Substances:** Possession or use of illegal drugs is strictly prohibited.",
+            "**Prostitution:** The solicitation or practice of prostitution is strictly forbidden.",
+            "**Alcohol & Gatherings:** Parties and heavy-drinking are strictly not allowed inside the premise. There are plenty nearby establishments for parties and alcohol consumption.",
+            "**Smoking:** is permitted only in designated outdoor areas."
+          ]
+        },
+        {
+          "type": "text",
+          "text": "_These results will be enforced strictly. Violation will result in immediate eviction without a refund._"
+        },
+        {
+          "subtitle": "Resource Conservation:",
+          "type": "text-list",
+          "text": "We operate with mindfulness toward our local environment:",
+          "items": [
+            "**Water Usage:** Please conserve water, as our supply is drawn from a limited reserve source.",
+            "**Electricity:** Please turn off lights and appliances when not in use to help prevent intermittent power interruptions and ensure a stable connection for all."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. Self-Service Property Policy",
+      "content": "CoWorkingStay and its locations is designed as a self-service facility to provide our residents with maximum autonomy and a seamless, independent experience. By booking with us, you acknowledge and agree to the following:",
+      "subsections": [
+        {
+          "type": "list",
+          "items": [
+            "**Independent Experience:** Our property utilizes a self-service model for and daily stay management. While we provide the tools and environment for a productive stay, traditional hotel services (such as 24/7 on-site concierge or bell staff) are not provided.",
+            "**Maintenance & Housekeeping:** Daily housekeeping is not guaranteed and is subject to staff availability. Residents are responsible for the upkeep of their private rooms and for following the \"clean-as-you-go\" policy in all shared coworking and living areas.",
+            "**Assistance:** Support is available primarily through our digital communication channels. For any urgent maintenance or facility issues, please contact us via the contact information provided at the time of your check in.",
+            "**Resource Management:** As a self-service guest, you are expected to be mindful of shared resources, including the proper use of appliances and the conservation of water and electricity."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "6. Liability Disclaimer",
+      "subsections": [
+        {
+          "subtitle": "Use of CoWorkingStay",
+          "type": "text",
+          "text": "While we provide a secure and productive environment with 24/7 failover power and internet, CoWorkingStay (Coworking in Paradise) is not legally liable for business interruptions, loss of data, or missed deadlines due to unforeseen circumstances or \"acts of God\" (e.g., weather-related incidents, ISP, electricty or other 3rd party failures, etc.)."
+        },
+        {
+          "subtitle": "General Release & Indemnity",
+          "type": "text",
+          "text": "The Guest hereby releases and holds harmless CoWorkingStay, Coworking in Paradise, and Work ‘n Wave from any and all claims, demands, or causes of action arising out of or related to any loss or injury sustained during their stay or while using the storage facilities. This waiver remains enforceable to the fullest extent permitted by law."
+        }
+      ]
+    }
+  ],
+  "disclaimer": "_Disclaimer: These policies are subject to periodic updates and may be modified to better serve our guests and community. While we strive to keep this document current, we recommend contacting management for official clarification on any specific rule. Please be advised that the specific House and Coworking Policies provided to you at the time of check-in (that may be inconflict of any policies stated on this page, if any) are the current and enforceable versions for the duration of your stay._"
 }
