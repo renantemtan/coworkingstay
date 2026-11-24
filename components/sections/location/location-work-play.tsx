@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Compass, Palmtree, Waves, Ticket, MonitorPlay } from "lucide-react";
+import { Compass, Palmtree, Waves, Ticket } from "lucide-react";
 
 interface ActivityCategory {
     category: string;
@@ -107,28 +107,6 @@ export function LocationWorkPlay({ activitiesDescription, activitiesDisclaimer, 
                         {modifiedDisclaimer}
                     </p>
                 )}
-
-                {/* Binge Watching Highlight */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="max-w-3xl mx-auto bg-white rounded-2xl p-8 relative overflow-hidden shadow-md mb-12"
-                >
-                    <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 relative z-10">
-                        <div className="flex-shrink-0 h-14 w-14 rounded-2xl flex items-center justify-center shadow-sm" style={{ backgroundColor: "#E53652" }}>
-                            <MonitorPlay className="h-7 w-7 text-white" />
-                        </div>
-                        <div className="text-center sm:text-left">
-                            <h4 className="font-caveat text-3xl font-bold mb-2" style={{ color: "#E53652" }}>Rainy Day? Perfect.</h4>
-                            <p className="text-sm leading-relaxed font-medium" style={{ color: "#333F50" }}>
-                                Fire up the in-room projector, pull the curtains, and settle in for an uninterrupted binge-watching marathon. Big screen. Your picks. Zero guilt.
-                            </p>
-                        </div>
-                    </div>
-                </motion.div>
-
 
                 {/* Picture Grid showing lifestyle */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">

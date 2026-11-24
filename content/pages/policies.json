@@ -26,6 +26,24 @@
             "**Workspace Use:** Do not occupy multiple shared spaces or desks simultaneously. Do not leave belongings unattended to \"save\" a desk for extended periods.",
             "**Clean-As-You-Go:** A \"clean-as-you-go\" rule in all areas. Please ensure your workspace is tidy before leaving."
           ]
+        },
+        {
+          "subtitle": "Outdoor Mini Gym Etiquette:",
+          "type": "list",
+          "items": [
+            "**Headphones Required:** To respect fellow residents and nearby work areas, personal headphones are strictly required when listening to music or audio in the workout area.",
+            "**Punching Bag Safety:** Guests are required to bring their own boxing gloves and hand-wraps for safety and hygiene if using the heavy bag.",
+            "**Equipment Care:** Please wipe down and return all weights and fitness gear to their designated racks after your workout."
+          ]
+        },
+        {
+          "subtitle": "Recommended Work Essentials to Pack:",
+          "type": "list",
+          "items": [
+            "**Noise-Cancelling Headset:** Recommended for video calls and deep focus in shared spaces.",
+            "**Spill-Proof Mug:** Mandatory for all drinks brought to shared coworking workstations.",
+            "**Universal Travel Adapter:** Recommended if your device power chargers require non-standard plugs."
+          ]
         }
       ]
     },
@@ -68,8 +86,8 @@
           "subtitle": "Internet Usage:",
           "type": "list",
           "items": [
-            "Our redundant fiber internet is for professional and personal use. Illegal downloads, torrenting, or any activity that throttles bandwidth for other members is prohibited.",
-            "We monitor network health to ensure everyone experiences failover protection and high speeds."
+            "Our high-speed Wi-Fi is provided for professional and personal use. Illegal downloads, torrenting, or any activity that throttles bandwidth for other members is prohibited.",
+            "We monitor network health to ensure everyone enjoys stable, high-speed access for daily work."
           ]
         },
         {

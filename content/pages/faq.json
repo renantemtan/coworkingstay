@@ -27,7 +27,11 @@
         },
         {
           "question": "How reliable is the internet?",
-          "answer": "All CoWorking stay locations will have redundant Fiber Internet with multi-ISP failover connections to ensure you never drop an important call, minimizing the impact of regional outages. These are currently in the works and will soon be online!"
+          "answer": "We provide high-speed Wi-Fi designed for daily remote work, video calls, and development tasks. In addition, our properties are equipped with 24/7 on-site generator power backup to keep the Wi-Fi and workstations running even during local grid interruptions."
+        },
+        {
+          "question": "What work essentials should I bring or pack?",
+          "answer": "To get the best workday experience, we recommend packing:\n- **Noise-cancelling headset:** Essential for Focus Zones and client calls.\n- **Spill-proof tumbler/mug:** Required for any beverages brought to coworking desks.\n- **Universal travel power adapter:** Recommended if your device power bricks use non-standard plugs."
         },
         {
           "question": "Is there backup power in case of local blackouts?",
@@ -35,7 +39,7 @@
         },
         {
           "question": "Is the workspace loud? Can I take calls?",
-          "answer": "We embrace \"Privacy by design.\" Our spaces feature designated **Focus Zones** (quiet-by-policy) for uninterrupted deep work, and separated **Collab Zones** specifically designed for you to take calls and collaborate with your team without worry."
+          "answer": "Yes, you can take calls in the coworking area. Because it is a shared working space, some background conversation is natural when other guests are in meetings. We strongly recommend bringing a **noise-cancelling headset** to block out ambient sound and keep your audio clear. When taking calls, please also be self-aware and keep the volume of your voice down as a courtesy to others who are working nearby."
         },
         {
           "question": "Do you offer private meeting rooms?",
@@ -64,11 +68,19 @@
       "faqs": [
         {
           "question": "How do I get to Work 'n Wave from Manila?",
-          "answer": "Take a bus via SLEX/STAR Tollway to Batangas Port. From Batangas, take a ferry (Fastcraft or RoRo) to Balatero Port in Puerto Galera. Upon arrival, you can simply take a 10 to 15mins local tricycle to the property."
+          "answer": "Take a bus via SLEX/STAR Tollway to Batangas Port from Metro Manila terminals such as PITX (Parañaque Integrated Terminal Exchange), Buendia / Gil Puyat (JAM Liner, DLTB), or Cubao (JAM Liner, ALPS, DLTB). From Batangas Port, take a ferry (Montenegro, Gallerian, or Island Water) to Balatero Port in Puerto Galera. Upon arrival, a 10 to 15-minute local tricycle takes you directly to Work 'n Wave at White Beach."
+        },
+        {
+          "question": "What happens if I miss the last ferry to Balatero Port (Puerto Galera)?",
+          "answer": "If you miss the last boat for Balatero, Puerto Galera, there is an alternative boat going to Calapan Port, followed by an approximately 1.5-hour drive from Calapan to Balatero, Puerto Galera. Note that public transport from Calapan to Puerto Galera is limited from 5:00 PM onwards, but there are options to hire a tricycle or a van privately from Calapan to bring you to Puerto Galera after 5:00 PM."
         },
         {
           "question": "Can I bring my own car?",
-          "answer": "Yes, you can bring your car across the channel using Roll-on/Roll-off (RoRo) ferries from Batangas Port. However, parking at the hotel is extremely limited. Please contact us in advance to check availability. Alternatively, Batangas Port offers safe overnight parking if you prefer to leave your car at the port."
+          "answer": "Yes, you can bring your car across the channel using Roll-on/Roll-off (RoRo) ferries from Batangas Port to Balatero Port. However, parking at the hotel is extremely limited. Please contact us in advance to check availability. Alternatively, Batangas Port offers overnight parking if you prefer to leave your car at the port."
+        },
+        {
+          "question": "Is there a gym or fitness area at Work 'n Wave?",
+          "answer": "Yes! We have an outdoor mini gym with basic workout gear and a heavy punching bag. To maintain a quiet, productive atmosphere for all guests, personal headphones are required for music. If you plan to unleash your wrath on the heavy punching bag, please remember to bring your own boxing gloves and hand-wraps for safety and hygiene."
         },
         {
           "question": "What are the check-in and check-out times?",
@@ -88,15 +100,15 @@
         },
         {
           "question": "What is there to do in Puerto Galera after work?",
-          "answer": "You can crush a focused sprint to deliver your target outcomes while scuba diving, snorkeling over vibrant reefs, enjoy water activities, or just relax in the sand in between work sessions. If you prefer land adventures, you can try mud karting, ATVs, or chasing local waterfalls. Or, simply enjoy sunset-watching by the end of a hard day's work!"
+          "answer": "Crush a focused sprint in the morning, then explore Puerto Galera's rich marine life dive sites, go snorkeling over vibrant reefs, enjoy water sports, or simply relax on the sand. If you prefer land adventures, you can try mud karting, ATVs, or chasing local waterfalls. Or, simply enjoy a sunset drink on the beach!"
         },
         {
           "question": "Do you provide external monitors?",
-          "answer": "Yes, dual external monitors are available on select workstations on a first-come, first-served basis. We also have a projector equipped in the conference room for strategy sessions."
+          "answer": "Yes, dual external monitors are available on select workstations on a first-come, first-served basis."
         },
         {
           "question": "What are the accommodation rooms like?",
-          "answer": "Our rooms are simple intended for comfortable and restful sleep recovery. They feature two double-size beds, air conditioning, water heaters, high-speed internet, fresh linens, and even an in-room projector for big-screen binge-watching!"
+          "answer": "Our rooms are basic but comfortable, intentionally designed for restful sleep and recovery. They feature two double-size beds, air conditioning, water heaters, high-speed internet access, and fresh towels and linens."
         }
       ]
     }

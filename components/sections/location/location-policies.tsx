@@ -1,7 +1,7 @@
 "use client";
 
 import { LocationPolicies } from "@/types/content";
-import { CheckCircle2, AlertTriangle, ShieldCheck } from "lucide-react";
+import { CheckCircle2, AlertTriangle, ShieldCheck, Info } from "lucide-react";
 import Link from "next/link";
 
 interface LocationPoliciesProps {
@@ -45,6 +45,23 @@ export function LocationPoliciesSection({ locationPolicies }: LocationPoliciesPr
                                     </li>
                                 ))}
                             </ul>
+
+                            {locationPolicies.infoNotes && locationPolicies.infoNotes.length > 0 && (
+                                <div className="mt-8 pt-6 space-y-3" style={{ borderTop: "1px solid #D6DCE5" }}>
+                                    {locationPolicies.infoNotes.map((note, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="rounded-xl p-4 flex items-start gap-3 text-sm leading-relaxed"
+                                            style={{ backgroundColor: "rgba(232, 112, 79, 0.08)", border: "1px solid rgba(232, 112, 79, 0.15)", color: "#E8704F" }}
+                                        >
+                                            <Info className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                                            <p style={{ color: "#333F50", opacity: 0.85 }}>
+                                                <strong style={{ color: "#333F50" }}>{note.title}:</strong> {note.text}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
 

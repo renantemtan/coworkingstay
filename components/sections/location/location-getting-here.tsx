@@ -1,7 +1,7 @@
 "use client";
 
 import { GettingHere } from "@/types/content";
-import { Bus, Car, AlertCircle } from "lucide-react";
+import { Bus, Car, AlertCircle, Ship, Info } from "lucide-react";
 
 interface LocationGettingHereProps {
     gettingHere?: GettingHere;
@@ -78,6 +78,31 @@ export function LocationGettingHere({ gettingHere }: LocationGettingHereProps) {
                                 </div>
                             )}
                         </div>
+
+                        {/* Late Arrival Alternative (Separate Box right after Private Transport) */}
+                        {gettingHere.lateArrivalAlternative && (
+                            <div className="rounded-2xl p-8 bg-white shadow-sm" style={{ border: "1px solid #D6DCE5" }}>
+                                <div className="flex items-center gap-4 mb-6 pb-6" style={{ borderBottom: "1px solid #D6DCE5" }}>
+                                    <div className="h-12 w-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: "rgba(232, 112, 79, 0.1)" }}>
+                                        <Ship className="h-6 w-6" style={{ color: "#E8704F" }} />
+                                    </div>
+                                    <h3 className="font-sora text-2xl font-bold" style={{ color: "#333F50" }}>
+                                        {gettingHere.lateArrivalAlternative.title}
+                                    </h3>
+                                </div>
+                                <p className="leading-relaxed mb-4 font-medium" style={{ color: "#333F50" }}>
+                                    {gettingHere.lateArrivalAlternative.description}
+                                </p>
+                                {gettingHere.lateArrivalAlternative.note && (
+                                    <div className="mt-4 rounded-xl p-4 flex gap-3 text-sm" style={{ backgroundColor: "rgba(232, 112, 79, 0.08)", border: "1px solid rgba(232, 112, 79, 0.15)", color: "#E8704F" }}>
+                                        <Info className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                                        <p className="leading-relaxed" style={{ color: "#333F50", opacity: 0.8 }}>
+                                            {gettingHere.lateArrivalAlternative.note}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
 
                         {gettingHere.shippingLines && (
                             <p className="text-sm italic" style={{ color: "#333F50", opacity: 0.5 }}>

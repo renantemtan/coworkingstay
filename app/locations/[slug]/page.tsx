@@ -41,7 +41,7 @@ export async function generateMetadata(props: LocationPageProps): Promise<Metada
 
   return {
     title: `${location.name} — Coworking Space Hotel in ${location.name.replace("Work 'n ", "")}`,
-    description: `${location.tagline} ${(location.description || '').substring(0, 120)}. Coworking hotel with focus zones, failover internet, and power backup.`,
+    description: `${location.tagline} ${(location.description || '').substring(0, 120)}. Coworking hotel with focus zones, high-speed Wi-Fi, and power backup.`,
     openGraph: {
       title: `${location.name} | CoWorkingStay`,
       description: location.tagline,

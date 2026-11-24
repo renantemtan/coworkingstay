@@ -56,7 +56,7 @@
         {
             "id": "performance",
             "title": "Performance",
-            "promise": "Professional-grade work environments for deep focus",
+            "promise": "Professional work environments for deep focus",
             "description": "",
             "icon": "Zap",
             "color": "#0158F5"
@@ -93,13 +93,12 @@
                 "Focus-Zones",
                 "Collab-Zones",
                 "Conference Room",
-                "Outdoor Gym",
+                "Outdoor Mini Gym",
                 "Lounge",
-                "Failover Internet",
                 "Power Backup"
             ],
             "rooms": "Spacious rooms with 2 double beds",
-            "description": "Experience the ultimate lifestyle blend at Work 'n Wave. Located in the stunning Puerto Galera, offering the perfect blend of productivity and adventure.",
+            "description": "Experience the lifestyle blend at Work 'n Wave. Located in Puerto Galera, offering a balance of productivity and adventure.",
             "image": "/locations/placeholders/hero-bg.png",
             "contact": {
                 "email": "worknwave@coworkingstay.com",
@@ -172,17 +171,16 @@
                 "Built for deep focus & adventure"
             ],
             "coworking": {
-                "description": "A professional-grade workspace designed to maximize your output. Whether you need absolute silence for deep work or a vibrant space for collaboration, our environment is tailored for high-performing individuals and teams.",
+                "description": "A professional workspace designed to support your output. Whether you need quiet space for deep work or a vibrant space for collaboration, our environment is tailored for individuals and teams.",
                 "zones": [
                     "Focus Zones",
                     "Collab Zones",
                     "Lounge Area"
                 ],
-                "conferenceRooms": "Separate, bookable conference and training rooms available for team strategy sessions or client calls.",
+                "conferenceRooms": "A small conference/training room is available for strategy planning, training sessions, and/or client calls.",
                 "technology": [
                     "Dual monitors available on select workstations",
-                    "Projector equipped in the conference/training room",
-                    "High-speed WiFi with multi-ISP failover",
+                    "High-speed WiFi",
                     "24/7 Power backup (Site generator)",
                     "Whiteboards for brainstorming"
                 ],
@@ -204,17 +202,15 @@
                     "Air conditioning",
                     "Water heater",
                     "High-speed internet access",
-                    "Projector for big-screen binge-watching",
-                    "Fresh towels & linens",
-                    "CCTV security"
+                    "Fresh towels & linens"
                 ],
-                "description": "Basic but deeply comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
+                "description": "Basic but comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
                 "photos": [
                     "/locations/placeholders/room-1.png",
                     "/locations/placeholders/room-2.png"
                 ]
             },
-            "activitiesDescription": "Crush a focused work sprint in the morning, then explore Puerto Galera's world-class dive sites, go snorkeling over vibrant reefs, or island-hop to hidden coves in the afternoon. End the day with a sunset drink on the beach — or on a rainy day, fire up the in-room projector for a guilt-free binge session.",
+            "activitiesDescription": "Crush a focused work sprint in the morning, then explore Puerto Galera's rich marine life dive sites, go snorkeling over vibrant reefs, island-hop to hidden coves, enjoy a drink at the beach, or simply get your fitness goals on track at the outdoor workout area.",
             "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by third-party local operators and are not affiliated with CoWorkingStay.",
             "targetActivities": [
                 "Strategy planning",
@@ -231,20 +227,25 @@
                 "Overnight-work grinds"
             ],
             "gettingHere": {
-                "publicTransport": "From Manila: Take a bus to Batangas Port -> Ferry to Balatero Port (Puerto Galera) -> Tricycle/Shuttle to Work 'n Wave.",
+                "publicTransport": "From Manila: Take a bus to Batangas Port -> Ferry to Balatero Port (Puerto Galera) -> Tricycle to Work 'n Wave.",
                 "publicTransportDetails": [
-                    "Bus to Batangas Port: ~₱200 - ₱300 ($4 - $6)",
-                    "Ferry to Balatero Port: ~₱600 - ₱900 ($10 - $16)",
-                    "Tricycle to hotel: ~₱100 - ₱150 ($2 - $3)"
+                    "Bus from Manila to Batangas Port: Available from Metro Manila terminals such as PITX (Parañaque Integrated Terminal Exchange), Buendia / Gil Puyat Terminals (JAM Liner, DLTB), and Cubao Terminals (JAM Liner, ALPS, DLTB).",
+                    "Ferry from Batangas Port to Balatero Port (Puerto Galera): Departures via Montenegro, Gallerian, and Island Water.",
+                    "Tricycle from Balatero Port: A 10-15 minute tricycle ride brings you directly to Work 'n Wave at White Beach."
                 ],
                 "privateTransport": "Drive to Batangas Port via SLEX/STAR Tollway.",
                 "privateTransportDetails": [
                     "Batangas Port offers overnight parking for travelers leaving their cars.",
-                    "If bringing your car, 'RoRo' (Roll-on/Roll-off) ferries are available from Batangas Port to Balatero Port."
+                    "If bringing your car, Roll-on/Roll-off (RoRo) ferries are available from Batangas Port to Balatero Port."
                 ],
+                "lateArrivalAlternative": {
+                    "title": "Late Arrival Alternative (via Calapan Port)",
+                    "description": "Missed the last boat for Balatero, Puerto Galera? There is an alternative boat going to Calapan Port, followed by an approximately 1.5-hour drive from Calapan to Balatero, Puerto Galera.",
+                    "note": "Public transport from Calapan to Puerto Galera is limited from 5:00 PM onwards, but there are options to hire a tricycle or a van privately from Calapan to bring you to Puerto Galera after 5:00 PM."
+                },
                 "parkingInfo": "Parking at the hotel is extremely limited. Please contact us in advance to check availability if you plan to bring your vehicle.",
-                "shippingLines": "Ferry operators include Montenegro Lines, FastCat, and Minolo Shipping Lines. Please contact them or us for the latest departure times.",
-                "disclaimer": "Fares and schedules are estimates and subject to change by the transport operators.",
+                "shippingLines": "Montenegro, Gallerian, and Island Water going to Balatero, Puerto Galera.",
+                "disclaimer": "Schedules and routes are subject to weather conditions and operator changes. We recommend verifying directly with transport operators before your trip.",
                 "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193571.4384346856!2d120.9304383!3d13.4996489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bcf7f1e6878c77%3A0xc63b3db18cf1b98a!2sPuerto%20Galera%2C%20Oriental%20Mindoro!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph",
                 "photos": [
                     "/locations/placeholders/transport-1.jpg"
@@ -253,9 +254,11 @@
             "locationPolicies": {
                 "guidelines": [
                     "No loud music or karaoke.",
-                    "Quiet-by-policy in designated areas to respect deep focus.",
-                    "Coworking etiquette: No swimwear or top-off in work areas. Observe silence and be mindful.",
+                    "Quiet-by-policy in designated areas to respect deep focus. Keep your voice volume down during calls as a courtesy to others.",
+                    "Coworking etiquette: Proper attire required (no swimwear or top-off in work areas). Observe silence and be mindful.",
                     "No food in the coworking space (use designated eating areas). Only spill-proof BYO mugs allowed inside.",
+                    "Bring a noise-cancelling headset, a spill-proof mug (required for drinks at work desks), and a universal travel power adapter (if required).",
+                    "Outdoor Mini Gym: Use personal workout headsets for music privately, and bring your own boxing gloves and hand-wraps if using the punching bag.",
                     "Be considerate: Do not occupy multiple shared spaces simultaneously.",
                     "No parties or heavy drinking inside the premises, especially in shared spaces.",
                     "No smoking inside rooms and shared spaces. Please use designated smoking areas.",
@@ -264,6 +267,12 @@
                     "Conserve water (water is supplied from a reserve source).",
                     "Conserve electricity to prevent intermittent power interruptions.",
                     "No outside visitors allowed."
+                ],
+                "infoNotes": [
+                    {
+                        "title": "What to Bring",
+                        "text": "For the coworking space, we encourage bringing a noise-cancelling headset, a spill-proof mug (required for drinks at work desks), and a universal travel power adapter (if required). Planning to hit the outdoor mini gym? Pack a workout headset to play your music privately, plus boxing gloves and hand-wraps if you intend to unleash your wrath on the punching bag!"
+                    }
                 ],
                 "checkIn": "2:00 PM",
                 "checkOut": "11:00 AM",
@@ -293,7 +302,7 @@
                 },
                 {
                     "src": "/locations/placeholders/room-2.png",
-                    "alt": "Room projector setup",
+                    "alt": "Guest room work desk & seating",
                     "label": "real"
                 },
                 {
@@ -318,7 +327,6 @@
                 "Collab-Zones",
                 "Conference Room",
                 "Lounge",
-                "Failover Internet",
                 "Power Backup",
                 "Lakeside Deck"
             ],
@@ -417,17 +425,15 @@
                     "Air conditioning",
                     "Water heater",
                     "High-speed internet access",
-                    "Projector for big-screen binge-watching",
-                    "Fresh towels & linens",
-                    "CCTV security"
+                    "Fresh towels & linens"
                 ],
-                "description": "Basic but deeply comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
+                "description": "Basic but comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
                 "photos": [
                     "/locations/placeholders/room-1.png",
                     "/locations/placeholders/room-2.png"
                 ]
             },
-            "activitiesDescription": "Wake up to misty mountain views, crush a focused work block, then kayak across the lake before lunch. Afternoons are for waterfall hikes or lakeside strategy sessions — and when the rain rolls in, fire up the in-room projector for guilt-free downtime.",
+            "activitiesDescription": "Wake up to misty mountain views, crush a focused work block, then kayak across the lake before lunch. Afternoons are for waterfall hikes or lakeside strategy sessions — and lakeside downtime.",
             "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by third-party local operators and are not affiliated with CoWorkingStay.",
             "targetActivities": [
                 "Strategy planning",
@@ -527,7 +533,6 @@
                 "Collab-Zones",
                 "Conference Room",
                 "Lounge",
-                "Failover Internet",
                 "Power Backup",
                 "Surf Gear Storage"
             ],
@@ -627,17 +632,15 @@
                     "Air conditioning",
                     "Water heater",
                     "High-speed internet access",
-                    "Projector for big-screen binge-watching",
-                    "Fresh towels & linens",
-                    "CCTV security"
+                    "Fresh towels & linens"
                 ],
-                "description": "Basic but deeply comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
+                "description": "Basic but comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
                 "photos": [
                     "/locations/placeholders/room-1.png",
                     "/locations/placeholders/room-2.png"
                 ]
             },
-            "activitiesDescription": "Dawn patrol before your first standup call. Afternoon surf sessions between deep work blocks. Sunset sessions with your team. Or when the swell is flat, fire up the in-room projector and recover properly — because tomorrow, the waves (and the work) won't wait.",
+            "activitiesDescription": "Dawn patrol before your first standup call. Afternoon surf sessions between deep work blocks. Sunset sessions with your team. Or when the swell is flat, unwind and recover properly — because tomorrow, the waves (and the work) won't wait.",
             "activitiesDisclaimer": "Please note: Most outdoor and adventure activities are provided by third-party local operators and are not affiliated with CoWorkingStay.",
             "targetActivities": [
                 "Strategy planning",
@@ -740,7 +743,7 @@
         {
             "id": "developers",
             "title": "Programmers / Developers / Indie Hackers",
-            "description": "Deep-focus zones, dual monitors, failover internet. Ship code, not excuses.",
+            "description": "Deep-focus zones, available external monitors, and generator backup power. Ship code, not excuses.",
             "icon": "Code2",
             "color": "bg-emerald-500"
         },
@@ -761,7 +764,7 @@
         {
             "id": "creators",
             "title": "Content Creators, Influencers, Vloggers, YouTubers, Podcasters",
-            "description": "Stunning backdrops, reliable uploads, and a creator-friendly atmosphere.",
+            "description": "Scenic backdrops, reliable uploads, and a creator-friendly atmosphere.",
             "icon": "Palette",
             "color": "bg-pink-500"
         },
@@ -803,13 +806,13 @@
     ],
     "amenities": [
         {
-            "title": "Redundant Fiber Internet",
-            "description": "Dual-ISP failover connections ensure you never drop a call.",
+            "title": "High-Speed Wi-Fi",
+            "description": "Reliable Wi-Fi backed by on-site generator power to keep your work on track.",
             "icon": "Wifi"
         },
         {
             "title": "24/7 Power Backup",
-            "description": "Full-site generator support. Brownouts are just a story you tell.",
+            "description": "Full-site generator support. Power interruptions won't disrupt your workflow.",
             "icon": "Zap"
         },
         {

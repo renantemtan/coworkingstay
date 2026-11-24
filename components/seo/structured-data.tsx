@@ -84,7 +84,7 @@ export function LocalBusinessSchema({
                 addressCountry: 'PH',
             },
         amenityFeature: [
-            { '@type': 'LocationFeatureSpecification', name: 'High-Speed Internet with Failover Backup', value: true },
+            { '@type': 'LocationFeatureSpecification', name: 'High-Speed Wi-Fi & Generator Power Backup', value: true },
             { '@type': 'LocationFeatureSpecification', name: 'Coworking Space', value: true },
             { '@type': 'LocationFeatureSpecification', name: 'Focus Zones', value: true },
             { '@type': 'LocationFeatureSpecification', name: 'Collaboration Zones', value: true },

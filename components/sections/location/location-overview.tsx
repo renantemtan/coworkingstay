@@ -40,6 +40,7 @@ const AMENITY_ICONS: Record<string, React.ReactNode> = {
     "Collab-Zones": <Network className="h-4 w-4" />,
     "Conference Room": <Projector className="h-4 w-4" />,
     "Outdoor Gym": <Dumbbell className="h-4 w-4" />,
+    "Outdoor Mini Gym": <Dumbbell className="h-4 w-4" />,
     "Lounge": <Armchair className="h-4 w-4" />,
     "Failover Internet": <Wifi className="h-4 w-4" />,
     "Power Backup": <Zap className="h-4 w-4" />,
@@ -97,7 +98,7 @@ export function LocationOverview({
             label: "Lifestyle",
             icon: <Palmtree className="h-5 w-5" />,
             color: "#03B1F7",
-            text: summarize(activitiesDescription, 300),
+            text: summarize(activitiesDescription, 350),
             detail: undefined,
         },
     ];

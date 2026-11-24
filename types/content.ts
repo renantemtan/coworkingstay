@@ -106,6 +106,11 @@ export interface GettingHere {
   publicTransportDetails: string[];
   privateTransport: string;
   privateTransportDetails: string[];
+  lateArrivalAlternative?: {
+    title: string;
+    description: string;
+    note?: string;
+  };
   parkingInfo?: string;
   shippingLines?: string;
   disclaimer?: string;
@@ -113,8 +118,14 @@ export interface GettingHere {
   photos: string[];
 }
 
+export interface LocationPolicyInfoNote {
+  title: string;
+  text: string;
+}
+
 export interface LocationPolicies {
   guidelines: string[];
+  infoNotes?: LocationPolicyInfoNote[];
   checkIn: string;
   checkOut: string;
   deposit: string;

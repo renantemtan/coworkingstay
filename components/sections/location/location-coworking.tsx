@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Monitor, Wifi, Zap, Presentation, Users, Briefcase, CheckCircle2 } from "lucide-react";
+import { Monitor, Wifi, Zap, Presentation, Users, Briefcase, CheckCircle2, Info } from "lucide-react";
 import { CoworkingDetails } from "@/types/content";
 import { motion } from "framer-motion";
 
@@ -36,7 +36,7 @@ export function LocationCoworking({ coworking, targetActivities }: LocationCowor
                         Where Outcomes are Crafted
                     </span>
                     <h2 className="font-sora text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                        Your Productivity Fortress
+                        Designed for Focused Work
                     </h2>
                     <p className="text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
                         {coworking.description}
@@ -85,7 +85,7 @@ export function LocationCoworking({ coworking, targetActivities }: LocationCowor
                                 <div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#03B1F7" }}>
                                     <Monitor className="h-5 w-5 text-white" />
                                 </div>
-                                <h3 className="font-sora text-xl font-bold text-white">Standard Tech Arsenal</h3>
+                                <h3 className="font-sora text-xl font-bold text-white">Standard Tech Setup</h3>
                             </div>
                             <ul className="space-y-3">
                                 {coworking.technology.map((tech, i) => (
@@ -128,6 +128,23 @@ export function LocationCoworking({ coworking, targetActivities }: LocationCowor
                                 />
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+
+                {/* Centered "What to Bring" (i) box after Standard Tech Setup & Note */}
+                <div className="mt-12 max-w-3xl mx-auto">
+                    <div
+                        className="rounded-xl p-5 flex items-start gap-3 text-sm leading-relaxed shadow-sm"
+                        style={{
+                            backgroundColor: "#FDF4F1",
+                            border: "1px solid rgba(232, 112, 79, 0.25)",
+                            color: "#E8704F",
+                        }}
+                    >
+                        <Info className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                        <p style={{ color: "#333F50", opacity: 0.9 }}>
+                            <strong style={{ color: "#333F50" }}>What to Bring:</strong> We encourage guests to bring a <strong>noise-cancelling headset</strong> (for focused work and calls), a <strong>spill-proof mug</strong> (required for drinks at work desks), and a <strong>universal travel power adapter</strong> (if required).
+                        </p>
                     </div>
                 </div>
 
