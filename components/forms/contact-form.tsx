@@ -18,11 +18,19 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { trackEvent } from '@/lib/analytics';
 import {
   calculateNights,
   calculateStayEstimate,
   formatCurrency,
+  getOccupancyRateTable,
   WORK_N_WAVE_PRICING,
   type CurrencyCode,
   type StayEstimate,
@@ -105,6 +113,8 @@ export function ContactForm({
   const [rooms, setRooms] = useState(1);
   const [guests, setGuests] = useState(1);
   const [currency, setCurrency] = useState<CurrencyCode>('PHP');
+  const [ratesModalOpen, setRatesModalOpen] = useState(false);
+  const occupancyRates = useMemo(() => getOccupancyRateTable(), []);
   const [guestName, setGuestName] = useState('');
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
@@ -499,6 +509,14 @@ export function ContactForm({
                     </option>
                   ))}
                 </select>
+                <button
+                  type="button"
+                  onClick={() => setRatesModalOpen(true)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0C4A96] hover:text-[#03B1F7] underline underline-offset-2 transition-colors pt-0.5"
+                >
+                  <Info className="h-3.5 w-3.5" />
+                  Room Rates ({currency})
+                </button>
               </div>
 
               <div className="space-y-2">
@@ -822,6 +840,55 @@ export function ContactForm({
           </div>
         </form>
       )}
+
+      {/* Room Rates Popup */}
+      <Dialog open={ratesModalOpen} onOpenChange={setRatesModalOpen}>
+        <DialogContent className="sm:max-w-[440px] rounded-[1.75rem] border-none shadow-2xl">
+          <DialogHeader>
+            <DialogTitle className="font-sora text-2xl font-bold text-[#333F50]">
+              Room Rates ({currency})
+            </DialogTitle>
+            <DialogDescription className="font-inter text-muted-foreground">
+              Per night rate for 1 room with 2 double beds (max {WORK_N_WAVE_PRICING.maxGuestsPerRoom} guests per room).
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-2.5 pt-2">
+            {occupancyRates.map((tier) => (
+              <div
+                key={tier.guests}
+                className="flex items-center justify-between rounded-xl px-4 py-3.5 bg-[#FAF8F5] border border-[#D6DCE5]"
+              >
+                <span className="text-sm font-semibold text-[#333F50] font-inter">
+                  {tier.guests === 1 ? '1 person, 1 room' : `${tier.guests} persons, 1 room`}
+                </span>
+                <span className="font-sora text-base font-bold text-[#0C4A96]">
+                  {amountIn(currency, tier.php, tier.usd)}{' '}
+                  <span className="text-xs font-medium text-muted-foreground">
+                    {currency} / night
+                  </span>
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-xl bg-slate-50 border border-slate-200/80 p-3.5 text-xs text-slate-600 space-y-1 font-inter">
+            <p>• {WORK_N_WAVE_PRICING.inclusions}.</p>
+            <p>• {WORK_N_WAVE_PRICING.exclusions}.</p>
+            <p>• {WORK_N_WAVE_PRICING.availabilityNote}.</p>
+          </div>
+
+          <div className="pt-1">
+            <Button
+              type="button"
+              onClick={() => setRatesModalOpen(false)}
+              className="w-full bg-[#0C4A96] hover:bg-[#0a3d7d] text-white rounded-xl h-11 font-semibold font-inter"
+            >
+              Close
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
