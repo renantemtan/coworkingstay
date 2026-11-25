@@ -31,6 +31,18 @@ function FormattedText({ text }: { text: string }) {
   );
 }
 
+function toSectionId(title: string): string {
+  const cleaned = title.replace(/^\d+\.\s*/, '').toLowerCase();
+  if (cleaned.includes('community')) return 'community-guidelines';
+  if (cleaned.includes('booking')) return 'booking-cancellation';
+  if (cleaned.includes('technology')) return 'technology-equipment';
+  if (cleaned.includes('health')) return 'health-safety';
+  if (cleaned.includes('self-service')) return 'self-service';
+  if (cleaned.includes('liability')) return 'liability-disclaimer';
+  if (cleaned.includes('privacy')) return 'privacy-policy';
+  return cleaned.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
 export default async function PoliciesPage() {
   const policies = await getPoliciesPage();
   const locations = await getAllLocations();
@@ -55,7 +67,7 @@ export default async function PoliciesPage() {
         <section className="px-4 pt-12 pb-20 sm:px-6 sm:pt-16 sm:pb-28 lg:px-8">
           <div className="mx-auto max-w-3xl space-y-12">
             {policies.sections.map((section, index) => (
-              <Card key={index} className="p-6 sm:p-8">
+              <Card key={index} id={toSectionId(section.title)} className="p-6 sm:p-8 scroll-mt-24">
                 <h2 className="font-sora text-2xl font-bold text-[#03B1F7] border-b pb-4 mb-6">
                   {section.title}
                 </h2>

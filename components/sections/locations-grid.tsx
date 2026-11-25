@@ -1,20 +1,16 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Location } from '@/types/content';
-import { ArrowRight, Handshake } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { isLocationOperational } from '@/lib/location-status';
 
 interface LocationsGridProps {
   locations: Location[];
 }
 
 export function LocationsGrid({ locations }: LocationsGridProps) {
-  const isComingSoon = (status: string) =>
-    status.toLowerCase() === 'coming soon' || status.toLowerCase() === 'soon';
-  const isSoftOpen = (status: string) =>
-    status.toLowerCase() === 'soft open';
-  const isOpen = (status: string) =>
-    status.toLowerCase() === 'open';
 
   return (
     <section className="bg-white py-12 sm:py-16">
@@ -43,16 +39,18 @@ export function LocationsGrid({ locations }: LocationsGridProps) {
               />
 
               {/* Full background image */}
-              <img
+              <Image
                 src={location.image}
                 alt={location.name}
-                className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="absolute inset-0 -z-10 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
 
               {/* Status badge */}
               <div className="absolute top-4 right-4 z-10">
-                {isOpen(location.status) || isSoftOpen(location.status) ? (
+                {isLocationOperational(location.status) ? (
                   <span className="inline-flex items-center rounded-full bg-[#03B1F7] px-3 py-1 text-xs font-semibold tracking-wide text-white">
                     {location.status}
                   </span>

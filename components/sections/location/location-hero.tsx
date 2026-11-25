@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Handshake } from "lucide-react";
 import Link from "next/link";
 import { WaitlistModal } from "@/components/ui/waitlist-modal";
+import { trackEvent } from "@/lib/analytics";
 
 interface LocationHeroProps {
     name: string;
@@ -30,7 +31,10 @@ export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus
     const handleCTAClick = (e: React.MouseEvent) => {
         if (cta.toLowerCase().includes('waitlist')) {
             e.preventDefault();
+            trackEvent('waitlist_modal_open', { location: name, source: 'location_hero' });
             setIsWaitlistOpen(true);
+        } else {
+            trackEvent('book_now_click', { location: name, source: 'location_hero' });
         }
     };
 
@@ -111,6 +115,7 @@ export function LocationHero({ name, tagline, image, logoUrl, status, hideStatus
                         {!hideStatus && (
                             <Link
                                 href="/contact?subject=Investor+Inquiry"
+                                onClick={() => trackEvent('investor_inquiry_click', { location: name, source: 'location_hero' })}
                                 className="inline-flex items-center justify-center gap-1.5 rounded-full bg-white text-sm font-medium text-[#333F50] border border-[#333F50]/20 hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-60 h-14"
                             >
                                 <Handshake className="h-4 w-4" />

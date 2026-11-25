@@ -8,6 +8,8 @@ instrumentation-client.ts
 # Common ignores
 node_modules/
 .next/
+.env
 .env*.local
+!.env.example
 .DS_Store
 tsconfig.tsbuildinfo

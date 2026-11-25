@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' })
 
 import { getBrandConfig } from '@/lib/content-loader';
+import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 
 export async function generateMetadata(): Promise<Metadata> {
   const brand = await getBrandConfig();
@@ -36,20 +37,11 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: brand.identity.name,
       title: `${brand.identity.name} — ${brand.identity.subTag.replace(/\.$/, '')}`,
       description: brand.identity.mainTag,
-      images: [
-        {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: `${brand.identity.name} — ${brand.identity.mainTag}`,
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${brand.identity.name} — ${brand.identity.subTag.replace(/\.$/, '')}`,
       description: brand.identity.mainTag,
-      images: ['/og-image.png'],
     },
     robots: {
       index: true,
@@ -75,7 +67,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sora.variable} ${inter.variable} ${caveat.variable}`}>
-      <body className="font-sans antialiased bg-white text-foreground">{children}</body>
+      <body className="font-sans antialiased bg-white text-foreground">
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   )
 }

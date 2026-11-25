@@ -12,10 +12,18 @@
         "mainTag": "Designed for those who refuse to choose between future results and today's reality.",
         "tagline": "Your best workday starts here.",
         "description": "Coworking-first stays in the Philippines—built for deep focus, then waves, lakes, and sunsets.",
-        "ogImage": "/og-image.png",
+        "ogImage": "/opengraph-image",
         "contact": {
             "mobile": "+63 917 837 5643",
+            "landline": "+63 43 748 9110",
             "email": "worknwave@coworkingstay.com"
+        },
+        "socials": {
+            "facebook": "tbd",
+            "instagram": "tbd",
+            "linkedin": "tbd",
+            "youtube": "tbd",
+            "tiktok": "tbd"
         }
     }
 }

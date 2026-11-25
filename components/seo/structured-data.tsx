@@ -14,30 +14,28 @@ export function StructuredData({ data }: StructuredDataProps) {
 }
 
 import { getBrandConfig } from '@/lib/content-loader';
+import { getLiveSocialEntries } from '@/lib/socials';
 
 export async function OrganizationSchema() {
     const brand = await getBrandConfig();
     const primaryContact = brand.locations.find(l => l.contact?.email)?.contact;
+    const liveSocialUrls = getLiveSocialEntries(primaryContact?.socials).map((s) => s.url);
 
     const data = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: brand.identity.name,
         url: 'https://coworkingstay.com',
-        logo: 'https://coworkingstay.com/logo.png',
+        logo: 'https://coworkingstay.com/logos/coworkingstay_logo.svg',
         description: brand.identity.mission,
         contactPoint: primaryContact ? {
             '@type': 'ContactPoint',
-            telephone: primaryContact.number,
+            telephone: primaryContact.number !== 'TBD' ? primaryContact.number : undefined,
             contactType: 'customer service',
             email: primaryContact.email,
             availableLanguage: ['English', 'Filipino'],
         } : undefined,
-        sameAs: [
-            'https://facebook.com/coworkingstay',
-            'https://instagram.com/coworkingstay',
-            'https://linkedin.com/company/coworkingstay',
-        ],
+        ...(liveSocialUrls.length > 0 ? { sameAs: liveSocialUrls } : {}),
         areaServed: {
             '@type': 'Country',
             name: 'Philippines',
@@ -53,6 +51,9 @@ interface LocalBusinessSchemaProps {
     slug: string;
     status: string;
     address?: string;
+    image?: string;
+    email?: string;
+    telephone?: string;
 }
 
 export function LocalBusinessSchema({
@@ -61,8 +62,13 @@ export function LocalBusinessSchema({
     slug,
     status,
     address,
+    image,
+    email,
+    telephone,
 }: LocalBusinessSchemaProps) {
-    const addressParts = address ? address.split(', ') : [];
+    const addressParts = address ? address.split(', ').map((p) => p.trim()) : [];
+    const normalizedStatus = status.trim().toLowerCase();
+    const isOperational = normalizedStatus === 'open' || normalizedStatus === 'soft open';
 
     const data = {
         '@context': 'https://schema.org',
@@ -70,13 +76,17 @@ export function LocalBusinessSchema({
         name,
         description,
         url: `https://coworkingstay.com/locations/${slug}`,
-        image: `https://coworkingstay.com/locations/${slug}/og-image.png`,
+        image: image
+            ? `https://coworkingstay.com${image}`
+            : `https://coworkingstay.com/locations/${slug}/opengraph-image`,
         priceRange: '$$',
+        ...(email ? { email } : {}),
+        ...(telephone && telephone.toUpperCase() !== 'TBD' ? { telephone } : {}),
         address: address
             ? {
                 '@type': 'PostalAddress',
-                streetAddress: addressParts[0] || '',
-                addressLocality: addressParts[1] || '',
+                streetAddress: addressParts.length >= 3 ? addressParts[0] : undefined,
+                addressLocality: addressParts.length >= 3 ? addressParts[1] : addressParts[0] || '',
                 addressCountry: 'PH',
             }
             : {
@@ -91,10 +101,12 @@ export function LocalBusinessSchema({
             { '@type': 'LocationFeatureSpecification', name: 'Conference & Training Room', value: true },
             { '@type': 'LocationFeatureSpecification', name: 'Power Backup Generator', value: true },
         ],
-        ...(status === 'Open' && {
+        ...(isOperational && {
             openingHoursSpecification: {
                 '@type': 'OpeningHoursSpecification',
                 dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                opens: '00:00',
+                closes: '23:59',
             },
         }),
     };

@@ -1,0 +1,8 @@
+www.coworkingstay.com {
+    redir https://coworkingstay.com{uri} permanent
+}
+
+coworkingstay.com {
+    encode gzip zstd
+    reverse_proxy app:3000
+}

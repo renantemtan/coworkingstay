@@ -1,18 +1,13 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { getContactPage, getAllLocations, getFaqPage } from '@/lib/content-loader';
+import { getContactPage, getAllLocations } from '@/lib/content-loader';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Mail, MapPin, Phone, HelpCircle } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import { ContactForm } from '@/components/forms/contact-form';
+import { isLocationOperational } from '@/lib/location-status';
+import { Mail, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Contact Us — Inquiries, Bookings & Partnerships',
@@ -30,10 +25,19 @@ interface ContactPageProps {
 export default async function ContactPage(props: ContactPageProps) {
   const searchParams = await props.searchParams;
   const subject = typeof searchParams.subject === 'string' ? searchParams.subject : '';
+  const modeParam = typeof searchParams.mode === 'string' ? searchParams.mode : '';
+  const locationParam = typeof searchParams.location === 'string' ? searchParams.location : '';
+
+  const defaultMode: 'booking' | 'inquiry' =
+    modeParam === 'booking' || subject.toLowerCase().includes('booking')
+      ? 'booking'
+      : 'inquiry';
 
   const contact = await getContactPage();
   const locations = await getAllLocations();
-  const faqData = await getFaqPage();
+  const bookableLocations = locations
+    .filter((loc) => isLocationOperational(loc.status))
+    .map((loc) => ({ slug: loc.slug, name: loc.name }));
 
   return (
     <div className="min-h-screen bg-white">
@@ -88,70 +92,15 @@ export default async function ContactPage(props: ContactPageProps) {
               {/* Contact Form (Main Column) */}
               <div className="lg:col-span-2">
                 <Card className="p-8 sm:p-12 border-none shadow-[0_8px_40px_rgba(0,0,0,0.04)] rounded-[2rem] h-full flex flex-col">
-                <form className="space-y-8">
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-semibold text-foreground font-sora">
-                        Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="Your name"
-                        className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-semibold text-foreground font-sora">
-                        Email
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="your@email.com"
-                        className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-semibold text-foreground font-sora">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      placeholder="What is this regarding?"
-                      defaultValue={subject}
-                      className="h-12 rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-semibold text-foreground font-sora">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell us more about your inquiry (e.g., Dates, Group Size, Number of Rooms)..."
-                      className="min-h-[160px] rounded-xl bg-slate-50 border-transparent focus:bg-white focus:border-[#03B1F7] transition-all p-4 resize-none"
-                      required
-                    />
-                  </div>
-
-                  <div className="mt-auto pt-8">
-                    <Button type="submit" size="lg" className="w-full bg-[#03B1F7] hover:bg-sky-500 text-white rounded-xl h-12 font-semibold shadow-sm hover:shadow-md transition-all">
-                      Send Message
-                    </Button>
-                  </div>
-                </form>
-              </Card>
-            </div>
+                  <ContactForm
+                    defaultMode={defaultMode}
+                    defaultLocationSlug={locationParam}
+                    defaultSubject={subject}
+                    bookableLocations={bookableLocations}
+                    fallbackEmail={contact.contactInfo.email}
+                  />
+                </Card>
+              </div>
           </div>
           </div>
         </section>
@@ -166,7 +115,7 @@ export default async function ContactPage(props: ContactPageProps) {
               Got more questions? We might have already answered them. Head over to our FAQ page to learn more about bookings, amenities, and what to expect during your stay.
             </p>
             <Button asChild size="lg" className="bg-[#03B1F7] hover:bg-sky-500 text-white font-semibold">
-              <a href="/faq">Read our Full FAQ</a>
+              <Link href="/faq">Read our Full FAQ</Link>
             </Button>
           </div>
         </section>

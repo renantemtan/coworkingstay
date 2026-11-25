@@ -132,21 +132,30 @@ export function LocationCoworking({ coworking, targetActivities }: LocationCowor
                 </div>
 
                 {/* Centered "What to Bring" (i) box after Standard Tech Setup & Note */}
-                <div className="mt-12 max-w-3xl mx-auto">
-                    <div
-                        className="rounded-xl p-5 flex items-start gap-3 text-sm leading-relaxed shadow-sm"
-                        style={{
-                            backgroundColor: "#FDF4F1",
-                            border: "1px solid rgba(232, 112, 79, 0.25)",
-                            color: "#E8704F",
-                        }}
-                    >
-                        <Info className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                        <p style={{ color: "#333F50", opacity: 0.9 }}>
-                            <strong style={{ color: "#333F50" }}>What to Bring:</strong> We encourage guests to bring a <strong>noise-cancelling headset</strong> (for focused work and calls), a <strong>spill-proof mug</strong> (required for drinks at work desks), and a <strong>universal travel power adapter</strong> (if required).
-                        </p>
+                {coworking.whatToBring && (
+                    <div className="mt-12 max-w-3xl mx-auto">
+                        <div
+                            className="rounded-xl p-5 flex items-start gap-3 text-sm leading-relaxed shadow-sm"
+                            style={{
+                                backgroundColor: "#FDF4F1",
+                                border: "1px solid rgba(232, 112, 79, 0.25)",
+                                color: "#E8704F",
+                            }}
+                        >
+                            <Info className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                            <p style={{ color: "#333F50", opacity: 0.9 }}>
+                                <strong style={{ color: "#333F50" }}>What to Bring:</strong>{" "}
+                                {coworking.whatToBring.split(/(\*\*.*?\*\*)/g).map((part, idx) =>
+                                    part.startsWith("**") && part.endsWith("**") ? (
+                                        <strong key={idx}>{part.slice(2, -2)}</strong>
+                                    ) : (
+                                        part
+                                    )
+                                )}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                )}
 
                 {/* Your Space, Your Agenda */}
                 <div className="mt-20 w-full relative z-20">

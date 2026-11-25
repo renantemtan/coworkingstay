@@ -185,6 +185,7 @@
                     "Whiteboards for brainstorming"
                 ],
                 "disclaimer": "Note: Technology and amenities are provided on a best-effort basis and are dependent on external factors such as local ISPs and electricity providers.",
+                "whatToBring": "We encourage guests to bring a **noise-cancelling headset** (for focused work and calls), a **spill-proof mug** (required for drinks at work desks), and a **universal travel power adapter** (if required).",
                 "activities": [
                     "Focus work sprints",
                     "Team collaboration",
@@ -197,7 +198,7 @@
                 ]
             },
             "accommodation": {
-                "beds": "Two double-size beds",
+                "beds": "Two double-size beds (max 4 guests per room)",
                 "amenities": [
                     "Air conditioning",
                     "Water heater",
@@ -205,6 +206,20 @@
                     "Fresh towels & linens"
                 ],
                 "description": "Basic but comfortable. Our rooms are intentionally designed to be restful sanctuaries, focused entirely on providing you with proper sleep and recovery after a long day of work or play.",
+                "rates": {
+                    "unit": "per night",
+                    "inclusions": "Includes coworking space access",
+                    "exclusions": "No breakfast included",
+                    "maxRoomsPerRequest": 8,
+                    "maxGuestsPerRoom": 4,
+                    "availabilityNote": "1 to 8 rooms bookable per request, subject to availability.",
+                    "tiers": [
+                        { "guests": 1, "php": 2890, "usd": 55 },
+                        { "guests": 2, "php": 3890, "usd": 75 },
+                        { "guests": 3, "php": 4890, "usd": 95 },
+                        { "guests": 4, "php": 5890, "usd": 115 }
+                    ]
+                },
                 "photos": [
                     "/locations/placeholders/room-1.png",
                     "/locations/placeholders/room-2.png"
@@ -246,10 +261,8 @@
                 "parkingInfo": "Parking at the hotel is extremely limited. Please contact us in advance to check availability if you plan to bring your vehicle.",
                 "shippingLines": "Montenegro, Gallerian, and Island Water going to Balatero, Puerto Galera.",
                 "disclaimer": "Schedules and routes are subject to weather conditions and operator changes. We recommend verifying directly with transport operators before your trip.",
-                "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193571.4384346856!2d120.9304383!3d13.4996489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bcf7f1e6878c77%3A0xc63b3db18cf1b98a!2sPuerto%20Galera%2C%20Oriental%20Mindoro!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph",
-                "photos": [
-                    "/locations/placeholders/transport-1.jpg"
-                ]
+                "mapEmbedUrl": "https://www.google.com/maps?q=White+Beach,+San+Isidro,+Puerto+Galera,+Oriental+Mindoro,+Philippines&z=15&output=embed",
+                "photos": []
             },
             "locationPolicies": {
                 "guidelines": [
@@ -403,11 +416,12 @@
                 "technology": [
                     "Dual monitors available on select workstations",
                     "Projector equipped in the conference/training room",
-                    "High-speed WiFi with failover backup",
+                    "High-speed WiFi",
                     "Power backup (site generator)",
                     "Whiteboards for brainstorming"
                 ],
                 "disclaimer": "Note: Technology and amenities are provided on a best-effort basis and are dependent on external factors such as local ISPs and electricity providers.",
+                "whatToBring": "We encourage guests to bring a **noise-cancelling headset** (for focused work and calls), a **spill-proof mug** (required for drinks at work desks), and a **universal travel power adapter** (if required).",
                 "activities": [
                     "focus work sprints",
                     "team collaboration",
@@ -610,11 +624,12 @@
                 "technology": [
                     "Dual monitors available on select workstations",
                     "Projector equipped in the conference/training room",
-                    "High-speed WiFi with failover backup",
+                    "High-speed WiFi",
                     "Power backup (Site generator)",
                     "Whiteboards for brainstorming"
                 ],
                 "disclaimer": "Note: Technology and amenities are provided on a best-effort basis and are dependent on external factors such as local ISPs and electricity providers.",
+                "whatToBring": "We encourage guests to bring a **noise-cancelling headset** (for focused work and calls), a **spill-proof mug** (required for drinks at work desks), and a **universal travel power adapter** (if required).",
                 "activities": [
                     "Focus work sprints",
                     "Team collaboration",

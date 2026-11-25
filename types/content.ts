@@ -52,18 +52,21 @@ export interface MembershipPlan {
 }
 
 
+export interface SocialLinks {
+  facebook?: string;
+  instagram?: string;
+  linkedin?: string;
+  youtube?: string;
+  tiktok?: string;
+  twitter?: string;
+}
+
 export interface LocationContact {
   email: string;
   number: string;
   messenger?: string;
   landline?: string;
-  socials?: {
-    facebook?: string;
-    instagram?: string;
-    linkedin?: string;
-    youtube?: string;
-    tiktok?: string;
-  };
+  socials?: SocialLinks;
 }
 
 export interface LocationCapabilities {
@@ -90,14 +93,32 @@ export interface CoworkingDetails {
   conferenceRooms: string;
   technology: string[];
   disclaimer: string;
+  whatToBring?: string;
   activities: string[];
   photos: string[]; // URLs for placeholders
+}
+
+export interface RoomRateTier {
+  guests: number;
+  php: number;
+  usd: number;
+}
+
+export interface RoomRates {
+  unit: string;
+  inclusions: string;
+  exclusions: string;
+  maxRoomsPerRequest: number;
+  maxGuestsPerRoom: number;
+  availabilityNote: string;
+  tiers: RoomRateTier[];
 }
 
 export interface AccommodationDetails {
   beds: string;
   amenities: string[];
   description: string;
+  rates?: RoomRates;
   photos: string[]; // URLs for placeholders
 }
 
@@ -132,13 +153,15 @@ export interface LocationPolicies {
   cancellation: string;
 }
 
+export type LocationStatus = 'Open' | 'Soft Open' | 'Soon' | 'open' | 'soft open' | 'coming soon';
+
 export interface Location {
   id: string;
   slug: string; // Keep slug for routing
   name: string;
   tagline: string;
   address: string;
-  status: 'Open' | 'Soft Open' | 'Soon';
+  status: LocationStatus;
   hideStatus?: boolean; // If true, hide the status badge (e.g., for Work 'n Wave)
   description?: string;
   overviewHighlights?: string[]; // For Overview section
@@ -212,6 +235,8 @@ export interface ContactPage {
     landline?: string;
     email: string;
     address: string;
+    socials?: SocialLinks;
+    globalContactFormUrl?: string;
   };
 }
 
@@ -248,7 +273,9 @@ export interface SiteConfig {
     ogImage: string;
     contact: {
       mobile: string;
+      landline?: string;
       email: string;
     };
+    socials?: SocialLinks;
   };
 }

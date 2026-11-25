@@ -1,13 +1,13 @@
 'use client';
 
 import {
-    Briefcase, Laptop, Users, Palette, Code2, Mic2,
-    Heart, Moon, GraduationCap, Dumbbell, CalendarClock,
-    Rocket, Camera
+    Briefcase, Laptop, Users, Palette, Code2,
+    Moon, GraduationCap, Dumbbell, CalendarClock,
+    Rocket, Camera, type LucideIcon
 } from 'lucide-react';
 
 /* Each market segment gets short descriptor + icon for visual richness */
-const ICON_MAP: Record<string, any> = {
+const ICON_MAP: Record<string, LucideIcon> = {
     'Briefcase': Briefcase,
     'Laptop': Laptop,
     'Code2': Code2,

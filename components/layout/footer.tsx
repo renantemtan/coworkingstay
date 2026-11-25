@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Location } from '@/types/content';
-import { Mail, MapPin, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { getLiveSocialEntries } from '@/lib/socials';
 
 interface FooterProps {
   locations: Location[];
@@ -8,6 +9,8 @@ interface FooterProps {
 
 export function Footer({ locations }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const primaryContact = locations[0]?.contact;
+  const liveSocials = getLiveSocialEntries(primaryContact?.socials);
 
   return (
     <footer className="border-t border-border/40 bg-white py-12 sm:py-16 lg:py-20">
@@ -24,17 +27,22 @@ export function Footer({ locations }: FooterProps) {
               <span className="font-sora font-bold text-foreground">CoWorkingStay</span>
             </div>
             <p className="text-sm text-muted-foreground">Designed for those who refuse to choose between future results and today&apos;s reality.</p>
-            <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground transition-colors hover:text-primary">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground transition-colors hover:text-primary">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground transition-colors hover:text-primary">
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
+            {liveSocials.length > 0 && (
+              <div className="flex gap-4">
+                {liveSocials.map((social) => (
+                  <a
+                    key={social.platform}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="text-xs font-semibold text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    {social.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Locations */}
@@ -90,12 +98,22 @@ export function Footer({ locations }: FooterProps) {
           <div className="lg:col-span-3">
             <h3 className="mb-4 font-sora font-semibold text-foreground">Contact</h3>
             <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <Mail className="h-5 w-5 flex-shrink-0 text-primary" />
-                <a href="mailto:worknwave@coworkingstay.com" className="text-sm text-muted-foreground transition-colors hover:text-primary">
-                  worknwave@coworkingstay.com
-                </a>
-              </li>
+              {primaryContact?.email && (
+                <li className="flex items-start gap-2">
+                  <Mail className="h-5 w-5 flex-shrink-0 text-primary" />
+                  <a href={`mailto:${primaryContact.email}`} className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                    {primaryContact.email}
+                  </a>
+                </li>
+              )}
+              {primaryContact?.number && primaryContact.number !== 'TBD' && (
+                <li className="flex items-start gap-2">
+                  <Phone className="h-5 w-5 flex-shrink-0 text-primary" />
+                  <a href={`tel:${primaryContact.number.replace(/\s/g, '')}`} className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                    {primaryContact.number}
+                  </a>
+                </li>
+              )}
               <li className="flex items-start gap-2">
                 <MapPin className="h-5 w-5 flex-shrink-0 text-primary" />
                 <span className="text-sm text-muted-foreground">Philippines</span>
@@ -112,12 +130,18 @@ export function Footer({ locations }: FooterProps) {
           <p className="text-center text-sm text-muted-foreground">
             © {currentYear} CoWorkingStay. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link href="/policies" className="text-xs text-muted-foreground transition-colors hover:text-primary">
-              Privacy
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link href="/policies#privacy-policy" className="text-xs text-muted-foreground transition-colors hover:text-primary">
+              Privacy Policy
             </Link>
-            <Link href="/policies" className="text-xs text-muted-foreground transition-colors hover:text-primary">
-              Terms
+            <Link href="/policies#community-guidelines" className="text-xs text-muted-foreground transition-colors hover:text-primary">
+              Community Guidelines
+            </Link>
+            <Link href="/policies#booking-cancellation" className="text-xs text-muted-foreground transition-colors hover:text-primary">
+              Booking Policy
+            </Link>
+            <Link href="/policies#liability-disclaimer" className="text-xs text-muted-foreground transition-colors hover:text-primary">
+              Terms &amp; Liability
             </Link>
           </div>
         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import {
   Dialog,
   DialogContent,
@@ -12,7 +13,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { CheckCircle2, ChevronDown, Check, Search } from 'lucide-react';
+import { CheckCircle2, ChevronDown, Check, AlertCircle } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 import {
   Popover,
   PopoverContent,
@@ -68,23 +70,78 @@ interface WaitlistModalProps {
 export function WaitlistModal({ isOpen, onClose, locationName }: WaitlistModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [website, setWebsite] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<Country>(top5Countries[0]);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) {
+      setErrorMessage('Please agree to the Privacy Notice before joining the waitlist.');
+      return;
+    }
     setLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setLoading(false);
-    setSubmitted(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fullName,
+          email,
+          countryName: selectedCountry.name,
+          countryIso: selectedCountry.iso,
+          dialPrefix: selectedCountry.prefix,
+          phone: phoneNumber,
+          locationName: locationName || 'Upcoming Locations',
+          consent,
+          website,
+        }),
+      });
+
+      const payload = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+
+      if (!response.ok || !payload.ok) {
+        setErrorMessage(
+          payload.error || 'Could not submit your signup. Please try again.'
+        );
+        setLoading(false);
+        return;
+      }
+
+      trackEvent('waitlist_signup', {
+        location: locationName || 'Upcoming Locations',
+        country: selectedCountry.iso,
+      });
+      setLoading(false);
+      setSubmitted(true);
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.');
+      setLoading(false);
+    }
   };
 
   const handleClose = () => {
     onClose();
     // Reset state after animation
-    setTimeout(() => setSubmitted(false), 300);
+    setTimeout(() => {
+      setSubmitted(false);
+      setErrorMessage(null);
+      setFullName('');
+      setEmail('');
+      setPhoneNumber('');
+      setConsent(false);
+      setWebsite('');
+    }, 300);
   };
 
   return (
@@ -99,13 +156,51 @@ export function WaitlistModal({ isOpen, onClose, locationName }: WaitlistModalPr
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-6 pt-4">
+              {/* Honeypot anti-spam field */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="waitlist-website">Website</label>
+                <input
+                  id="waitlist-website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </div>
+
+              {errorMessage && (
+                <div
+                  role="alert"
+                  className="rounded-xl border border-red-200 bg-red-50 p-3 flex items-start gap-2.5 text-xs text-red-900 font-inter"
+                >
+                  <AlertCircle className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-semibold ml-1 font-inter">Full Name</Label>
-                <Input id="name" placeholder="Full name" required className="rounded-xl border-slate-200 focus:border-[#03B1F7] focus:ring-[#03B1F7] font-inter" />
+                <Input
+                  id="name"
+                  placeholder="Full name"
+                  required
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="rounded-xl border-slate-200 focus:border-[#03B1F7] focus:ring-[#03B1F7] font-inter"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-sm font-semibold ml-1 font-inter">Email Address</Label>
-                <Input id="email" type="email" placeholder="Email address" required className="rounded-xl border-slate-200 focus:border-[#03B1F7] focus:ring-[#03B1F7] font-inter" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Email address"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="rounded-xl border-slate-200 focus:border-[#03B1F7] focus:ring-[#03B1F7] font-inter"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone" className="text-sm font-semibold ml-1 font-inter">Phone Number</Label>
@@ -245,6 +340,29 @@ export function WaitlistModal({ isOpen, onClose, locationName }: WaitlistModalPr
                   </div>
                 </div>
               </div>
+              <div className="pt-1">
+                <label className="flex items-start gap-2.5 cursor-pointer text-xs text-muted-foreground font-inter leading-relaxed">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    required
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-[#03B1F7] focus:ring-[#03B1F7]"
+                  />
+                  <span>
+                    I agree to the{' '}
+                    <Link
+                      href="/policies#privacy-policy"
+                      onClick={handleClose}
+                      className="font-semibold text-[#0C4A96] underline hover:text-[#03B1F7]"
+                    >
+                      Privacy Notice
+                    </Link>{' '}
+                    and consent to CoWorkingStay contacting me when this location opens.
+                  </span>
+                </label>
+              </div>
+
               <DialogFooter className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Button 
                   type="button" 
@@ -269,9 +387,9 @@ export function WaitlistModal({ isOpen, onClose, locationName }: WaitlistModalPr
             <div className="h-20 w-20 rounded-full bg-green-50 flex items-center justify-center mb-6">
               <CheckCircle2 className="h-10 w-10 text-green-500" />
             </div>
-            <h3 className="font-sora text-3xl font-bold text-slate-900 mb-4">You're on the list!</h3>
+            <h3 className="font-sora text-3xl font-bold text-slate-900 mb-4">You&apos;re on the list!</h3>
             <p className="font-inter text-slate-600 mb-8 max-w-[280px]">
-              Thanks for your interest in {locationName}. We'll reach out to you as soon as we open.
+              Thanks for your interest in {locationName}. We&apos;ll reach out to you as soon as we open.
             </p>
             <Button onClick={handleClose} className="bg-slate-900 text-white hover:bg-slate-800 rounded-xl px-10 py-6 font-bold font-inter">
               Got it

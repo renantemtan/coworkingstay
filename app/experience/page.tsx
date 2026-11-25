@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { getBrandConfig, getAllLocations } from '@/lib/content-loader';
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PillarsSection } from '@/components/sections/pillars';
 import { TargetAudience } from '@/components/sections/target-audience';
@@ -60,7 +60,7 @@ export default async function ExperiencePage() {
               Choose a location and start your journey with CoWorkingStay.
             </p>
             <Button asChild size="lg" className="mt-8 bg-primary hover:bg-blue-600">
-              <a href="/#locations">Explore Locations</a>
+              <Link href="/#locations">Explore Locations</Link>
             </Button>
           </div>
         </section>

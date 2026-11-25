@@ -165,12 +165,43 @@
         {
           "subtitle": "Use of CoWorkingStay",
           "type": "text",
-          "text": "While we provide a secure and productive environment with 24/7 failover power and internet, CoWorkingStay (Coworking in Paradise) is not legally liable for business interruptions, loss of data, or missed deadlines due to unforeseen circumstances or \"acts of God\" (e.g., weather-related incidents, ISP, electricty or other 3rd party failures, etc.)."
+          "text": "While we strive to provide a secure and productive environment with high-speed Wi-Fi and on-site generator power backup, CoWorkingStay (Coworking in Paradise) is not legally liable for business interruptions, loss of data, or missed deadlines due to unforeseen circumstances or \"acts of God\" (e.g., weather-related incidents, ISP, electricity, or other 3rd-party failures, etc.)."
         },
         {
           "subtitle": "General Release & Indemnity",
           "type": "text",
           "text": "The Guest hereby releases and holds harmless CoWorkingStay, Coworking in Paradise, and Work ‘n Wave from any and all claims, demands, or causes of action arising out of or related to any loss or injury sustained during their stay or while using the storage facilities. This waiver remains enforceable to the fullest extent permitted by law."
+        }
+      ]
+    },
+    {
+      "title": "7. Privacy Notice",
+      "content": "CoWorkingStay respects your privacy and is committed to protecting your personal data in accordance with the Philippine Data Privacy Act of 2012 (Republic Act No. 10173).",
+      "subsections": [
+        {
+          "subtitle": "Information We Collect:",
+          "type": "list",
+          "items": [
+            "**Contact & Booking Inquiries:** Your name, email address, subject, and message details submitted through our Contact page.",
+            "**Waitlist Signups:** Your full name, email address, country code, phone number, and preferred upcoming location submitted through our Waitlist form."
+          ]
+        },
+        {
+          "subtitle": "How We Use Your Information:",
+          "type": "list",
+          "items": [
+            "To respond to your booking requests, general inquiries, or partnership/investor messages.",
+            "To notify you when upcoming CoWorkingStay locations open for bookings.",
+            "We do not sell, rent, or trade your personal information to third parties."
+          ]
+        },
+        {
+          "subtitle": "Retention, Security & Your Rights:",
+          "type": "list",
+          "items": [
+            "We retain submitted information only for as long as needed to fulfill your inquiry or waitlist notification, using reasonable organizational and technical safeguards.",
+            "You have the right to request access to, correction of, or deletion of your personal data at any time by emailing **worknwave@coworkingstay.com**."
+          ]
         }
       ]
     }

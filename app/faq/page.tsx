@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { getFaqPage, getAllLocations } from '@/lib/content-loader';
+import { getFaqPage, getAllLocations, getSiteConfig } from '@/lib/content-loader';
 import {
   Accordion,
   AccordionContent,
@@ -20,8 +20,12 @@ export const metadata: Metadata = {
 };
 
 export default async function FAQPage() {
-  const faqData = await getFaqPage();
-  const locations = await getAllLocations();
+  const [faqData, locations, siteConfig] = await Promise.all([
+    getFaqPage(),
+    getAllLocations(),
+    getSiteConfig(),
+  ]);
+  const contactEmail = siteConfig.site.contact.email;
 
   return (
     <div className="min-h-screen bg-white">
@@ -80,7 +84,11 @@ export default async function FAQPage() {
               Still Have Questions?
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Reach out to our team at worknwave@coworkingstay.com or visit us in person.
+              Reach out to our team at{' '}
+              <a href={`mailto:${contactEmail}`} className="font-medium text-primary hover:underline">
+                {contactEmail}
+              </a>{' '}
+              or visit us in person.
             </p>
           </div>
         </section>

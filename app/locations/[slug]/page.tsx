@@ -22,6 +22,7 @@ import { LocationGettingHere } from '@/components/sections/location/location-get
 import { LocationPoliciesSection } from '@/components/sections/location/location-policies';
 import { LocationContactSection } from '@/components/sections/location/location-contact';
 import { getBrandConfig } from '@/lib/content-loader';
+import { isLocationComingSoon } from '@/lib/location-status';
 
 interface LocationPageProps {
   params: Promise<{
@@ -71,7 +72,7 @@ export default async function LocationPage(props: LocationPageProps) {
     notFound();
   }
 
-  const isComingSoon = location.slug.includes('work-n-lake') || location.slug.includes('work-n-surf');
+  const isComingSoon = isLocationComingSoon(location.status);
 
   return (
     <div className="min-h-screen bg-white">
@@ -81,6 +82,9 @@ export default async function LocationPage(props: LocationPageProps) {
         slug={location.slug}
         status={location.status}
         address={location.address}
+        image={location.image}
+        email={location.contact?.email}
+        telephone={location.contact?.number}
       />
       <Header locations={allLocations} activeLocation={location} />
       <main>
@@ -91,7 +95,7 @@ export default async function LocationPage(props: LocationPageProps) {
           logoUrl={location.logoUrl}
           status={location.status}
           hideStatus={location.hideStatus}
-          statusColor={location.slug === 'work-n-wave-puerto-galera' ? '#03B1F7' : '#333F50'}
+          statusColor={isComingSoon ? '#333F50' : '#03B1F7'}
           cta={location.cta}
         />
 
@@ -114,7 +118,13 @@ export default async function LocationPage(props: LocationPageProps) {
         )}
 
         {!isComingSoon && <LocationCoworking coworking={location.coworking} targetActivities={location.targetActivities} />}
-        {!isComingSoon && <LocationAccommodation accommodation={location.accommodation} />}
+        {!isComingSoon && (
+          <LocationAccommodation
+            accommodation={location.accommodation}
+            locationName={location.name}
+            locationSlug={location.slug}
+          />
+        )}
         <LocationWorkPlay
           activitiesDescription={location.activitiesDescription}
           activitiesDisclaimer={location.activitiesDisclaimer}

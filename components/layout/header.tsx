@@ -13,6 +13,8 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
+import { isLocationComingSoon, isLocationOperational } from '@/lib/location-status';
 
 interface HeaderProps {
   locations: Location[];
@@ -65,11 +67,10 @@ export function Header({ locations, activeLocation }: HeaderProps) {
   const isHomeOrLocation = pathname === '/' || pathname.startsWith('/locations/');
   const showFromHover = !isHomeOrLocation || isVisible || isHoveredTop;
 
-  // Hide "Book Now" on pages where booking isn't available
-  const hideBookNow = 
-    pathname.startsWith('/locations/work-n-lake') ||
-    pathname.startsWith('/locations/work-n-surf') ||
-    pathname.startsWith('/contact');
+  // Hide "Book Now" on Contact page or locations whose status is coming soon
+  const hideBookNow =
+    pathname.startsWith('/contact') ||
+    (activeLocation ? isLocationComingSoon(activeLocation.status) : false);
 
   const logoSrc = activeLocation ? (logoMap[activeLocation.id] || '/logos/coworkingstay_logo.svg') : '/logos/coworkingstay_logo.svg';
   const brandName = activeLocation ? activeLocation.name : 'CoWorkingStay';
@@ -126,15 +127,23 @@ export function Header({ locations, activeLocation }: HeaderProps) {
               </Link>
 
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
+                <DropdownMenuTrigger id="header-locations-trigger" asChild>
+                  <button
+                    type="button"
+                    className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary"
+                  >
                     Locations
                     <ChevronDown className="h-4 w-4" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-72 p-1.5">
+                <DropdownMenuContent
+                  id="header-locations-menu"
+                  aria-labelledby="header-locations-trigger"
+                  align="end"
+                  className="w-72 p-1.5"
+                >
                   {locations.map((location) => {
-                    const isComingSoon = location.status.toLowerCase() === 'coming soon' || location.status.toLowerCase() === 'soon';
+                    const isComingSoon = isLocationComingSoon(location.status);
                     return (
                       <DropdownMenuItem key={location.id} asChild className="focus:bg-blue-50 focus:text-foreground">
                         <Link
@@ -179,12 +188,20 @@ export function Header({ locations, activeLocation }: HeaderProps) {
                   asChild
                   className="hidden bg-primary hover:bg-blue-600 sm:inline-flex"
                 >
-                  <Link href={`/contact?subject=${encodeURIComponent(bookingSubject)}`}>Book Now</Link>
+                  <Link
+                    href={`/contact?subject=${encodeURIComponent(bookingSubject)}`}
+                    onClick={() => trackEvent('book_now_click', { location: activeLocation?.name || 'Global', source: 'header_desktop' })}
+                  >
+                    Book Now
+                  </Link>
                 </Button>
               ) : null}
 
               {/* Mobile Menu Button */}
               <button
+                type="button"
+                aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={mobileMenuOpen}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="inline-flex items-center justify-center rounded-md p-2 text-foreground transition-colors hover:bg-muted md:hidden"
               >
@@ -216,7 +233,7 @@ export function Header({ locations, activeLocation }: HeaderProps) {
                       >
                         <span>{location.name}</span>
                         <span
-                          className={`ml-3 shrink-0 inline-flex items-center justify-center rounded-full w-24 py-0.5 text-[10px] font-semibold tracking-wide ${(location.status.toLowerCase() === 'open' || location.status.toLowerCase() === 'soft open')
+                          className={`ml-3 shrink-0 inline-flex items-center justify-center rounded-full w-24 py-0.5 text-[10px] font-semibold tracking-wide ${isLocationOperational(location.status)
                             ? 'bg-[#03B1F7] text-white'
                             : 'bg-gray-100 text-gray-400'
                             }`}
@@ -247,7 +264,14 @@ export function Header({ locations, activeLocation }: HeaderProps) {
                       Locations
                     </Button>
                   ) : !hideBookNow ? (
-                    <Button asChild className="w-full bg-primary hover:bg-blue-600" onClick={() => setMobileMenuOpen(false)}>
+                    <Button
+                      asChild
+                      className="w-full bg-primary hover:bg-blue-600"
+                      onClick={() => {
+                        trackEvent('book_now_click', { location: activeLocation?.name || 'Global', source: 'header_mobile' });
+                        setMobileMenuOpen(false);
+                      }}
+                    >
                       <Link href={`/contact?subject=${encodeURIComponent(bookingSubject)}`}>Book Now</Link>
                     </Button>
                   ) : null}

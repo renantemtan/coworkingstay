@@ -1,136 +1,59 @@
-# CoWorkingStay - Project Structure
+# CoWorkingStay — Project Structure
 
 ## Overview
-A premium co-working space website built with Next.js 16, featuring three locations across the Philippines with dynamic routing, animations, and responsive design.
+Premium coworking hotel website built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Tailwind CSS**, featuring three destinations across the Philippines (*Work 'n Wave* in Puerto Galera, *Work 'n Lake* in Cavinti, and *Work 'n Surf* in La Union).
 
 ## Architecture
-- **Headless-Local Model**: All content driven by centralized JSON data model in `/lib/content-loader.ts`
-- **Type-Safe**: Full TypeScript support with interfaces in `/types/content.ts`
-- **Server-Side Rendering**: Leverages Next.js App Router for optimal performance
+- **JSON Content Layer**: Centralized, strongly-typed JSON content in `/content` loaded via `/lib/content-loader.ts`.
+- **Lead Capture APIs**: Validated Next.js Route Handlers (`/api/contact` and `/api/waitlist`) with honeypot + per-IP rate limiting and Resend / Webhook delivery.
+- **Dynamic SEO & Social Cards**: Automated `JSON-LD` schemas (`Organization`, `LodgingBusiness`, `FAQPage`), `sitemap.xml`, `robots.txt`, vector favicon (`app/icon.svg`), and dynamic OpenGraph image routes (`app/opengraph-image.tsx`, `app/locations/[slug]/opengraph-image.tsx`).
 
 ## Key Directories
 
-### `/app` - Next.js App Router Pages
-- **`page.tsx`** - Home page with hero, pillars, locations grid, amenities, and pricing
-- **`locations/[slug]/page.tsx`** - Dynamic location detail pages with metadata
-- **`experience/page.tsx`** - Experience overview page
-- **`faq/page.tsx`** - FAQ with accordion component
-- **`contact/page.tsx`** - Contact form and location information
-- **`policies/page.tsx`** - Privacy, terms, community guidelines
-- **`not-found.tsx`** - 404 error page
-- **`layout.tsx`** - Root layout with font imports and metadata
+### `/app` — App Router Pages & Endpoints
+- `page.tsx` — Home page (Hero, Locations Grid, Pillars, Personas, Standard Amenities, Contact)
+- `locations/[slug]/page.tsx` — Modular location pages with dynamic metadata and `LodgingBusiness` schema
+- `locations/[slug]/opengraph-image.tsx` — Per-location 1200×630 OpenGraph preview generator
+- `experience/page.tsx` — Brand mission, pillars, UVP, and target personas
+- `faq/page.tsx` — Grouped FAQ accordions with `FAQPage` structured data
+- `contact/page.tsx` — Contact details and interactive `ContactForm` (`?subject=` pre-fill supported)
+- `policies/page.tsx` — Section-anchored House, Coworking, Booking, and Liability policies
+- `api/contact/route.ts` — Contact inquiry validation, rate-limiting, and delivery endpoint
+- `api/waitlist/route.ts` — Waitlist signup validation, rate-limiting, and delivery endpoint
+- `icon.svg` / `apple-icon.tsx` / `opengraph-image.tsx` — Brand icons and global social card
+
+### `/content` — Structured CMS Data
+- `brand.json` — Brand identity, pillars, locations, personas, amenities, and membership plans
+- `site.json` — Global site metadata, navigation order, contact details, and social handles
+- `pages/contact.json` — Contact page copy and primary contact channels
+- `pages/faq.json` — Categorized FAQs and disclaimers
+- `pages/policies.json` — Full policy sections and subsections
 
 ### `/components`
-- **`layout/`**
-  - `header.tsx` - Navigation with dropdown menu for locations
-  - `footer.tsx` - Multi-column footer with links and contact info
-- **`sections/`** (Page components)
-  - `hero.tsx` - Hero section with animations
-  - `pillars.tsx` - 3-pillar feature section (Performance, Freedom, Synergy)
-  - `locations-grid.tsx` - Location cards with status badges
-  - `hardware-specs.tsx` - Amenities showcase
-  - `booking.tsx` - Membership pricing tier section
+- `layout/` — `header.tsx` (scroll/hover-aware navigation) and `footer.tsx`
+- `forms/` — `contact-form.tsx` (`react-hook-form` + `zod` client form)
+- `sections/` — Home sections (`hero.tsx`, `locations-grid.tsx`, `pillars.tsx`, `target-audience.tsx`, `hardware-specs.tsx`, `contact-section.tsx`) and modular `location/*` sections
+- `seo/` — `structured-data.tsx` (`OrganizationSchema`, `LocalBusinessSchema`, `FaqSchema`)
+- `analytics/` — `google-analytics.tsx` (optional GA4 loader via `NEXT_PUBLIC_GA_MEASUREMENT_ID`)
+- `ui/` — `shadcn/ui` primitives and `waitlist-modal.tsx`
 
 ### `/lib`
-- **`content-loader.ts`** - Mock data for locations, pillars, and site content
-- Mock data includes gated logic for internet failover capabilities
+- `content-loader.ts` — Server-side JSON loaders
+- `lead-delivery.ts` — Resend transactional email + optional webhook delivery
+- `rate-limit.ts` — Sliding-window IP rate limiter
+- `socials.ts` — Live social URL filter (suppresses `"tbd"` / placeholder links)
+- `analytics.ts` — Safe `trackEvent()` helper for conversion events
 
-### `/types`
-- **`content.ts`** - TypeScript interfaces for Location, Pillar, Site data structures
+## Environment Variables
+Copy `.env.example` to `.env.local` and configure:
+- `RESEND_API_KEY` — Resend API key for transactional email delivery
+- `CONTACT_FROM_EMAIL` — Verified sender address (e.g., `CoWorkingStay <noreply@coworkingstay.com>`)
+- `CONTACT_RECEIVER_EMAIL` — Destination inbox (defaults to `worknwave@coworkingstay.com`)
+- `LEAD_WEBHOOK_URL` — *(Optional)* Webhook URL (Google Apps Script, Make, Zapier, Slack) for spreadsheet/CRM logging
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — *(Optional)* GA4 Measurement ID (`G-XXXXXXXXXX`)
 
-### `/public`
-- **`/locations/`** - Generated location images (Puerto Galera, Cavinti, La Union)
-
-## Design System
-
-### Typography
-- **Sora** - Brand headings (h1, h2, h3)
-- **Inter** - UI body text and labels
-- **Caveat** - Accent/taglines
-
-### Color Palette
-- **Primary**: #0158F5 (Blue) - Main brand color, CTAs
-- **Secondary**: #03B1F7 (Sky) - Secondary actions
-- **Accent**: #03D2D8 (Aqua) - Highlights
-- **Neutral**: White/grays for backgrounds and text
-
-### Visual Elements
-- **Border Radius**: 20px (rounded-lg in Tailwind)
-- **Glassmorphism**: Semi-transparent cards with backdrop blur
-- **Animations**: Framer Motion for fade-in and slide-up effects
-
-## Content Model
-
-### Locations
-Three premium co-working spaces with attributes:
-- **Status**: Open or Soon
-- **Capabilities**: Internet failover, high-speed internet, private offices, coworking spaces
-- **Booking Form**: Links to Google Forms (customizable URLs)
-- **Booking Type**: "request" for open locations, "waitlist" for upcoming
-
-### Pillars
-Three core value propositions:
-1. **Performance** - Elite office infrastructure
-2. **Freedom** - Nature and adventure
-3. **Synergy** - Community and collaboration
-
-## Key Features
-
-### Dynamic Routing
-- Location pages auto-generate from content model
-- `generateStaticParams()` enables static generation
-
-### SEO Optimization
-- Dynamic metadata for each location page
-- Proper page titles and descriptions
-
-### Responsive Design
-- Mobile-first approach
-- Tailwind responsive prefixes (sm:, md:, lg:)
-- Mobile menu with location dropdown
-
-### Animations
-- Framer Motion for entrance animations
-- Scroll-triggered animations with `whileInView`
-- Smooth page transitions
-
-### Booking Integration
-- Membership pricing tiers
-- Google Forms integration (anchor links to #booking)
-- Dynamic CTA based on location status
-
-## Development Notes
-
-### Package Manager
-- **npm only** (standardized for this repo)
-- Lockfile of record: `package-lock.json`
-- Commands:
-  - `npm install`
-  - `npm run dev`
-  - `npm run build`
-  - `npm run lint`
-
-### Add New Location
-1. Update SITE_CONTENT in `/lib/content-loader.ts`
-2. Add location image to `/public/locations/`
-3. Dynamic page generates automatically
-
-### Customize Content
-- Edit `/lib/content-loader.ts` for text, features, capabilities
-- Update colors in `/app/globals.css` CSS variables
-- Modify animations in individual component files
-
-### Dependencies
-- **framer-motion**: Animations and interactions
-- **lucide-react**: Icon library
-- **shadcn/ui**: Pre-built components
-- **tailwindcss**: Styling framework
-
-## Future Enhancements
-- CMS integration (Sanity, Contentful, etc.)
-- Member authentication and dashboard
-- Booking system integration
-- Blog/resources section
-- Email newsletter signup
-- Analytics tracking
-- Multi-language support
+## Commands
+- `npm install` — Install dependencies (`package-lock.json` is the lockfile of record)
+- `npm run dev` — Start local development server
+- `npm run build` — Run production build & TypeScript checks
+- `npm run lint` — Run ESLint

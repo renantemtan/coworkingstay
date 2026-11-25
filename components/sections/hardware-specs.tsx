@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Wifi, Zap, Monitor, Mic2 } from 'lucide-react';
+import { Wifi, Zap, Monitor, Mic2, type LucideIcon } from 'lucide-react';
 import type { Amenity } from '@/types/content';
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Wifi,
   Zap,
   Monitor,
